@@ -1,13 +1,47 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>signup-login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">signup-login</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div id="centered-content">
+    <ion-text class="textColor">
+      <div id="welcome">Welcome to</div>
+      <div id="ezpark">EZPark</div>
+    </ion-text>
+    <ion-label class="text textColor">Username:</ion-label>
+    <ion-input
+      class="input textarea"
+      pattern="[a-zA-Z0-9]*"
+      required
+    ></ion-input>
+    <ion-label class="text textColor">Password:</ion-label>
+    <ion-input
+      class="input textarea"
+      type="password"
+      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+      required
+    ></ion-input>
+    <ion-label class="text textColor">Confirm Password:</ion-label>
+    <ion-input
+      class="input textarea"
+      type="password"
+      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+      required
+    ></ion-input>
+    <ion-label class="text textColor">Email Address:</ion-label>
+    <ion-input
+      class="input textarea"
+      type="email"
+      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+      required
+    ></ion-input>
+    <ion-label class="text textColor">Phone Number:</ion-label>
+    <ion-input
+      class="input textarea"
+      type="tel"
+      pattern="[0-9]{7}"
+      required
+    ></ion-input>
+    <ion-button [routerLink]="['/login']">CREATE ACCOUNT</ion-button>
+    <ion-text class="textColor">
+      <div class="text">Already have an account?</div>
+      <div id="logintxt" class="text" [routerLink]="['/login']">Log In</div>
+    </ion-text>
+  </div>
 </ion-content>

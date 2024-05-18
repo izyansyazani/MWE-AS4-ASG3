@@ -1,20 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { RouterModule } from '@angular/router';
+import {
+  IonContent,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+  IonText,
+  IonTextarea,
+  IonLabel,
+  IonButton,
+  IonInput,
+} from '@ionic/angular/standalone';
 
 @Component({
-  selector: 'app-signup-login',
-  templateUrl: './signup-login.page.html',
-  styleUrls: ['./signup-login.page.scss'],
+  selector: 'app-signup',
+  templateUrl: './signup.page.html',
+  styleUrls: ['./signup.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [
+    IonInput,
+    IonButton,
+    IonLabel,
+    IonTextarea,
+    IonText,
+    IonContent,
+    IonHeader,
+    IonTitle,
+    IonToolbar,
+    CommonModule,
+    FormsModule,
+    RouterModule,
+  ],
 })
-export class SignupLoginPage implements OnInit {
+export class SignupPage implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
