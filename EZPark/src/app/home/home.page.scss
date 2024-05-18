@@ -1,27 +1,133 @@
-#container {
-  text-align: center;
+ion-content {
+  --ion-background-color: #FBF3EF;
+}
 
+.center {
   position: absolute;
-  left: 0;
-  right: 0;
   top: 50%;
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.colorblack {
+  color: #000;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+.white-menu {
+  background-color: white;
 }
 
-#container a {
-  text-decoration: none;
+#fullwhite {
+  height: 100%;
 }
+
+#toolbarcolor {
+  background-color: #D9D9D9;
+  width: 100%;
+  height: 100%;
+}
+
+#userimage {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: rgb(190, 170, 13) solid 1px;
+}
+
+#centerbtn {
+  width: 300px;
+  --background: #D9D9D9;
+  display: block;
+  margin: auto;
+  color:#000;
+}
+
+.txtpad {
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+#txtpad2 {
+  padding-bottom: 10px;
+  font-size: 24px;
+}
+
+#cardsize {
+  width: 250px;
+  height: 310px;
+  background-color: #D9D9D9;
+  border-radius: 40px;
+}
+
+.colspace {
+  padding: 0 100px; 
+}
+
+.cardsize2 {
+  background-color: #D9D9D9;
+  border-radius: 40px;
+  width: 50%;
+}
+
+.card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-text {
+  flex: 1;
+  order: 1;
+}
+
+.img {
+  order: 2;
+  border-radius: 40px;
+  width: 40%;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+}
+
+.spacebtn {
+  --background: #31D97E;
+  display: block;
+  margin: 0 100px;
+}
+
+ion-menu-button {
+  font-size: 55px;
+}
+
+.list-item {
+  border-bottom: 1px solid #E0E0E0;
+}
+
+@media only screen and (max-width: 600px) {
+  #centerbtn {
+    width: 90%;
+  }
+  .colspace {
+    padding: 0 10px;
+  }
+  .cardsize2 {
+    width: 100%;
+  }
+  .img {
+    width: 100%;
+  }  
+  .ratebtn, .spacebtn {
+    margin: 0 10px;
+  }
+  #cardsize {
+    width: 90%;
+    height: 95%;
+  }
+  ion-menu-button {
+    font-size: 50px;
+  }
+}
+
