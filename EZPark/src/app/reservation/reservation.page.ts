@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import {
-  LocalNotifications,
-  ScheduleOptions,
-} from '@capacitor/local-notifications';
+// import {
+//   LocalNotifications,
+//   ScheduleOptions,
+// } from '@capacitor/local-notifications';
 import {
   IonContent,
   IonHeader,
