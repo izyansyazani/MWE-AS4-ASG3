@@ -100,21 +100,21 @@ export class ReservationPage implements OnInit {
     await alert.present();
   }
 
-  async scheduleNotification() {
-    let options: ScheduleOptions = {
-      notifications: [
-        {
-          id: 111,
-          title: 'Booking Confirmed',
-          body: 'You have booked a parking.',
-        },
-      ],
-    };
+  // async scheduleNotification() {
+  //   let options: ScheduleOptions = {
+  //     notifications: [
+  //       {
+  //         id: 111,
+  //         title: 'Booking Confirmed',
+  //         body: 'You have booked a parking.',
+  //       },
+  //     ],
+  //   };
 
-    try {
-      await LocalNotifications.schedule(options);
-    } catch (ex) {
-      alert(JSON.stringify(ex));
-    }
-  }
+  //   try {
+  //     await LocalNotifications.schedule(options);
+  //   } catch (ex) {
+  //     alert(JSON.stringify(ex));
+  //   }
+  // }
 }
