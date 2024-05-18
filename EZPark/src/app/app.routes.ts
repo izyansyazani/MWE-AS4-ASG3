@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { ReceiptsPage } from './receipts/receipts.page';
+import { HistoryPage } from './history/history.page';
 
 export const routes: Routes = [
   {
@@ -11,33 +13,9 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'about-us',
+    path: 'signup-login',
     loadComponent: () =>
-      import('./about-us/about-us.page').then((m) => m.AboutUsPage),
-  },
-  {
-    path: 'history',
-    loadComponent: () =>
-      import('./history/history.page').then((m) => m.HistoryPage),
-  },
-  {
-    path: 'login',
-    loadComponent: () => import('./login/login.page').then((m) => m.LoginPage),
-  },
-  {
-    path: 'parking-spot',
-    loadComponent: () =>
-      import('./parking-spot/parking-spot.page').then((m) => m.ParkingSpotPage),
-  },
-  {
-    path: 'receipts',
-    loadComponent: () =>
-      import('./receipts/receipts.page').then((m) => m.ReceiptsPage),
-  },
-  {
-    path: 'reservation',
-    loadComponent: () =>
-      import('./reservation/reservation.page').then((m) => m.ReservationPage),
+      import('./signup-login/signup-login.page').then((m) => m.SignupLoginPage),
   },
   {
     path: 'signup',
@@ -45,9 +23,40 @@ export const routes: Routes = [
       import('./signup/signup.page').then((m) => m.SignupPage),
   },
   {
-    path: 'signup-login',
+    path: 'login',
+    loadComponent: () => import('./login/login.page').then((m) => m.LoginPage),
+  },
+  {
+    path: 'parkingspots',
     loadComponent: () =>
-      import('./signup-login/signup-login.page').then((m) => m.SignupLoginPage),
+      import('./parkingspots/parkingspots.page').then(
+        (m) => m.ParkingspotsPage
+      ),
+  },
+  {
+    path: 'history',
+    loadComponent: () =>
+      import('./history/history.page').then((m) => m.HistoryPage),
+  },
+  {
+    path: 'userprofile',
+    loadComponent: () =>
+      import('./userprofile/userprofile.page').then((m) => m.UserprofilePage),
+  },
+  {
+    path: 'aboutus',
+    loadComponent: () =>
+      import('./aboutus/aboutus.page').then((m) => m.AboutusPage),
+  },
+  {
+    path: 'receipts',
+    loadComponent: () =>
+      import('./receipts/receipts.page').then((m) => m.ReceiptsPage),
+  },
+  {
+    path: 'mall',
+    loadComponent: () =>
+      import('./parkingspots/mall/mall.page').then((m) => m.MallPage),
   },
   {
     path: 'splash-screen',
@@ -57,30 +66,29 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'user-profile',
+    path: 'airportmall',
     loadComponent: () =>
-      import('./user-profile/user-profile.page').then((m) => m.UserProfilePage),
-  },
-  {
-    path: 'airport-mall',
-    loadComponent: () =>
-      import('./airport-mall/airport-mall.page').then((m) => m.AirportMallPage),
-  },
-  {
-    path: 'aman-hills',
-    loadComponent: () =>
-      import('./parking-spot/aman-hills/aman-hills.page').then(
-        (m) => m.AmanHillsPage
+      import('./parkingspots/airportmall/airportmall.page').then(
+        (m) => m.AirportmallPage
       ),
   },
   {
-    path: 'mall',
+    path: 'amanhill',
     loadComponent: () =>
-      import('./parking-spot/mall/mall.page').then((m) => m.MallPage),
+      import('./parkingspots/amanhill/amanhill.page').then(
+        (m) => m.AmanhillPage
+      ),
+  },
+  { path: 'receipts', component: ReceiptsPage },
+  { path: 'history', component: HistoryPage },
+  {
+    path: 'mall2',
+    loadComponent: () =>
+      import('./parkingspots/mall2/mall2.page').then((m) => m.Mall2Page),
   },
   {
-    path: 'mall-2',
+    path: 'reservation',
     loadComponent: () =>
-      import('./mall-2/mall-2.page').then((m) => m.Mall2Page),
+      import('./reservation/reservation.page').then((m) => m.ReservationPage),
   },
 ];
