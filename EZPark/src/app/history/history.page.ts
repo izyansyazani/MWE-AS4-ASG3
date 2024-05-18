@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule, Router } from '@angular/router';
+import { RouterModule, Router } from '@angular/router'; // Import the Router module
 
 import {
   IonContent,
@@ -21,8 +21,6 @@ import {
   IonCardHeader,
   IonImg,
   IonButtons,
-  IonMenu,
-  IonList,
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -51,12 +49,10 @@ import {
     IonImg,
     RouterModule,
     IonButtons,
-    IonList,
-    IonMenu,
   ],
 })
 export class HistoryPage implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router) {} // Declare the Router module as a property
 
   parkingHistory = [
     {
@@ -98,11 +94,12 @@ export class HistoryPage implements OnInit {
   ];
 
   ngOnInit() {}
-  goToHome() {
-    this.router.navigate(['/home']);
-  }
 
   viewReceipt(parking: any) {
     this.router.navigate(['/receipts'], { state: { parkingData: parking } }); // Use the router property to navigate
+  }
+
+  goToHome() {
+    this.router.navigate(['/home']);
   }
 }

@@ -1,52 +1,56 @@
-
 ion-content {
-    --ion-background-color: #FBF3EF;
-  }
-  
-  ion-toolbar {
-    --background: #fff;
-  }
-  
-  .custom-title {
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    width: 100%;
-    padding: 0 16px;
-    color: black;
-  }
-  
-  .about-us-content p {
-    margin: 16px;
-    color:  white;
-  }
-  
-  .team-members {
-    margin-top: 16px;
-  }
-  
-  ion-card-title {
-    text-align: center;
-    font-size: 18px;
-    color: white;
-  }
-  
-  ion-card-content {
-    padding: 16px;
-  }
-  
-  ion-item {
-    --padding-start: 0;
-  }
-  
-  ion-icon {
-    margin-right: 8px;
-  }
+  --ion-background-color: #FBF3EF;
+}
 
-  #back{
-    width:30px;
-    height:30px;
-    margin-left:30px;
-    margin-top:20px;
-  }
-  
+ion-toolbar {
+  --background: #fff;
+}
+
+.custom-title {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  padding: 0 16px;
+  color: black;
+}
+
+.about-us-content p {
+  margin: 16px;
+  color:  #4B2E2E;
+}
+
+.team-members {
+  margin-top: 16px;
+}
+
+ion-card-title {
+  text-align: center;
+  font-size: 20px;
+  color: #000;
+  font-weight:bold;
+}
+
+ion-card-content {
+  padding: 16px;
+}
+
+ion-item {
+  --padding-start: 0;
+}
+
+ion-icon {
+  margin-right: 8px;
+}
+
+#back{
+  width:30px;
+  height:30px;
+  margin-left:10px;
+  margin-top:5px;
+}
+
+ion-title{
+  font-size: 30px;
+  font-weight: bold;
+}
