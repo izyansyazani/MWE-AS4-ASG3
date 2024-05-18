@@ -12,42 +12,75 @@ export const routes: Routes = [
   },
   {
     path: 'about-us',
-    loadComponent: () => import('./about-us/about-us.page').then( m => m.AboutUsPage)
+    loadComponent: () =>
+      import('./about-us/about-us.page').then((m) => m.AboutUsPage),
   },
   {
     path: 'history',
-    loadComponent: () => import('./history/history.page').then( m => m.HistoryPage)
+    loadComponent: () =>
+      import('./history/history.page').then((m) => m.HistoryPage),
   },
   {
     path: 'login',
-    loadComponent: () => import('./login/login.page').then( m => m.LoginPage)
+    loadComponent: () => import('./login/login.page').then((m) => m.LoginPage),
   },
   {
     path: 'parking-spot',
-    loadComponent: () => import('./parking-spot/parking-spot.page').then( m => m.ParkingSpotPage)
+    loadComponent: () =>
+      import('./parking-spot/parking-spot.page').then((m) => m.ParkingSpotPage),
   },
   {
     path: 'receipts',
-    loadComponent: () => import('./receipts/receipts.page').then( m => m.ReceiptsPage)
+    loadComponent: () =>
+      import('./receipts/receipts.page').then((m) => m.ReceiptsPage),
   },
   {
     path: 'reservation',
-    loadComponent: () => import('./reservation/reservation.page').then( m => m.ReservationPage)
+    loadComponent: () =>
+      import('./reservation/reservation.page').then((m) => m.ReservationPage),
   },
   {
     path: 'signup',
-    loadComponent: () => import('./signup/signup.page').then( m => m.SignupPage)
+    loadComponent: () =>
+      import('./signup/signup.page').then((m) => m.SignupPage),
   },
   {
     path: 'signup-login',
-    loadComponent: () => import('./signup-login/signup-login.page').then( m => m.SignupLoginPage)
+    loadComponent: () =>
+      import('./signup-login/signup-login.page').then((m) => m.SignupLoginPage),
   },
   {
     path: 'splash-screen',
-    loadComponent: () => import('./splash-screen/splash-screen.page').then( m => m.SplashScreenPage)
+    loadComponent: () =>
+      import('./splash-screen/splash-screen.page').then(
+        (m) => m.SplashScreenPage
+      ),
   },
   {
     path: 'user-profile',
-    loadComponent: () => import('./user-profile/user-profile.page').then( m => m.UserProfilePage)
+    loadComponent: () =>
+      import('./user-profile/user-profile.page').then((m) => m.UserProfilePage),
+  },
+  {
+    path: 'airport-mall',
+    loadComponent: () =>
+      import('./airport-mall/airport-mall.page').then((m) => m.AirportMallPage),
+  },
+  {
+    path: 'aman-hills',
+    loadComponent: () =>
+      import('./parking-spot/aman-hills/aman-hills.page').then(
+        (m) => m.AmanHillsPage
+      ),
+  },
+  {
+    path: 'mall',
+    loadComponent: () =>
+      import('./parking-spot/mall/mall.page').then((m) => m.MallPage),
+  },
+  {
+    path: 'mall-2',
+    loadComponent: () =>
+      import('./mall-2/mall-2.page').then((m) => m.Mall2Page),
   },
 ];
