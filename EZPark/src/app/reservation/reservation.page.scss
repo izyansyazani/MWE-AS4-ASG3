@@ -1,0 +1,98 @@
+.custom-card {
+    height: 25%;
+    width: 50%;
+    margin-left:25%;
+  }
+
+  
+  .grey-box {
+    background-color: #ccc;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-radius: 20px;
+  }
+
+  .image-label {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #000;
+    font-weight:bold;
+  }
+
+.inputs{
+    background-color: #e0e0e0;
+    padding: 20px 16px;
+    border-radius:10px;
+}
+
+.confirmation-alert {
+    .alert-wrapper {
+      background-color: #f4f4f4;
+      color: #333;
+      border-radius: 30px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  
+    .alert-button {
+      font-weight: bold;
+    }
+  
+    .secondary {
+      color: #333;
+    }
+  
+    .primary {
+      color: #fff;
+      background-color: #007bff;
+    }
+  }
+
+  h1 {
+    font-size:35px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+  }
+  
+  ion-card {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  ion-content{
+    --ion-background-color: #FBF3EF;
+  }
+  
+  ion-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+
+#back{
+    width:30px;
+    height:30px;
+    margin-left:30px;
+    margin-top:20px;
+  }
+
+  #form{
+    width:70%;
+    margin-left:15%
+  }
+
+  #confirm{
+    width:70%;
+    margin-left:15%;
+    margin-top:20px;
+    padding:10px;
+    border-radius:10px;
+    --color: #fff;
+    --background: #8888e7;
+  }
