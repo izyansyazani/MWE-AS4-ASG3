@@ -1,0 +1,31 @@
+.profile-avatar {
+    display: block;
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  
+  ion-card-title,
+  ion-card-subtitle {
+    text-align: center;
+  }
+  
+  ion-item {
+    --padding-start: 0;
+    --inner-padding-end: 0;
+    --min-height: 44px;
+    --border-color: transparent;
+  }
+  
+  ion-item ion-icon {
+    margin-right: 10px;
+  }
+  
+  #back{
+    width:30px;
+    height:30px;
+    margin-left:30px;
+    margin-top:20px;
+  }
