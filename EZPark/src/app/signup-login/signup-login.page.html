@@ -1,47 +1,17 @@
-<ion-content>
-  <div id="centered-content">
-    <ion-text class="textColor">
-      <div id="welcome">Welcome to</div>
-      <div id="ezpark">EZPark</div>
-    </ion-text>
-    <ion-label class="text textColor">Username:</ion-label>
-    <ion-input
-      class="input textarea"
-      pattern="[a-zA-Z0-9]*"
-      required
-    ></ion-input>
-    <ion-label class="text textColor">Password:</ion-label>
-    <ion-input
-      class="input textarea"
-      type="password"
-      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-      required
-    ></ion-input>
-    <ion-label class="text textColor">Confirm Password:</ion-label>
-    <ion-input
-      class="input textarea"
-      type="password"
-      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-      required
-    ></ion-input>
-    <ion-label class="text textColor">Email Address:</ion-label>
-    <ion-input
-      class="input textarea"
-      type="email"
-      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-      required
-    ></ion-input>
-    <ion-label class="text textColor">Phone Number:</ion-label>
-    <ion-input
-      class="input textarea"
-      type="tel"
-      pattern="[0-9]{7}"
-      required
-    ></ion-input>
-    <ion-button [routerLink]="['/login']">CREATE ACCOUNT</ion-button>
-    <ion-text class="textColor">
-      <div class="text">Already have an account?</div>
-      <div id="logintxt" class="text" [routerLink]="['/login']">Log In</div>
-    </ion-text>
+<ion-content class="center-content">
+  <div class="centered-content">
+    <ion-row>
+      <ion-col size="auto">
+        <img
+          id="image"
+          src="../assets/HouseholdGarage.png"
+          alt="Household Garage"
+        />
+        <span id="ezpark">EZPark</span>
+      </ion-col>
+    </ion-row>
+    <ion-button [routerLink]="['/signup']">SIGN UP</ion-button>
+    <br />
+    <ion-button [routerLink]="['/login']">LOGIN</ion-button>
   </div>
 </ion-content>

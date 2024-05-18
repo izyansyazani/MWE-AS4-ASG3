@@ -7,34 +7,30 @@ import {
   IonHeader,
   IonTitle,
   IonToolbar,
-  IonText,
-  IonTextarea,
-  IonLabel,
+  IonRow,
   IonButton,
-  IonInput,
+  IonCol,
 } from '@ionic/angular/standalone';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.page.html',
-  styleUrls: ['./signup.page.scss'],
+  selector: 'app-signup-login',
+  templateUrl: './signup-login.page.html',
+  styleUrls: ['./signup-login.page.scss'],
   standalone: true,
   imports: [
-    IonInput,
+    IonCol,
     IonButton,
-    IonLabel,
-    IonTextarea,
-    IonText,
+    IonRow,
     IonContent,
     IonHeader,
     IonTitle,
     IonToolbar,
     CommonModule,
     FormsModule,
-    RouterModule,
+    RouterModule, // Import RouterModule here
   ],
 })
-export class SignupPage implements OnInit {
+export class SignupLoginPage implements OnInit {
   constructor() {}
 
   ngOnInit() {}
