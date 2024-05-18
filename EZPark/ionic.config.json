@@ -1,0 +1,7 @@
+{
+  "name": "EZPark",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
