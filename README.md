@@ -1,1 +1,1 @@
-Skibidi Toilet!
+Skibidi Rizz
