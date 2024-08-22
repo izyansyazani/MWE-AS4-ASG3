@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-// import {
-//   LocalNotifications,
-//   ScheduleOptions,
-// } from '@capacitor/local-notifications';
+import {
+  LocalNotifications,
+  ScheduleOptions,
+} from '@capacitor/local-notifications';
 import {
   IonContent,
   IonHeader,
@@ -89,9 +89,10 @@ export class ReservationPage implements OnInit {
         },
         {
           text: 'Confirm',
-          handler: () => {
+          handler: async () => {
             console.log('Booking confirmed');
             this.router.navigate(['/home']);
+            await this.scheduleNotification();
           },
         },
       ],
@@ -100,21 +101,21 @@ export class ReservationPage implements OnInit {
     await alert.present();
   }
 
-  // async scheduleNotification() {
-  //   let options: ScheduleOptions = {
-  //     notifications: [
-  //       {
-  //         id: 111,
-  //         title: 'Booking Confirmed',
-  //         body: 'You have booked a parking.',
-  //       },
-  //     ],
-  //   };
+  async scheduleNotification() {
+    let options: ScheduleOptions = {
+      notifications: [
+        {
+          id: 111,
+          title: 'Booking Confirmed',
+          body: 'You have booked a parking.',
+        },
+      ],
+    };
 
-  //   try {
-  //     await LocalNotifications.schedule(options);
-  //   } catch (ex) {
-  //     alert(JSON.stringify(ex));
-  //   }
-  // }
+    try {
+      await LocalNotifications.schedule(options);
+    } catch (ex) {
+      alert(JSON.stringify(ex));
+    }
+  }
 }

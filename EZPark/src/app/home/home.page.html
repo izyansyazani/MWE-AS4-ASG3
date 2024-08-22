@@ -2,75 +2,48 @@
   <ion-menu contentId="main-content">
     <ion-header>
       <ion-toolbar>
-        <ion-title id="toolbarcolor" class="center colorblack"
-          >EZPark</ion-title
-        >
+        <ion-title id="toolbarcolor" class="center colorblack">EZPark</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <ion-list
-        class="ion-padding colorblack white-menu list-item"
-        [routerLink]="['/userprofile']"
-        >User Profile</ion-list
-      >
-      <ion-list
-        class="ion-padding colorblack white-menu list-item"
-        [routerLink]="['/parkingspots']"
-        >Parking Spot</ion-list
-      >
-      <ion-list
-        class="ion-padding colorblack white-menu list-item"
-        [routerLink]="['/reservation']"
-        >Reservation</ion-list
-      >
-      <ion-list
-        class="ion-padding colorblack white-menu list-item"
-        [routerLink]="['/history']"
-        >Parking History</ion-list
-      >
-      <ion-list
-        class="ion-padding colorblack white-menu list-item"
-        [routerLink]="['/aboutus']"
-        >About Us</ion-list
-      >
-      <ion-list id="fullwhite" class="white-menu"></ion-list>
+      <ion-list class="ion-padding colorblack white-menu list-item" [routerLink]="['/userprofile']">User Profile</ion-list>
+      <ion-list class="ion-padding colorblack white-menu list-item" [routerLink]="['/parkingspots']">Parking Spots</ion-list>
+      <ion-list class="ion-padding colorblack white-menu list-item" [routerLink]="['/history']">Parking History</ion-list>
+      <ion-list class="ion-padding colorblack white-menu list-item" [routerLink]="['/aboutus']">About Us</ion-list>
+      <ion-list class="ion-padding colorblack white-menu list-item" [routerLink]="['/feedback']">Feedback</ion-list>      
+      <ion-list id="fullwhite" class="white-menu"></ion-list>  
     </ion-content>
   </ion-menu>
   <div class="ion-page" id="main-content">
-    <ion-buttons slot="start">
-      <ion-menu-button class="colorblack"></ion-menu-button>
-    </ion-buttons>
+        <ion-buttons slot="start">
+          <ion-menu-button class="colorblack"></ion-menu-button>
+        </ion-buttons>
     <ion-content class="ion-padding">
-      <img id="userimage" src="../assets/joe.png" alt="userimage" />
+      <img id="userimage" src="../assets/joe.png" alt="userimage">
       <span id="txtpad2" class="colorblack">Arthur B</span>
-      <br />
+      <br>
       <ion-grid>
         <ion-row>
           <ion-col size-xs="12" size-md="8" offset-md="2">
-            <ion-button
-              id="centerbtn"
-              shape="round"
-              [routerLink]="['/parkingspots']"
-              >Find Parking</ion-button
-            >
+            <ion-button id="centerbtn" shape="round" [routerLink]="['/parkingspots']">Find Parking</ion-button>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-text>
             <h1 class="colorblack txtpad">Recent Parking</h1>
-          </ion-text>
+          </ion-text>    
         </ion-row>
         <ion-row>
           <ion-col size-xs="12" size-sm="6" size-md="4" class="colspace">
             <ion-card id="cardsize">
               <img alt="The Mall" src="../assets/mall.jpg" />
               <ion-card-header>
-                <ion-card-title class="colorblack"
-                  >The Mall, Gadong</ion-card-title
-                >
+                <ion-card-title class="colorblack">The Mall, Gadong</ion-card-title>
                 <ion-card-subtitle>Shopping Mall Gadong</ion-card-subtitle>
               </ion-card-header>
-              <ion-card-content class="colorblack"> $Rate/h </ion-card-content>
+              <ion-card-content class="colorblack">
+                $Rate/h
+              </ion-card-content>
             </ion-card>
           </ion-col>
           <ion-col size-xs="12" size-sm="6" size-md="4" class="colspace">
@@ -80,7 +53,9 @@
                 <ion-card-title class="colorblack">Yayasan</ion-card-title>
                 <ion-card-subtitle>Gedung Perniagaan Hua Ho</ion-card-subtitle>
               </ion-card-header>
-              <ion-card-content class="colorblack"> $Rate/h </ion-card-content>
+              <ion-card-content class="colorblack">
+                $Rate/h
+              </ion-card-content>
             </ion-card>
           </ion-col>
           <ion-col size-xs="12" size-sm="6" size-md="4" class="colspace">
@@ -90,15 +65,17 @@
                 <ion-card-title class="colorblack">Airport Mall</ion-card-title>
                 <ion-card-subtitle>The Airport Mall</ion-card-subtitle>
               </ion-card-header>
-              <ion-card-content class="colorblack"> $Rate/h </ion-card-content>
+              <ion-card-content class="colorblack">
+                $Rate/h
+              </ion-card-content>
             </ion-card>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
             <ion-text>
-              <h1 class="colorblack txtpad">Favourite Parking</h1>
-            </ion-text>
+            <h1 class="colorblack txtpad">Favourite Parking</h1>
+          </ion-text>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -107,24 +84,18 @@
               <div class="card-content">
                 <div class="card-text">
                   <ion-card-header>
-                    <ion-card-title class="colorblack"
-                      >The Mall, Gadong</ion-card-title
-                    >
+                    <ion-card-title class="colorblack">The Mall, Gadong</ion-card-title>
                     <ion-card-subtitle>Shopping Mall Gadong</ion-card-subtitle>
                   </ion-card-header>
                   <ion-card-content>
-                    <br />
-                    <ion-button
-                      class="spacebtn"
-                      shape="round"
-                      [routerLink]="['/parkingspots']"
-                      >24 Free Space</ion-button
-                    >
+                    <ion-button class="ratebtn" shape="round" [routerLink]="['/rate-hours']">$Rate/h</ion-button>
+                    <br>
+                    <ion-button class="spacebtn" shape="round" [routerLink]="['/parkingspots']">24 Free Space</ion-button>
                   </ion-card-content>
                 </div>
                 <img class="img" alt="The Mall" src="../assets/mall.jpg" />
               </div>
-            </ion-card>
+            </ion-card>          
           </ion-col>
         </ion-row>
         <ion-row>
@@ -133,30 +104,18 @@
               <div class="card-content">
                 <div class="card-text">
                   <ion-card-header>
-                    <ion-card-title class="colorblack"
-                      >Times Square Shopping Center</ion-card-title
-                    >
-                    <ion-card-subtitle
-                      >Times Square Roof Parking</ion-card-subtitle
-                    >
+                    <ion-card-title class="colorblack">Times Square Shopping Center</ion-card-title>
+                    <ion-card-subtitle>Times Square Roof Parking</ion-card-subtitle>
                   </ion-card-header>
                   <ion-card-content>
-                    <br />
-                    <ion-button
-                      class="spacebtn"
-                      shape="round"
-                      [routerLink]="['/parkingspots']"
-                      >13 Free Space</ion-button
-                    >
+                    <ion-button class="ratebtn" shape="round" [routerLink]="['/rate-hours']">$Rate/h</ion-button>
+                    <br>
+                    <ion-button class="spacebtn" shape="round" [routerLink]="['/parkingspots']">13 Free Space</ion-button>
                   </ion-card-content>
                 </div>
-                <img
-                  class="img"
-                  alt="The Mall"
-                  src="../assets/Timessquare.jpg"
-                />
+                <img class="img" alt="The Mall" src="../assets/Timessquare.jpg" />
               </div>
-            </ion-card>
+            </ion-card>          
           </ion-col>
         </ion-row>
       </ion-grid>

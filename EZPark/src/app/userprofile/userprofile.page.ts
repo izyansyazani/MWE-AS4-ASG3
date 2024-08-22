@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule, Router } from '@angular/router';
+import { Router } from '@angular/router'; // Import Angular Router
 import { AlertController } from '@ionic/angular';
 
 import {
@@ -27,6 +27,7 @@ import {
   IonFooter,
   IonAvatar,
   IonBackButton,
+  // AlertController,
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -59,7 +60,6 @@ import {
     IonFooter,
     IonAvatar,
     IonBackButton,
-    RouterModule,
   ],
 })
 export class UserprofilePage implements OnInit {
@@ -67,8 +67,8 @@ export class UserprofilePage implements OnInit {
     name: 'Arthur B',
     email: 'arthur.b@gmail.com',
     phone: '+973 800 8000',
-    image: 'assets/profile-pic.jpg',
-    payment: '**** **** **** 1234',
+    image: 'assets/profile-pic.jpg', // Adjust the path to your image asset
+    payment: '**** **** **** 1234', // Masked card number
     notification: 'Enabled',
     security: 'High',
   };
@@ -76,15 +76,12 @@ export class UserprofilePage implements OnInit {
   constructor(
     private router: Router,
     private alertController: AlertController
-  ) {}
+  ) {} // Inject Router
 
   ngOnInit() {}
-  goToHome() {
-    this.router.navigate(['/home']);
-  }
 
   editProfile() {
-    this.router.navigate(['/userprofile']);
+    this.router.navigate(['/userprofile']); // Define the route for editing profile
   }
 
   parkingHistory() {
@@ -108,16 +105,21 @@ export class UserprofilePage implements OnInit {
           {
             text: 'Cancel',
             role: 'cancel',
-            handler: () => {},
+            handler: () => {}, // Empty handler for cancel
           },
           {
             text: 'Logout',
             handler: () => {
-              this.router.navigate(['/signup-login']);
+              // Handle logout logic here (e.g., clear session data)
+              this.router.navigate(['/signup-login']); // Navigate to signup page after confirmation
             },
           },
         ],
       })
       .then((alert) => alert.present());
+  }
+
+  goToHome() {
+    this.router.navigate(['/home']);
   }
 }
