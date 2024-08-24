@@ -90,5 +90,9 @@ export const routes: Routes = [
     path: 'reservation',
     loadComponent: () =>
       import('./reservation/reservation.page').then((m) => m.ReservationPage),
+  },  {
+    path: 'feedback',
+    loadComponent: () => import('./feedback/feedback.page').then( m => m.FeedbackPage)
   },
+
 ];
