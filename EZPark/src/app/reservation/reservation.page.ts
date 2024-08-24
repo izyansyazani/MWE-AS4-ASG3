@@ -3,10 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import {
-  LocalNotifications,
-  ScheduleOptions,
-} from '@capacitor/local-notifications';
+
 import {
   IonContent,
   IonHeader,
@@ -75,47 +72,47 @@ export class ReservationPage implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  async showPopup() {
-    const alert = await this.alertController.create({
-      header: 'Confirm Booking',
-      message: 'Are you sure you want to confirm this booking?',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-            console.log('Booking cancelled');
-          },
-        },
-        {
-          text: 'Confirm',
-          handler: async () => {
-            console.log('Booking confirmed');
-            this.router.navigate(['/home']);
-            await this.scheduleNotification();
-          },
-        },
-      ],
-    });
+  // async showPopup() {
+  //   const alert = await this.alertController.create({
+  //     header: 'Confirm Booking',
+  //     message: 'Are you sure you want to confirm this booking?',
+  //     buttons: [
+  //       {
+  //         text: 'Cancel',
+  //         role: 'cancel',
+  //         handler: () => {
+  //           console.log('Booking cancelled');
+  //         },
+  //       },
+  //       {
+  //         text: 'Confirm',
+  //         handler: async () => {
+  //           console.log('Booking confirmed');
+  //           this.router.navigate(['/home']);
+  //           await this.scheduleNotification();
+  //         },
+  //       },
+  //     ],
+  //   });
 
-    await alert.present();
-  }
+  //   await alert.present();
+  // }
 
-  async scheduleNotification() {
-    let options: ScheduleOptions = {
-      notifications: [
-        {
-          id: 111,
-          title: 'Booking Confirmed',
-          body: 'You have booked a parking.',
-        },
-      ],
-    };
+  // async scheduleNotification() {
+  //   let options: ScheduleOptions = {
+  //     notifications: [
+  //       {
+  //         id: 111,
+  //         title: 'Booking Confirmed',
+  //         body: 'You have booked a parking.',
+  //       },
+  //     ],
+  //   };
 
-    try {
-      await LocalNotifications.schedule(options);
-    } catch (ex) {
-      alert(JSON.stringify(ex));
-    }
-  }
+  //   try {
+  //     await LocalNotifications.schedule(options);
+  //   } catch (ex) {
+  //     alert(JSON.stringify(ex));
+  //   }
+  // }
 }
