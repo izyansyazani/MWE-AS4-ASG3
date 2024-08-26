@@ -91,4 +91,8 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./reservation/reservation.page').then((m) => m.ReservationPage),
   },
+  {
+    path: 'profile-edit',
+    loadComponent: () => import('./profile-edit/profile-edit.page').then( m => m.ProfileEditPage)
+  },
 ];
