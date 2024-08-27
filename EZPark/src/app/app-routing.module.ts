@@ -1,5 +1,4 @@
 import { RouterModule, Routes } from '@angular/router';
-import { ProfileEditPage } from './profile-edit/profile-edit.page';
 
 export const routes: Routes = [
   {
@@ -52,15 +51,4 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./aboutus/aboutus.page').then((m) => m.AboutusPage),
   },
-  {
-    path: 'profile-edit',
-    loadComponent: () =>
-      import('./profile-edit/profile-edit.page').then((m) => m.ProfileEditPage),
-  },
 ];
-
-// @NgModule({
-//   imports: [RouterModule.forRoot(routes)],
-//   exports: [RouterModule]
-// })
-// export class AppRoutingModule {}
