@@ -96,4 +96,8 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./feedback/feedback.page').then((m) => m.FeedbackPage),
   },
+  {
+    path: 'profile-edit',
+    loadComponent: () => import('./profile-edit/profile-edit.page').then( m => m.ProfileEditPage)
+  },
 ];
