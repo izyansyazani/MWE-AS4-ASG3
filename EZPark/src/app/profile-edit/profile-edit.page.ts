@@ -3,6 +3,7 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 import {
   IonContent,
   IonHeader,
@@ -66,10 +67,10 @@ import {
   ],
 })
 export class ProfileEditPage {
-  profile = {
-    name: '',
-    email: '',
-  };
+  // profile = {
+  //   name: '',
+  //   email: '',
+  // };
   profilePicture: string | ArrayBuffer | null = null;
 
   constructor(private alertController: AlertController) {}
@@ -88,7 +89,8 @@ export class ProfileEditPage {
   async updateProfile() {
     // Handle profile update logic here, e.g., save to a database or service
     const alert = await this.alertController.create({
-      header: 'Profile Updated',
+      header: 'Alert',
+      subheader: 'Profile Updated',
       message: 'Your profile information has been updated successfully.',
       buttons: ['OK'],
     });
