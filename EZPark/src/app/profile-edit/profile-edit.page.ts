@@ -65,8 +65,38 @@ import {
     RouterModule,
   ],
 })
-export class ProfileEditPage implements OnInit {
-  constructor() {}
+export class ProfileEditPage {
+  profile = {
+    name: '',
+    email: '',
+  };
+  profilePicture: string | ArrayBuffer | null = null;
 
-  ngOnInit() {}
+  constructor(private alertController: AlertController) {}
+
+  onFileChange(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.profilePicture = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  async updateProfile() {
+    // Handle profile update logic here, e.g., save to a database or service
+    const alert = await this.alertController.create({
+      header: 'Profile Updated',
+      message: 'Your profile information has been updated successfully.',
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
 }
+// export class ProfileEditPage implements OnInit {
+//   constructor() {}
+
+//   ngOnInit() {}
+// }
