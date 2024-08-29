@@ -95,5 +95,9 @@ export const routes: Routes = [
     path: 'feedback',
     loadComponent: () =>
       import('./feedback/feedback.page').then((m) => m.FeedbackPage),
+  },  {
+    path: 'payment',
+    loadComponent: () => import('./payment/payment.page').then( m => m.PaymentPage)
   },
+
 ];
