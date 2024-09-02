@@ -99,5 +99,9 @@ export const routes: Routes = [
     path: 'payment',
     loadComponent: () => import('./payment/payment.page').then( m => m.PaymentPage)
   },
+  {
+    path: 'profile-edit',
+    loadComponent: () => import('./profile-edit/profile-edit.page').then( m => m.ProfileEditPage)
+  },
 
 ];
