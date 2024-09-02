@@ -35,4 +35,9 @@ export class FeedbackPage implements OnInit {
   goToHome() {
     this.router.navigate(['/home']);
   }
+
+  // Method to navigate to different pages based on the clicked card
+  goToPage(page: string) {
+    this.router.navigate([`/${page}`]);
+  }
 }
