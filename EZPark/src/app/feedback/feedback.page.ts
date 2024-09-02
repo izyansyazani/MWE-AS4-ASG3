@@ -7,6 +7,8 @@ import {
   IonHeader,
   IonTitle,
   IonToolbar,
+  IonCardContent,
+  IonCard,
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -15,6 +17,8 @@ import {
   styleUrls: ['./feedback.page.scss'],
   standalone: true,
   imports: [
+    IonCard,
+    IonCardContent,
     IonContent,
     IonHeader,
     IonTitle,
