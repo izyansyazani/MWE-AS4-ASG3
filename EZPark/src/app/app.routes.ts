@@ -127,5 +127,9 @@ export const routes: Routes = [
     path: 'amanhillsrating',
     loadComponent: () => import('./feedback/amanhillsrating/amanhillsrating.page').then( m => m.AmanhillsratingPage)
   },
+  {
+    path: 'auth',
+    loadComponent: () => import('./auth/auth.page').then( m => m.AuthPage)
+  },
 
 ];
