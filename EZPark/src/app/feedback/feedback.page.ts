@@ -1,16 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
   IonContent,
   IonHeader,
   IonTitle,
   IonToolbar,
-  IonItem,
-  IonGrid,
-  IonRow,
-  IonCardContent,
-  IonLabel,
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -19,11 +15,6 @@ import {
   styleUrls: ['./feedback.page.scss'],
   standalone: true,
   imports: [
-    IonLabel,
-    IonCardContent,
-    IonRow,
-    IonGrid,
-    IonItem,
     IonContent,
     IonHeader,
     IonTitle,
@@ -33,7 +24,11 @@ import {
   ],
 })
 export class FeedbackPage implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
+
+  goToHome() {
+    this.router.navigate(['/home']);
+  }
 }
