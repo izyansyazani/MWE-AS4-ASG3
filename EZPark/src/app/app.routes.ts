@@ -99,5 +99,33 @@ export const routes: Routes = [
     path: 'payment',
     loadComponent: () => import('./payment/payment.page').then( m => m.PaymentPage)
   },
+  {
+    path: 'profile-edit',
+    loadComponent: () => import('./profile-edit/profile-edit.page').then( m => m.ProfileEditPage)
+  },
+  {
+    path: 'mallrating',
+    loadComponent: () => import('./feedback/mallrating/mallrating.page').then( m => m.MallratingPage)
+  },
+  {
+    path: 'timessquarerating',
+    loadComponent: () => import('./feedback/timessquarerating/timessquarerating.page').then( m => m.TimessquareratingPage)
+  },
+  {
+    path: 'airportmallrating',
+    loadComponent: () => import('./feedback/airportmallrating/airportmallrating.page').then( m => m.AirportmallratingPage)
+  },
+  {
+    path: 'yayasanrating',
+    loadComponent: () => import('./feedback/yayasanrating/yayasanrating.page').then( m => m.YayasanratingPage)
+  },
+  {
+    path: 'mabohairating',
+    loadComponent: () => import('./feedback/mabohairating/mabohairating.page').then( m => m.MabohairatingPage)
+  },
+  {
+    path: 'amanhillsrating',
+    loadComponent: () => import('./feedback/amanhillsrating/amanhillsrating.page').then( m => m.AmanhillsratingPage)
+  },
 
 ];

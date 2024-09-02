@@ -1,55 +1,36 @@
 ion-content {
-  --ion-background-color: #FBF3EF;
-  display: flex; 
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  flex-direction: column;
-}
+    --ion-background-color: #FBF3EF;
+    display: flex; /* add this to make ion-content a flex container */
+    justify-content: center; /* center horizontally */
+    align-items: center; /* center vertically */
+    height: 100%; /* make sure ion-content takes up the full height */
+  }
+  
+  h1 {
+    color: #000;
+    font-size: 24px;
+    display: block;
+    text-align: center;
+    margin-top: -20px;
+  }
+  
+  .back-button {
+    width: 24px;
+    height: 24px;
+    margin-top: 20px;
+  }
 
-h1 {
-  color: #000;
-  font-size: 24px;
-  display: block;
-  text-align: center;
-  margin-top: -20px;
-}
+  .yayasan-image {
+    width: 70%; /* Reduce the width to make the image smaller */
+    height: auto; /* Maintain the aspect ratio */
+    margin-top: 10px; /* Spacing from the title */
+    border-radius: 10px; /* Optional: rounded corners */
+    display: block; /* Ensure the image is treated as a block element */
+    margin-left: auto; /* Center the image horizontally */
+    margin-right: auto; /* Center the image horizontally */
+  }
 
-.back-button {
-  width: 24px;
-  height: 24px;
-  margin-top: 20px;
-}
-
-.cards-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Two columns */
-  gap: 15px; /* Space between cards */
-  padding: 20px;
-  width: 100%; /* Ensure the container takes up the full width */
-  max-width: 500px; /* Adjust this value to limit the container width */
-}
-
-ion-card {
-  --background: #E0E0E0; /* Set background color of the card */
-  --border-radius: 10px;
-  text-align: center;
-}
-
-ion-card img {
-  width: 100%;
-  height: auto;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
-ion-card-content {
-  font-weight: bold;
-  font-size: 14px;
-  padding: 10px 0;
-}
-
- .box-container {
+  .box-container {
     display: flex; /* Make box-container a flex container */
     flex-direction: column; /* Stack boxes vertically */
     align-items: center; /* Center boxes horizontally */

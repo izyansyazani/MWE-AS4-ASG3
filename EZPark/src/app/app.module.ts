@@ -10,9 +10,13 @@ import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
+<<<<<<< HEAD
 import { AngularFireModule} from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
+=======
+import { AngularFireModule } from '@angular/fire/compat';
+>>>>>>> 67670d1504cd7cfba952b8685f1e6b217f9ab318
 
 @NgModule({
   declarations: [AppComponent],
