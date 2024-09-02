@@ -29,3 +29,34 @@ ion-content {
     margin-left: auto; /* Center the image horizontally */
     margin-right: auto; /* Center the image horizontally */
   }
+
+  .box-container {
+    display: flex; /* Make box-container a flex container */
+    flex-direction: column; /* Stack boxes vertically */
+    align-items: center; /* Center boxes horizontally */
+    width: 100%; /* Make sure it takes up full width */
+    max-width: 600px; /* Limit the width of the box container */
+    margin-top: 20px; /* Add margin to create space below the image */
+  }
+  
+  .colored-box {
+    width: 80%; /* Adjust this width to fit your design */
+    height: 100px; /* Adjust the height as needed */
+    margin-top: 10px; /* Add some space above the box */
+    border-radius: 10px; /* Optional: rounded corners */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: add shadow */
+    background-color: #8888E7; /* Default color */
+  }
+  
+  /* Use nth-child to alternate colors */
+  .colored-box:nth-child(odd) {
+    background-color: #8888E7;
+  }
+  
+  .colored-box:nth-child(even) {
+    background-color: #E0E0E0;
+  }
+  
