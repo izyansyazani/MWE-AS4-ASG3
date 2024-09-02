@@ -7,18 +7,14 @@ import {
   IonHeader,
   IonTitle,
   IonToolbar,
-  IonCardContent,
-  IonCard,
 } from '@ionic/angular/standalone';
 
 @Component({
-  selector: 'app-feedback',
-  templateUrl: './feedback.page.html',
-  styleUrls: ['./feedback.page.scss'],
+  selector: 'app-airportmallrating',
+  templateUrl: './airportmallrating.page.html',
+  styleUrls: ['./airportmallrating.page.scss'],
   standalone: true,
   imports: [
-    IonCard,
-    IonCardContent,
     IonContent,
     IonHeader,
     IonTitle,
@@ -27,17 +23,11 @@ import {
     FormsModule,
   ],
 })
-export class FeedbackPage implements OnInit {
+export class AirportmallratingPage implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {}
-
   goToHome() {
     this.router.navigate(['/home']);
-  }
-
-  // Method to navigate to different pages based on the clicked card
-  goToPage(page: string) {
-    this.router.navigate([`/${page}`]);
   }
 }

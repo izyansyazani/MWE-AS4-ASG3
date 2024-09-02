@@ -1,3 +1,42 @@
 <ion-content>
-  <h1>Ratings & Reviews</h1>
+  <img
+    (click)="goToHome()"
+    id="back"
+    src="../assets/backbutton.png"
+    class="back-button"
+  />
+  <h1>Ratings & Reviews :</h1>
+
+  <!-- Add ion-cards below -->
+  <div class="cards-container">
+    <ion-card (click)="goToPage('mallrating')">
+      <img src="../assets/mall.jpg" />
+      <ion-card-content>The Mall, Gadong</ion-card-content>
+    </ion-card>
+
+    <ion-card (click)="goToPage('timessquarerating')">
+      <img src="../assets/Timessquare.jpg" />
+      <ion-card-content>Times Square</ion-card-content>
+    </ion-card>
+
+    <ion-card (click)="goToPage('airportmallrating')">
+      <img src="../assets/airportmall.jpg" />
+      <ion-card-content>Airport Mall</ion-card-content>
+    </ion-card>
+
+    <ion-card (click)="goToPage('yayasanrating')">
+      <img src="../assets/yayasan.jpg" />
+      <ion-card-content>Yayasan Complex</ion-card-content>
+    </ion-card>
+
+    <ion-card (click)="goToPage('mabohairating')">
+      <img src="../assets/mabohai.jpg" />
+      <ion-card-content>Mabohai Shopping Complex</ion-card-content>
+    </ion-card>
+
+    <ion-card (click)="goToPage('amanhillsrating')">
+      <img src="../assets/amanhills.jpg" />
+      <ion-card-content>Aman Hills Brunei</ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
