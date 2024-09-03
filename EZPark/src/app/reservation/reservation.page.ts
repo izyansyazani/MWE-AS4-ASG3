@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 
 import {
   IonContent,
@@ -62,10 +63,27 @@ import {
   ],
 })
 export class ReservationPage implements OnInit {
+  bookingDetails = {
+    parkingLevel: '',
+    parkingSpaceNumber: '',
+    reservationDate: '',
+    reservationTime: '',
+    duration: '',
+    carLicenseNumber: '',
+  };
+
   constructor(
     private router: Router,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private navCtrl: NavController
   ) {}
+
+  confirmBooking() {
+    // Navigate to the receipt page and pass the booking details
+    this.navCtrl.navigateForward('/receipt', {
+      queryParams: { bookingDetails: JSON.stringify(this.bookingDetails) },
+    });
+  }
 
   ngOnInit() {}
   goToHome() {
