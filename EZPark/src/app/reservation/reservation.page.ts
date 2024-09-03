@@ -37,6 +37,7 @@ import {
   styleUrls: ['./reservation.page.scss'],
   standalone: true,
   imports: [
+    FormsModule,
     IonContent,
     IonHeader,
     IonTitle,
@@ -79,9 +80,10 @@ export class ReservationPage implements OnInit {
   ) {}
 
   confirmBooking() {
-    // Navigate to the receipt page and pass the booking details
-    this.navCtrl.navigateForward('/receipt', {
-      queryParams: { bookingDetails: JSON.stringify(this.bookingDetails) },
+    this.router.navigate(['/payment'], {
+      queryParams: {
+        bookingDetails: JSON.stringify(this.bookingDetails),
+      },
     });
   }
 
