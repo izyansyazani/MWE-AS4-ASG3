@@ -27,7 +27,7 @@ export class MabohairatingPage implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {}
-  goToHome() {
-    this.router.navigate(['/home']);
+  goToFeedback() {
+    this.router.navigate(['/feedback']);
   }
 }
