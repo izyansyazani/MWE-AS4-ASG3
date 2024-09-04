@@ -1,3 +1,4 @@
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 export const routes: Routes = [
@@ -51,9 +52,15 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./aboutus/aboutus.page').then((m) => m.AboutusPage),
   },
-  // {
-  //   path: 'edit-profile',
-  //   loadComponent: () =>
-  //     import('./profile-edit/profile-edit.page').then((m) => m.ProfilePage),
-  // },
+  {
+    path: 'edit-profile',
+    loadComponent: () =>
+      import('./profile-edit/profile-edit.page').then((m) => m.ProfileEditPage),
+  },
 ];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}
