@@ -101,11 +101,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./payment/payment.page').then((m) => m.PaymentPage),
   },
-  // {
-  //   path: 'profile-edit',
-  //   loadComponent: () =>
-  //     import('./profile-edit/profile-edit.page').then((m) => m.ProfileEditPage),
-  // },
+  {
+    path: 'profile-edit',
+    loadComponent: () =>
+      import('./profile-edit/profile-edit.page').then((m) => m.ProfileEditPage),
+  },
   {
     path: 'mallrating',
     loadComponent: () =>
@@ -151,5 +151,10 @@ export const routes: Routes = [
   {
     path: 'auth',
     loadComponent: () => import('./auth/auth.page').then((m) => m.AuthPage),
+  },
+  {
+    path: 'profile-edit',
+    loadComponent: () =>
+      import('./profile-edit/profile-edit.page').then((m) => m.ProfileEditPage),
   },
 ];
