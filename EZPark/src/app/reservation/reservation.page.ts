@@ -88,8 +88,8 @@ export class ReservationPage implements OnInit {
   }
 
   ngOnInit() {}
-  goToHome() {
-    this.router.navigate(['/home']);
+  goToParkingspots() {
+    this.router.navigate(['/parkingspots']);
   }
 
   // async showPopup() {

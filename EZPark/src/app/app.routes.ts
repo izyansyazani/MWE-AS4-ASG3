@@ -152,4 +152,21 @@ export const routes: Routes = [
     path: 'auth',
     loadComponent: () => import('./auth/auth.page').then((m) => m.AuthPage),
   },
+  {
+    path: 'timessquare',
+    loadComponent: () =>
+      import('./parkingspots/timessquare/timessquare.page').then(
+        (m) => m.TimessquarePage
+      ),
+  },
+  {
+    path: 'yayasan',
+    loadComponent: () =>
+      import('./parkingspots/yayasan/yayasan.page').then((m) => m.YayasanPage),
+  },
+  {
+    path: 'mabohai',
+    loadComponent: () =>
+      import('./parkingspots/mabohai/mabohai.page').then((m) => m.MabohaiPage),
+  },
 ];

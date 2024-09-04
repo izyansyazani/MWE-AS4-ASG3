@@ -1,56 +1,95 @@
+/* Overall background for the content */
 ion-content {
-  --ion-background-color: #FBF3EF;
+  --ion-background-color: #F3F4F6; /* Light gray background for a cleaner look */
+  padding: 15px; /* Add some padding around the content */
 }
 
+/* Toolbar at the top of the page */
 ion-toolbar {
-  --background: #fff;
+  --background: #FFFFFF;
+  --box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for toolbar */
 }
 
+/* Custom title styling */
 .custom-title {
-  font-size: 30px;
+  font-size: 28px;
   font-weight: bold;
   text-align: center;
   width: 100%;
-  padding: 0 16px;
-  color: black;
+  padding: 10px 0;
+  color: #333333; /* Dark gray for a modern and readable title */
 }
 
-.about-us-content p {
-  margin: 16px;
-  color:  #4B2E2E;
+/* Card styles */
+ion-card {
+  --background: #FFFFFF; /* Pure white background */
+  color: #333333; /* Darker text color */
+  border-radius: 15px; /* Slightly more rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Deeper shadow for a modern look */
+  margin: 20px auto; /* Center the card horizontally with some margin */
+  padding: 20px;
+  max-width: 800px; /* Constrain the card width for better readability */
 }
 
-.team-members {
-  margin-top: 16px;
-}
-
+/* Card title */
 ion-card-title {
   text-align: center;
-  font-size: 20px;
-  color: #000;
-  font-weight:bold;
+  font-size: 24px;
+  color: #1E1E1E; /* Darker color for card titles */
+  font-weight: bold;
+  margin: 15px 0; /* Space around the title */
 }
 
+/* Content inside the card */
 ion-card-content {
-  padding: 16px;
+  padding: 20px;
 }
 
+/* About Us section text */
+.about-us-content p {
+  margin: 0;
+  color: #555555; /* Medium dark text for a softer look */
+  line-height: 1.6; /* Improved readability with more line spacing */
+  font-size: 16px;
+  text-align: justify; /* Justify text for a cleaner block appearance */
+}
+
+/* Team members list */
+.team-members {
+  margin-top: 24px;
+}
+
+/* Individual team member items */
 ion-item {
   --padding-start: 0;
+  --background: #F8F9FA; /* Light gray background for items */
+  color: #333333; /* Dark gray text for team members */
+  font-size: 18px; /* Slightly larger font for visibility */
+  margin: 10px 0; /* Space between items */
+  padding: 12px 15px; /* Add some padding inside items */
+  border-radius: 10px; /* Round the corners of each item */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for each item */
 }
 
+/* Icons for team members */
 ion-icon {
-  margin-right: 8px;
+  margin-right: 12px; /* More space between icon and text */
+  color: #007BFF; /* Blue icon color for a pop of color */
+  font-size: 20px; /* Slightly larger icon */
 }
 
-#back{
-  width:30px;
-  height:30px;
-  margin-left:10px;
-  margin-top:5px;
+/* Back button image */
+#back {
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  margin-top: 5px;
+  cursor: pointer; /* Add a pointer cursor to indicate clickability */
 }
 
-ion-title{
+/* Page title */
+ion-title {
   font-size: 30px;
   font-weight: bold;
+  color: #333333; /* Ensure title is dark gray */
 }
