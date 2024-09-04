@@ -71,6 +71,7 @@ export class ReservationPage implements OnInit {
     reservationTime: '',
     duration: '',
     carLicenseNumber: '',
+    totalAmount: 0,
   };
 
   constructor(
@@ -78,6 +79,15 @@ export class ReservationPage implements OnInit {
     private alertController: AlertController,
     private navCtrl: NavController
   ) {}
+
+  updateTotalAmount() {
+    const duration = parseFloat(this.bookingDetails.duration);
+    if (!isNaN(duration)) {
+      this.bookingDetails.totalAmount = duration * 1.0;
+    } else {
+      this.bookingDetails.totalAmount = 0;
+    }
+  }
 
   confirmBooking() {
     this.router.navigate(['/payment'], {
