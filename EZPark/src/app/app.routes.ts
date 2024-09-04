@@ -168,5 +168,9 @@ export const routes: Routes = [
     path: 'mabohai',
     loadComponent: () =>
       import('./parkingspots/mabohai/mabohai.page').then((m) => m.MabohaiPage),
+  },  {
+    path: 'paypal',
+    loadComponent: () => import('./paypal/paypal.page').then( m => m.PaypalPage)
   },
+
 ];

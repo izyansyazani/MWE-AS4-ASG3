@@ -18,6 +18,7 @@
       <p><strong>Duration (hours):</strong> {{ bookingDetails.duration }}</p>
       <p><strong>Car License Number:</strong> {{ bookingDetails.carLicenseNumber }}</p>
       <p><strong>Total amount to be paid:</strong> {{ bookingDetails.totalAmount | currency:'BND':'symbol':'1.2-2' }}</p>
+      <ion-button id="pay" (click)="payNow()">Proceed to Payment</ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>

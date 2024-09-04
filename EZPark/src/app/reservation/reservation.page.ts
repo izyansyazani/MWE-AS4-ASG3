@@ -90,6 +90,7 @@ export class ReservationPage implements OnInit {
   }
 
   confirmBooking() {
+    this.updateTotalAmount();
     this.router.navigate(['/payment'], {
       queryParams: {
         bookingDetails: JSON.stringify(this.bookingDetails),
