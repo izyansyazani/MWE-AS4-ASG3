@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { PayPalService } from '../paypal.service';
+import { NavController } from '@ionic/angular';
 import {
   IonContent,
   IonHeader,
@@ -26,7 +28,13 @@ import { ActivatedRoute } from '@angular/router';
 export class PaypalPage implements OnInit {
   totalAmount: number = 0;
 
-  constructor(private route: ActivatedRoute) {}
+  @ViewChild('paymentRef', { static: true }) paymentRef!: ElementRef;
+
+  constructor(
+    private route: ActivatedRoute,
+    private payment: PayPalService,
+    private navCtrl: NavController
+  ) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
@@ -34,5 +42,39 @@ export class PaypalPage implements OnInit {
         this.totalAmount = parseFloat(params['totalAmount']);
       }
     });
+
+    window['paypal']
+      .Buttons({
+        style: {
+          layout: 'horizontal',
+          color: 'blue',
+          shape: 'rect',
+          label: 'paypal',
+        },
+        createOrder: (data: any, actions: any) => {
+          return actions.order.create({
+            purchase_units: [
+              {
+                amount: {
+                  value: this.totalAmount.toString(),
+                  currency_code: 'SGD',
+                },
+              },
+            ],
+          });
+        },
+        onApprove: (data: any, actions: any) => {
+          return actions.order.capture().then((details: any) => {
+            if (details.status === 'COMPLETED') {
+              alert('Payment is successful');
+              this.navCtrl.navigateRoot('/home');
+            }
+          });
+        },
+        onError: (error: any) => {
+          console.log(error);
+        },
+      })
+      .render(this.paymentRef.nativeElement);
   }
 }
