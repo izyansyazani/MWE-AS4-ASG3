@@ -17,7 +17,7 @@
       <p><strong>Reservation Time:</strong> {{ bookingDetails.reservationTime }}</p>
       <p><strong>Duration (hours):</strong> {{ bookingDetails.duration }}</p>
       <p><strong>Car License Number:</strong> {{ bookingDetails.carLicenseNumber }}</p>
-      <p><strong>Total amount to be paid:</strong> {{ bookingDetails.totalAmount }}</p>
+      <p><strong>Total amount to be paid:</strong> {{ bookingDetails.totalAmount | currency:'BND':'symbol':'1.2-2' }}</p>
     </ion-card-content>
   </ion-card>
 </ion-content>

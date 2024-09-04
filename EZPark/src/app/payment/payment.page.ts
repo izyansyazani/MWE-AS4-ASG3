@@ -34,6 +34,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./payment.page.scss'],
   standalone: true,
   imports: [
+    CommonModule,
     IonContent,
     IonHeader,
     IonTitle,
