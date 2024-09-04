@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 
 import {
   IonContent,
@@ -36,6 +37,7 @@ import {
   styleUrls: ['./reservation.page.scss'],
   standalone: true,
   imports: [
+    FormsModule,
     IonContent,
     IonHeader,
     IonTitle,
@@ -62,10 +64,28 @@ import {
   ],
 })
 export class ReservationPage implements OnInit {
+  bookingDetails = {
+    parkingLevel: '',
+    parkingSpaceNumber: '',
+    reservationDate: '',
+    reservationTime: '',
+    duration: '',
+    carLicenseNumber: '',
+  };
+
   constructor(
     private router: Router,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private navCtrl: NavController
   ) {}
+
+  confirmBooking() {
+    this.router.navigate(['/payment'], {
+      queryParams: {
+        bookingDetails: JSON.stringify(this.bookingDetails),
+      },
+    });
+  }
 
   ngOnInit() {}
   goToParkingspots() {
