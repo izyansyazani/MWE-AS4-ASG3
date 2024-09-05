@@ -45,6 +45,7 @@
       [(ngModel)]="bookingDetails.duration"
       name="duration"
       type="number"
+      (ngModelChange)="updateTotalAmount()"
       placeholder="     Enter here"
       class="inputs"
     ></ion-input>
