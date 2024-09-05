@@ -22,12 +22,10 @@
   </div>
 
   <ion-list>
-    <ion-button routerLink="/profile-edit" fill="clear">
-      <ion-item button>
-        <ion-icon name="person" slot="start"></ion-icon>
-        <ion-label>Edit Profile</ion-label>
-      </ion-item>
-    </ion-button>
+    <ion-item button (click)="editProfile()">
+      <ion-icon name="person" slot="start"></ion-icon>
+      <ion-label>Edit Profile</ion-label>
+    </ion-item>
 
     <ion-item button (click)="parkingHistory()">
       <ion-icon name="History" slot="start"></ion-icon>
