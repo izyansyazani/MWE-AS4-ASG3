@@ -1,13 +1,25 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>payment</ion-title>
+    <ion-title>Receipt</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">payment</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Booking Receipt</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p><strong>Parking Spot Level:</strong> {{ bookingDetails.parkingLevel }}</p>
+      <p><strong>Parking Space Number:</strong> {{ bookingDetails.parkingSpaceNumber }}</p>
+      <p><strong>Reservation Date:</strong> {{ bookingDetails.reservationDate }}</p>
+      <p><strong>Reservation Time:</strong> {{ bookingDetails.reservationTime }}</p>
+      <p><strong>Duration (hours):</strong> {{ bookingDetails.duration }}</p>
+      <p><strong>Car License Number:</strong> {{ bookingDetails.carLicenseNumber }}</p>
+      <p><strong>Total amount to be paid:</strong> {{ bookingDetails.totalAmount | currency:'BND':'symbol':'1.2-2' }}</p>
+      <ion-button id="pay" (click)="payNow()">Proceed to Payment</ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+

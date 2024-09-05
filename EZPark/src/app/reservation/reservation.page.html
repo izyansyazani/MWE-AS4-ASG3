@@ -1,5 +1,5 @@
 <ion-content>
-  <img (click)="goToHome()" id="back" src="../assets/backbutton.png" />
+  <img (click)="goToParkingspots()" id="back" src="../assets/backbutton.png" />
   <h1>Choose Parking</h1>
   <ion-card class="custom-card">
     <div class="grey-box">
@@ -12,40 +12,51 @@
   <ion-list id="form">
     <h2>Parking Spot Level</h2>
     <ion-input
+      [(ngModel)]="bookingDetails.parkingLevel"
+      name="parkingLevel"
       type="text"
       placeholder="     Enter here"
       class="inputs"
     ></ion-input>
     <h2>Parking Space Number</h2>
     <ion-input
+      [(ngModel)]="bookingDetails.parkingSpaceNumber"
+      name="parkingSpaceNumber"
       type="text"
       placeholder="     Enter here"
       class="inputs"
     ></ion-input>
     <h2>Reservation Date</h2>
     <ion-input
+      [(ngModel)]="bookingDetails.reservationDate"
+      name="reservationDate"
       type="date"
-      placeholder="     Enter here"
       class="inputs"
     ></ion-input>
     <h2>Reservation Time</h2>
     <ion-input
+      [(ngModel)]="bookingDetails.reservationTime"
+      name="reservationTime"
       type="time"
-      placeholder="     Enter here"
       class="inputs"
     ></ion-input>
-    <h2>Duration(hours)</h2>
+    <h2>Duration (hours)</h2>
     <ion-input
+      [(ngModel)]="bookingDetails.duration"
+      name="duration"
       type="number"
+      (ngModelChange)="updateTotalAmount()"
       placeholder="     Enter here"
       class="inputs"
     ></ion-input>
     <h2>Car License Number</h2>
     <ion-input
+      [(ngModel)]="bookingDetails.carLicenseNumber"
+      name="carLicenseNumber"
       type="text"
       placeholder="     Enter here"
       class="inputs"
     ></ion-input>
   </ion-list>
-  <ion-button id="confirm">CONFIRM BOOKING</ion-button>
+  <ion-button id="confirm" (click)="confirmBooking()">CONFIRM BOOKING</ion-button>
 </ion-content>
