@@ -101,11 +101,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./payment/payment.page').then((m) => m.PaymentPage),
   },
-  // {
-  //   path: 'profile-edit',
-  //   loadComponent: () =>
-  //     import('./profile-edit/profile-edit.page').then((m) => m.ProfileEditPage),
-  // },
+  {
+    path: 'profile-edit',
+    loadComponent: () =>
+      import('./profile-edit/profile-edit.page').then((m) => m.ProfileEditPage),
+  },
   {
     path: 'mallrating',
     loadComponent: () =>
@@ -168,9 +168,10 @@ export const routes: Routes = [
     path: 'mabohai',
     loadComponent: () =>
       import('./parkingspots/mabohai/mabohai.page').then((m) => m.MabohaiPage),
-  },  {
-    path: 'paypal',
-    loadComponent: () => import('./paypal/paypal.page').then( m => m.PaypalPage)
   },
-
+  {
+    path: 'paypal',
+    loadComponent: () =>
+      import('./paypal/paypal.page').then((m) => m.PaypalPage),
+  },
 ];
