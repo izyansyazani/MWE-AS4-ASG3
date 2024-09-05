@@ -82,7 +82,7 @@ export class UserprofilePage implements OnInit {
 
   ngOnInit() {}
 
-  editProfile() {
+  profileEdit() {
     this.router.navigate(['/userprofile']); // Define the route for editing profile
   }
 
