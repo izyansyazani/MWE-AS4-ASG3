@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ProfileEditPage } from './profile-edit/profile-edit.page';
 
 export const routes: Routes = [
   {
