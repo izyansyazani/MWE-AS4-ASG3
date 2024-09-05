@@ -1,6 +1,22 @@
-ion-content {
-  --ion-background-color: #FBF3EF;
+/* Define the gradient animation */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 0% 100%;
+  }
 }
+
+/* Apply the gradient background with animation */
+ion-content {
+  --background: linear-gradient(180deg, #8888D7, #D9D9D9, #FBF3EF);
+  background: linear-gradient(180deg, #8888D7, #D9D9D9, #FBF3EF);
+  background-size: 100% 300%; /* Larger size for smooth transition */
+  animation: gradientMove 10s linear infinite; /* Adjust speed as needed */
+}
+
+
 
 .center {
   position: absolute;

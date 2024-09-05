@@ -27,6 +27,7 @@ import {
   IonGrid,
   IonThumbnail,
 } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
 
 @Component({
   selector: 'app-home',
