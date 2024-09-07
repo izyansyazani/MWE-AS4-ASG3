@@ -81,7 +81,7 @@ ion-content {
 
 .recent-parking-card {
   width: 250px;
-  height: 310px;
+  height: 290px;
   background-color: #D9D9D9; /* Background color */
   border-radius: 40px;        /* Rounded corners */
   margin-right: 15px;         /* Space between cards */
@@ -97,8 +97,18 @@ ion-content {
 }
 
 /* Text styles within Recent Parking cards */
-ion-card-title, ion-card-subtitle, ion-card-content {
+ion-card-title{
   color: #000;
+  font-size: 13px;
+  font-weight: bold;
+}
+ion-card-subtitle {
+  color: #000;
+  font-size: 14px;
+ 
+}
+ion-card-content {
+  font-size: 12px;
 }
 
 /* Removed old SCSS for Favourite Parking section */
