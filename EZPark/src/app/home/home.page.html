@@ -36,6 +36,7 @@
       <ion-list id="fullwhite" class="white-menu"></ion-list>
     </ion-content>
   </ion-menu>
+
   <div class="ion-page" id="main-content">
     <ion-buttons slot="start">
       <ion-menu-button class="colorblack"></ion-menu-button>
@@ -61,37 +62,39 @@
           </ion-text>
         </ion-row>
         <ion-row>
-          <ion-col size-xs="12" size-sm="6" size-md="4" class="colspace">
-            <ion-card id="cardsize">
-              <img alt="The Mall" src="../assets/mall.jpg" />
-              <ion-card-header>
-                <ion-card-title class="colorblack"
-                  >The Mall, Gadong</ion-card-title
-                >
-                <ion-card-subtitle>Shopping Mall Gadong</ion-card-subtitle>
-              </ion-card-header>
-              <ion-card-content class="colorblack"> $Rate/h </ion-card-content>
-            </ion-card>
-          </ion-col>
-          <ion-col size-xs="12" size-sm="6" size-md="4" class="colspace">
-            <ion-card id="cardsize">
-              <img alt="Hua Ho Yayasan" src="../assets/yayasan.jpg" />
-              <ion-card-header>
-                <ion-card-title class="colorblack">Yayasan</ion-card-title>
-                <ion-card-subtitle>Gedung Perniagaan Hua Ho</ion-card-subtitle>
-              </ion-card-header>
-              <ion-card-content class="colorblack"> $Rate/h </ion-card-content>
-            </ion-card>
-          </ion-col>
-          <ion-col size-xs="12" size-sm="6" size-md="4" class="colspace">
-            <ion-card id="cardsize">
-              <img alt="Airport Mall" src="../assets/airportmall.jpg" />
-              <ion-card-header>
-                <ion-card-title class="colorblack">Airport Mall</ion-card-title>
-                <ion-card-subtitle>The Airport Mall</ion-card-subtitle>
-              </ion-card-header>
-              <ion-card-content class="colorblack"> $Rate/h </ion-card-content>
-            </ion-card>
+          <ion-col size-xs="12" class="flex-container">
+            <div class="recent-parking-container">
+              <ion-card class="recent-parking-card">
+                <img alt="The Mall" src="../assets/mall.jpg" />
+                <ion-card-header>
+                  <ion-card-title class="colorblack"
+                    >The Mall, Gadong</ion-card-title
+                  >
+                  <ion-card-subtitle>Shopping Mall Gadong</ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content class="colorblack">$Rate/h</ion-card-content>
+              </ion-card>
+              <ion-card class="recent-parking-card">
+                <img alt="Hua Ho Yayasan" src="../assets/yayasan.jpg" />
+                <ion-card-header>
+                  <ion-card-title class="colorblack">Yayasan</ion-card-title>
+                  <ion-card-subtitle
+                    >Gedung Perniagaan Hua Ho</ion-card-subtitle
+                  >
+                </ion-card-header>
+                <ion-card-content class="colorblack">$Rate/h</ion-card-content>
+              </ion-card>
+              <ion-card class="recent-parking-card">
+                <img alt="Airport Mall" src="../assets/airportmall.jpg" />
+                <ion-card-header>
+                  <ion-card-title class="colorblack"
+                    >Airport Mall</ion-card-title
+                  >
+                  <ion-card-subtitle>The Airport Mall</ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content class="colorblack">$Rate/h</ion-card-content>
+              </ion-card>
+            </div>
           </ion-col>
         </ion-row>
         <ion-row>
