@@ -166,8 +166,14 @@ ion-menu-button {
     padding: 0 10px;
   }
   .cardsize2 {
-    width: 100%;
+    background-color: #D9D9D9;
+    border-radius: 40px;
+    width: 100%; /* Set to a value greater than 100% */
+    margin-left: -10%; /* Adjust margin to ensure it's centered or properly positioned */
+    margin-right: -10%; /* Adjust margin to ensure it's centered or properly positioned */
   }
+  
+  
   .img {
     width: 100%;
   }  
