@@ -172,8 +172,16 @@ ion-menu-button {
     width: 100%;
   }  
   .spacebtn {
-    margin: 0 10px;
+    margin: 0 10px; /* Retain original margin settings */
+    --background: #31D97E;
+    width: 150px;
+    height: 30px;
+    border-radius: 10px;
+    font-size: 14px;
+    position: relative; /* Make positioning relative to the normal flow */
+    left: -9px; /* Move the button to the left */
   }
+  
   .ratebtn {
     --background: #8888D7;  /* Only changing the button color */
     width: 150px;           /* Set desired width */
