@@ -183,12 +183,15 @@ ion-menu-button {
   }
   
   .ratebtn {
-    --background: #8888D7;  /* Only changing the button color */
+    --background: #8888D7;
     width: 150px;           /* Set desired width */
     height: 30px;           /* Set desired height */
     border-radius: 10px;    /* Optional: Add border radius */
     font-size: 14px;        /* Optional: Adjust font size */
+    position: relative;     /* Make positioning relative to the normal flow */
+    top: 9px;               /* Move the button down by 5 pixels */
   }
+  
 
   #cardsize {
     width: 90%;
