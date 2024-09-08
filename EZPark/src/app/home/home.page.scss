@@ -171,13 +171,19 @@ ion-menu-button {
   .img {
     width: 100%;
   }  
-  .ratebtn, .spacebtn {
+  .spacebtn {
     margin: 0 10px;
   }
+  .ratebtn {
+    --background: #8888D7; /* Only changing the button color */
+  }
+  
+
   #cardsize {
     width: 90%;
     height: 95%;
   }
+  
   ion-menu-button {
     font-size: 50px;
   }
