@@ -73,6 +73,7 @@ ion-content {
   overflow-x: auto;             /* Enable horizontal scrolling */
   scroll-snap-type: x mandatory;/* Smooth snap scrolling */
   padding-bottom: 10px;
+  width: 100%;                  /* Ensure it takes full width */
 }
 
 .recent-parking-container::-webkit-scrollbar {
@@ -97,7 +98,7 @@ ion-content {
 }
 
 /* Text styles within Recent Parking cards */
-ion-card-title{
+ion-card-title {
   color: #000;
   font-size: 13px;
   font-weight: bold;
@@ -105,7 +106,6 @@ ion-card-title{
 ion-card-subtitle {
   color: #000;
   font-size: 14px;
- 
 }
 ion-card-content {
   font-size: 12px;
@@ -168,11 +168,10 @@ ion-menu-button {
   .cardsize2 {
     background-color: #D9D9D9;
     border-radius: 40px;
-    width: 100%; /* Set to a value greater than 100% */
-    margin-left: -10%; /* Adjust margin to ensure it's centered or properly positioned */
-    margin-right: -10%; /* Adjust margin to ensure it's centered or properly positioned */
+    width: 100%; /* Set to 100% */
+    margin-left: 0; /* Reset margin adjustments */
+    margin-right: 0; /* Reset margin adjustments */
   }
-  
   
   .img {
     width: 100%;
@@ -198,7 +197,6 @@ ion-menu-button {
     top: 9px;               /* Move the button down by 5 pixels */
   }
   
-
   #cardsize {
     width: 90%;
     height: 95%;
