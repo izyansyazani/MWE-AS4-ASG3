@@ -13,24 +13,31 @@
       <ion-card-content>The Mall, Gadong</ion-card-content>
       <ion-button
         class="favorite-btn"
-        (click)="toggleFavorite('The Mall, Gadong')"
-        >Favorite</ion-button
+        (click)="toggleFavorite($event, 'The Mall, Gadong')"
+        >{{ isFavorite('The Mall, Gadong') ? 'Unfavorite' : 'Favorite'
+        }}</ion-button
       >
     </ion-card>
 
     <ion-card>
       <img src="../assets/Timessquare.jpg" />
       <ion-card-content>Times Square</ion-card-content>
-      <ion-button class="favorite-btn" (click)="toggleFavorite('Times Square')"
-        >Favorite</ion-button
+      <ion-button
+        class="favorite-btn"
+        (click)="toggleFavorite($event, 'Times Square')"
+        >{{ isFavorite('Times Square') ? 'Unfavorite' : 'Favorite'
+        }}</ion-button
       >
     </ion-card>
 
     <ion-card (click)="goToAirportMall()">
       <img src="../assets/Theairportmall.jpg" />
       <ion-card-content>Airport Mall</ion-card-content>
-      <ion-button class="favorite-btn" (click)="toggleFavorite('Airport Mall')"
-        >Favorite</ion-button
+      <ion-button
+        class="favorite-btn"
+        (click)="toggleFavorite($event, 'Airport Mall')"
+        >{{ isFavorite('Airport Mall') ? 'Unfavorite' : 'Favorite'
+        }}</ion-button
       >
     </ion-card>
 
@@ -39,8 +46,9 @@
       <ion-card-content>Yayasan Complex</ion-card-content>
       <ion-button
         class="favorite-btn"
-        (click)="toggleFavorite('Yayasan Complex')"
-        >Favorite</ion-button
+        (click)="toggleFavorite($event, 'Yayasan Complex')"
+        >{{ isFavorite('Yayasan Complex') ? 'Unfavorite' : 'Favorite'
+        }}</ion-button
       >
     </ion-card>
 
@@ -49,8 +57,9 @@
       <ion-card-content>Mabohai Shopping Complex</ion-card-content>
       <ion-button
         class="favorite-btn"
-        (click)="toggleFavorite('Mabohai Shopping Complex')"
-        >Favorite</ion-button
+        (click)="toggleFavorite($event, 'Mabohai Shopping Complex')"
+        >{{ isFavorite('Mabohai Shopping Complex') ? 'Unfavorite' : 'Favorite'
+        }}</ion-button
       >
     </ion-card>
 
@@ -59,8 +68,9 @@
       <ion-card-content>Aman Hills Brunei</ion-card-content>
       <ion-button
         class="favorite-btn"
-        (click)="toggleFavorite('Aman Hills Brunei')"
-        >Favorite</ion-button
+        (click)="toggleFavorite($event, 'Aman Hills Brunei')"
+        >{{ isFavorite('Aman Hills Brunei') ? 'Unfavorite' : 'Favorite'
+        }}</ion-button
       >
     </ion-card>
   </div>
