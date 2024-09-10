@@ -4,16 +4,17 @@
 
 export const environment = {
   production: false,
-  firebaseConfig: {
-    apiKey: "AIzaSyBeefgv-ytofUfqz_iDMrczDqpMLOVhHVE",
-    authDomain: "ezpark-9ac40.firebaseapp.com",
-    databaseURL: "https://ezpark-9ac40-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "ezpark-9ac40",
-    storageBucket: "ezpark-9ac40.appspot.com",
-    messagingSenderId: "546396358335",
-    appId: "1:546396358335:web:6d2cec62e7f19abff8e80a",
-    measurementId: "G-LNMLYQJCNK"
-  }
+  firebase: {
+    apiKey: 'AIzaSyBeefgv-ytofUfqz_iDMrczDqpMLOVhHVE',
+    authDomain: 'ezpark-9ac40.firebaseapp.com',
+    databaseURL:
+      'https://ezpark-9ac40-default-rtdb.asia-southeast1.firebasedatabase.app',
+    projectId: 'ezpark-9ac40',
+    storageBucket: 'ezpark-9ac40.appspot.com',
+    messagingSenderId: '546396358335',
+    appId: '1:546396358335:web:6d2cec62e7f19abff8e80a',
+    measurementId: 'G-LNMLYQJCNK',
+  },
 };
 
 /*
