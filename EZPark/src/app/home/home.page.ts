@@ -36,7 +36,7 @@ import {
   docData,
 } from '@angular/fire/firestore';
 import { Storage, ref, getDownloadURL } from '@angular/fire/storage';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 interface ParkingLocation {
@@ -84,10 +84,10 @@ export class HomePage implements OnInit {
   recentParkingTitle = 'Recent Parking';
   favouriteParkingTitle = 'Favourite Parking';
 
-  userImage$: Observable<string>;
-  userName$: Observable<string>;
-  recentParking$: Observable<ParkingLocation[]>;
-  favouriteParking$: Observable<ParkingLocation[]>;
+  userImage$: Observable<string> | undefined;
+  userName$: Observable<string> | undefined;
+  recentParking$: Observable<ParkingLocation[]> | undefined;
+  favouriteParking$: Observable<ParkingLocation[]> | undefined;
 
   constructor(private firestore: Firestore, private storage: Storage) {}
 
@@ -100,12 +100,12 @@ export class HomePage implements OnInit {
 
   getUserImage(): Observable<string> {
     const imageRef = ref(this.storage, 'path/to/user/image.jpg');
-    return getDownloadURL(imageRef);
+    return from(getDownloadURL(imageRef));
   }
 
   getUserName(): Observable<string> {
     const userDoc = doc(this.firestore, 'users/userId');
-    return docData(userDoc).pipe(map((data) => data.name));
+    return docData(userDoc).pipe(map((data) => data?.['name'] ?? ''));
   }
 
   getRecentParking(): Observable<ParkingLocation[]> {
