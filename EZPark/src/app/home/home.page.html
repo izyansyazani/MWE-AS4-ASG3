@@ -115,156 +115,18 @@
         </ion-row>
         <ion-row>
           <ion-col size="12" class="flex-container">
-            <ion-card class="cardsize2">
+            <ion-card
+              class="cardsize2"
+              *ngFor="let parking of favouriteParking$ | async"
+            >
               <div class="card-content">
                 <div class="card-text">
                   <ion-card-header>
                     <ion-card-title class="colorblack"
-                      >Shopping Mall Gadong</ion-card-title
-                    >
-                    <ion-card-subtitle>The Mall, Gadong</ion-card-subtitle>
-                  </ion-card-header>
-                  <ion-card-content>
-                    <ion-button
-                      class="ratebtn"
-                      shape="round"
-                      [routerLink]="['/rate-hours']"
-                      >$Rate/h</ion-button
-                    >
-                    <br /><br />
-                    <ion-button
-                      class="spacebtn"
-                      shape="round"
-                      [routerLink]="['/parkingspots']"
-                      >24 Free Space</ion-button
-                    >
-                  </ion-card-content>
-                </div>
-                <img class="img" alt="The Mall" src="../assets/mall.jpg" />
-              </div>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-
-        <!-- Additional Parking Cards -->
-        <ion-row>
-          <ion-col size="12" class="flex-container">
-            <ion-card class="cardsize2">
-              <div class="card-content">
-                <div class="card-text">
-                  <ion-card-header>
-                    <ion-card-title class="colorblack"
-                      >Airport Mall Basement</ion-card-title
-                    >
-                    <ion-card-subtitle>The Airport Mall</ion-card-subtitle>
-                  </ion-card-header>
-                  <ion-card-content>
-                    <ion-button
-                      class="ratebtn"
-                      shape="round"
-                      [routerLink]="['/rate-hours']"
-                      >$Rate/h</ion-button
-                    >
-                    <br /><br />
-                    <ion-button
-                      class="spacebtn"
-                      shape="round"
-                      [routerLink]="['/parkingspots']"
-                      >30 Free Space</ion-button
-                    >
-                  </ion-card-content>
-                </div>
-                <img
-                  class="img"
-                  alt="Airport Mall Basement"
-                  src="../assets/airportmall.jpg"
-                />
-              </div>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col size="12" class="flex-container">
-            <ion-card class="cardsize2">
-              <div class="card-content">
-                <div class="card-text">
-                  <ion-card-header>
-                    <ion-card-title class="colorblack"
-                      >Yayasan Complex</ion-card-title
-                    >
-                    <ion-card-subtitle>Yayasan Complex</ion-card-subtitle>
-                  </ion-card-header>
-                  <ion-card-content>
-                    <ion-button
-                      class="ratebtn"
-                      shape="round"
-                      [routerLink]="['/rate-hours']"
-                      >$Rate/h</ion-button
-                    >
-                    <br /><br />
-                    <ion-button
-                      class="spacebtn"
-                      shape="round"
-                      [routerLink]="['/parkingspots']"
-                      >20 Free Space</ion-button
-                    >
-                  </ion-card-content>
-                </div>
-                <img
-                  class="img"
-                  alt="Yayasan Complex"
-                  src="../assets/yayasan.jpg"
-                />
-              </div>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col size="12" class="flex-container">
-            <ion-card class="cardsize2">
-              <div class="card-content">
-                <div class="card-text">
-                  <ion-card-header>
-                    <ion-card-title class="colorblack">Mabohai</ion-card-title>
-                    <ion-card-subtitle
-                      >Mabohai Shopping Centre</ion-card-subtitle
-                    >
-                  </ion-card-header>
-                  <ion-card-content>
-                    <ion-button
-                      class="ratebtn"
-                      shape="round"
-                      [routerLink]="['/rate-hours']"
-                      >$Rate/h</ion-button
-                    >
-                    <br /><br />
-                    <ion-button
-                      class="spacebtn"
-                      shape="round"
-                      [routerLink]="['/parkingspots']"
-                      >15 Free Space</ion-button
-                    >
-                  </ion-card-content>
-                </div>
-                <img class="img" alt="Mabohai" src="../assets/mabohai.jpg" />
-              </div>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col size="12" class="flex-container">
-            <ion-card class="cardsize2">
-              <div class="card-content">
-                <div class="card-text">
-                  <ion-card-header>
-                    <ion-card-title class="colorblack"
-                      >Aman Hills Basement</ion-card-title
+                      >{{ parking.title }}</ion-card-title
                     >
                     <ion-card-subtitle
-                      >Aman Hills Shopping Centre</ion-card-subtitle
+                      >{{ parking.subtitle }}</ion-card-subtitle
                     >
                   </ion-card-header>
                   <ion-card-content>
@@ -279,14 +141,14 @@
                       class="spacebtn"
                       shape="round"
                       [routerLink]="['/parkingspots']"
-                      >25 Free Space</ion-button
+                      >{{ parking.freeSpace }} Free Space</ion-button
                     >
                   </ion-card-content>
                 </div>
                 <img
                   class="img"
-                  alt="Aman Hills Basement"
-                  src="../assets/amanhills.jpg"
+                  [alt]="parking.title"
+                  [src]="parking.imageUrl"
                 />
               </div>
             </ion-card>

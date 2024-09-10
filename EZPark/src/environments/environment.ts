@@ -14,6 +14,9 @@ export const environment = {
     messagingSenderId: '546396358335',
     appId: '1:546396358335:web:6d2cec62e7f19abff8e80a',
     measurementId: 'G-LNMLYQJCNK',
+    appCheck: {
+      siteKey: '6LfdlD0qAAAAAFUDqMornnVobTcJU3RX4-vyaodG', // Replace with your reCAPTCHA v3 site key
+    },
   },
 };
 

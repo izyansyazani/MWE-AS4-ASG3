@@ -11,31 +11,57 @@
     <ion-card (click)="goToMall()">
       <img src="../assets/Themall.jpg" />
       <ion-card-content>The Mall, Gadong</ion-card-content>
+      <ion-button
+        class="favorite-btn"
+        (click)="toggleFavorite('The Mall, Gadong')"
+        >Favorite</ion-button
+      >
     </ion-card>
 
     <ion-card>
       <img src="../assets/Timessquare.jpg" />
       <ion-card-content>Times Square</ion-card-content>
+      <ion-button class="favorite-btn" (click)="toggleFavorite('Times Square')"
+        >Favorite</ion-button
+      >
     </ion-card>
 
     <ion-card (click)="goToAirportMall()">
       <img src="../assets/Theairportmall.jpg" />
       <ion-card-content>Airport Mall</ion-card-content>
+      <ion-button class="favorite-btn" (click)="toggleFavorite('Airport Mall')"
+        >Favorite</ion-button
+      >
     </ion-card>
 
     <ion-card>
       <img src="../assets/Yayasanmall.jpg" />
       <ion-card-content>Yayasan Complex</ion-card-content>
+      <ion-button
+        class="favorite-btn"
+        (click)="toggleFavorite('Yayasan Complex')"
+        >Favorite</ion-button
+      >
     </ion-card>
 
     <ion-card>
       <img src="../assets/mabohai.jpg" />
       <ion-card-content>Mabohai Shopping Complex</ion-card-content>
+      <ion-button
+        class="favorite-btn"
+        (click)="toggleFavorite('Mabohai Shopping Complex')"
+        >Favorite</ion-button
+      >
     </ion-card>
 
     <ion-card (click)="goToAmanHills()">
       <img src="../assets/amanhills.jpg" />
       <ion-card-content>Aman Hills Brunei</ion-card-content>
+      <ion-button
+        class="favorite-btn"
+        (click)="toggleFavorite('Aman Hills Brunei')"
+        >Favorite</ion-button
+      >
     </ion-card>
   </div>
 </ion-content>
