@@ -4,17 +4,17 @@
 
 export const environment = {
   production: false,
-  firebaseConfig: {
-    apiKey: "AIzaSyBeefgv-ytofUfqz_iDMrczDqpMLOVhHVE",
-    authDomain: "ezpark-9ac40.firebaseapp.com",
-    databaseURL: "https://ezpark-9ac40-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "ezpark-9ac40",
-    storageBucket: "ezpark-9ac40.appspot.com",
-    messagingSenderId: "546396358335",
-    appId: "1:546396358335:web:6d2cec62e7f19abff8e80a",
-    measurementId: "G-LNMLYQJCNK"
+  firebaseConfig : {
+  apiKey: "AIzaSyBPkqCi7EM1WWmJ755fmCcjvH15-RYCuAc",
+  authDomain: "ezpark-7ec4d.firebaseapp.com",
+  projectId: "ezpark-7ec4d",
+  storageBucket: "ezpark-7ec4d.appspot.com",
+  messagingSenderId: "495351849846",
+  appId: "1:495351849846:web:1fe95033e09a44a63ed057",
+  measurementId: "G-VLQB2P7SE8"
   }
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file
