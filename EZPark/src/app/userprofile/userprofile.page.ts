@@ -82,8 +82,9 @@ export class UserprofilePage implements OnInit {
 
   ngOnInit() {}
 
-  editProfile() {
-    this.router.navigate(['/userprofile']); // Define the route for editing profile
+  profileEdit() {
+    console.log('Edit Profile button clicked');
+    this.router.navigate(['/profile-edit']);
   }
 
   parkingHistory() {

@@ -1,13 +1,35 @@
+/* Define the gradient animation */
+@keyframes gradientWave {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
 /* Overall background for the content */
 ion-content {
-  --ion-background-color: #F3F4F6; /* Light gray background for a cleaner look */
-  padding: 15px; /* Add some padding around the content */
+  --ion-background-color: transparent; /* Make the background transparent for the gradient */
+  padding: 20px; /* Increased padding for better spacing */
+  
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  height: 100vh; /* Full height of the viewport */
+  
+  background: linear-gradient(45deg, #FBF3EF 0%, #D9D9D9 50%, #8888D7 100%); /* Vivid gradient with strong color contrast */
+  background-size: 300% 300%; /* Larger size for more pronounced movement */
+  animation: gradientWave 6s ease-in-out infinite; /* Faster animation for more dynamic movement */
 }
 
 /* Toolbar at the top of the page */
 ion-toolbar {
-  --background: #FFFFFF;
-  --box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for toolbar */
+  --background: #D9D9D9; /* Light gray background for the toolbar */
+  --box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3); /* Deeper shadow for emphasis */
 }
 
 /* Custom title styling */
@@ -16,66 +38,50 @@ ion-toolbar {
   font-weight: bold;
   text-align: center;
   width: 100%;
-  padding: 10px 0;
-  color: #333333; /* Dark gray for a modern and readable title */
+  padding: 12px 0;
+  color: #333333; /* Dark gray for modern readability */
+  letter-spacing: 1px; /* Slight letter spacing for a clean look */
 }
 
 /* Card styles */
 ion-card {
-  --background: #FFFFFF; /* Pure white background */
+  --background: #FFFFFF; /* Pure white background for contrast */
   color: #333333; /* Darker text color */
-  border-radius: 15px; /* Slightly more rounded corners */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Deeper shadow for a modern look */
-  margin: 20px auto; /* Center the card horizontally with some margin */
+  border-radius: 20px; /* More rounded corners for a modern look */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); /* Enhanced shadow for depth */
   padding: 20px;
-  max-width: 800px; /* Constrain the card width for better readability */
+  max-width: 650px; /* Slightly increased max width */
+  width: 80%; /* Increase width to fit better in the container */
+  margin: 80px auto 0 auto; /* More space to lower the card */
+  border: 3px solid #8888D7; /* More prominent purple border */
 }
 
 /* Card title */
 ion-card-title {
   text-align: center;
-  font-size: 24px;
+  font-size: 30px;
   color: #1E1E1E; /* Darker color for card titles */
   font-weight: bold;
-  margin: 15px 0; /* Space around the title */
+  margin: 20px 0; /* Increased margin for breathing space */
+  letter-spacing: 1px; /* Slight letter spacing for neatness */
 }
 
 /* Content inside the card */
 ion-card-content {
   padding: 20px;
+  background-color: #FBF3EF; /* Light cream background inside the card */
+  border-radius: 10px; /* Slightly rounded content area */
+  color: #555555; /* Softer text color */
 }
 
 /* About Us section text */
 .about-us-content p {
   margin: 0;
-  color: #555555; /* Medium dark text for a softer look */
-  line-height: 1.6; /* Improved readability with more line spacing */
-  font-size: 16px;
-  text-align: justify; /* Justify text for a cleaner block appearance */
-}
-
-/* Team members list */
-.team-members {
-  margin-top: 24px;
-}
-
-/* Individual team member items */
-ion-item {
-  --padding-start: 0;
-  --background: #F8F9FA; /* Light gray background for items */
-  color: #333333; /* Dark gray text for team members */
-  font-size: 18px; /* Slightly larger font for visibility */
-  margin: 10px 0; /* Space between items */
-  padding: 12px 15px; /* Add some padding inside items */
-  border-radius: 10px; /* Round the corners of each item */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for each item */
-}
-
-/* Icons for team members */
-ion-icon {
-  margin-right: 12px; /* More space between icon and text */
-  color: #007BFF; /* Blue icon color for a pop of color */
-  font-size: 20px; /* Slightly larger icon */
+  color: #333333; /* Medium dark text for better contrast */
+  line-height: 1.8; /* Increased line spacing for better readability */
+  font-size: 15px;
+  text-align: justify; /* Justify text for clean block appearance */
+  letter-spacing: 0.5px; /* Slight spacing for neatness */
 }
 
 /* Back button image */
@@ -84,12 +90,15 @@ ion-icon {
   height: 30px;
   margin-left: 10px;
   margin-top: 5px;
-  cursor: pointer; /* Add a pointer cursor to indicate clickability */
+  cursor: pointer;
+  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.4)); /* Slightly stronger shadow for the icon */
 }
 
 /* Page title */
 ion-title {
-  font-size: 30px;
+  font-size: 32px;
   font-weight: bold;
-  color: #333333; /* Ensure title is dark gray */
+  color: #8888D7; /* Soft purple for title color */
+  letter-spacing: 1.2px; /* Letter spacing for a modern look */
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4); /* Stronger shadow for depth */
 }

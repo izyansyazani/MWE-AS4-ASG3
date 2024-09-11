@@ -1,5 +1,19 @@
+/* Define the gradient animation */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 0% 100%;
+  }
+}
+
+/* Apply the gradient background with animation */
 ion-content {
-  --ion-background-color: #FBF3EF;
+  --background: linear-gradient(180deg, #8888D7, #D9D9D9, #FBF3EF);
+  background: linear-gradient(180deg, #8888D7, #D9D9D9, #FBF3EF);
+  background-size: 100% 300%; /* Larger size for smooth transition */
+  animation: gradientMove 10s linear infinite; /* Adjust speed as needed */
 }
 
 .center {
@@ -53,15 +67,53 @@ ion-content {
   font-size: 24px;
 }
 
-#cardsize {
-  width: 250px;
-  height: 310px;
-  background-color: #D9D9D9;
-  border-radius: 40px;
+/* Style for Recent Parking section */
+.recent-parking-container {
+  display: flex;
+  overflow-x: auto;             /* Enable horizontal scrolling */
+  scroll-snap-type: x mandatory;/* Smooth snap scrolling */
+  padding-bottom: 10px;
+  width: 100%;                  /* Ensure it takes full width */
 }
 
+.recent-parking-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for a cleaner look */
+}
+
+.recent-parking-card {
+  width: 250px;
+  height: 290px;
+  background-color: #D9D9D9; /* Background color */
+  border-radius: 40px;        /* Rounded corners */
+  margin-right: 15px;         /* Space between cards */
+  flex: 0 0 auto;             /* Prevent shrinking of cards */
+  scroll-snap-align: start;   /* Cards will snap to the start on scroll */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+  transition: transform 0.3s ease;          /* Smooth hover effect */
+}
+
+/* Hover effect for Recent Parking cards */
+.recent-parking-card:hover {
+  transform: scale(1.05);    /* Slight zoom on hover */
+}
+
+/* Text styles within Recent Parking cards */
+ion-card-title {
+  color: #000;
+  font-size: 13px;
+  font-weight: bold;
+}
+ion-card-subtitle {
+  color: #000;
+  font-size: 14px;
+}
+ion-card-content {
+  font-size: 12px;
+}
+
+/* Removed old SCSS for Favourite Parking section */
 .colspace {
-  padding: 0 100px; 
+  padding: 0 10px;
 }
 
 .cardsize2 {
@@ -108,25 +160,49 @@ ion-menu-button {
 
 @media only screen and (max-width: 600px) {
   #centerbtn {
-      width: 90%;
+    width: 90%;
   }
   .colspace {
-      padding: 0 10px;
+    padding: 0 10px;
   }
   .cardsize2 {
-      width: 100%;
+    background-color: #D9D9D9;
+    border-radius: 40px;
+    width: 100%; /* Set to 100% */
+    margin-left: 0; /* Reset margin adjustments */
+    margin-right: 0; /* Reset margin adjustments */
   }
+  
   .img {
-      width: 100%;
+    width: 100%;
   }  
-  .ratebtn, .spacebtn {
-      margin: 0 10px;
+  .spacebtn {
+    margin: 0 10px; /* Retain original margin settings */
+    --background: #31D97E;
+    width: 150px;
+    height: 30px;
+    border-radius: 10px;
+    font-size: 14px;
+    position: relative; /* Make positioning relative to the normal flow */
+    left: -9px; /* Move the button to the left */
   }
+  
+  .ratebtn {
+    --background: #8888D7;
+    width: 150px;           /* Set desired width */
+    height: 30px;           /* Set desired height */
+    border-radius: 10px;    /* Optional: Add border radius */
+    font-size: 14px;        /* Optional: Adjust font size */
+    position: relative;     /* Make positioning relative to the normal flow */
+    top: 9px;               /* Move the button down by 5 pixels */
+  }
+  
   #cardsize {
-      width: 90%;
-      height: 95%;
+    width: 90%;
+    height: 95%;
   }
+  
   ion-menu-button {
-      font-size: 50px;
+    font-size: 50px;
   }
 }

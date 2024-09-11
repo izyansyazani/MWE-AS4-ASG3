@@ -1,4 +1,12 @@
 <ion-content>
-  <p>Total Amount to be paid: ${{ totalAmount }}</p>
+  <ion-card-content>
+    <p><strong>Parking Spot Level:</strong> {{ bookingDetails.parkingLevel }}</p>
+    <p><strong>Parking Space Number:</strong> {{ bookingDetails.parkingSpaceNumber }}</p>
+    <p><strong>Reservation Date:</strong> {{ bookingDetails.reservationDate }}</p>
+    <p><strong>Reservation Time:</strong> {{ bookingDetails.reservationTime }}</p>
+    <p><strong>Duration (hours):</strong> {{ bookingDetails.duration }}</p>
+    <p><strong>Car License Number:</strong> {{ bookingDetails.carLicenseNumber }}</p>
+    <p><strong>Total amount to be paid:</strong> {{ bookingDetails.totalAmount | currency:'BND':'symbol':'1.2-2' }}</p>
+  </ion-card-content>
   <div #paymentRef></div>
 </ion-content>

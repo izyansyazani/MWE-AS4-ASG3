@@ -3,11 +3,31 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PayPalService } from '../paypal.service';
 import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
 import {
   IonContent,
   IonHeader,
   IonTitle,
   IonToolbar,
+  IonRow,
+  IonButton,
+  IonCol,
+  IonSearchbar,
+  IonCard,
+  IonIcon,
+  IonItem,
+  IonCardContent,
+  IonCardTitle,
+  IonCardSubtitle,
+  IonCardHeader,
+  IonImg,
+  IonLabel,
+  IonGrid,
+  IonButtons,
+  IonBackButton,
+  IonList,
+  IonDatetime,
+  IonInput,
 } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
 
@@ -21,22 +41,48 @@ import { ActivatedRoute } from '@angular/router';
     IonHeader,
     IonTitle,
     IonToolbar,
+    IonRow,
+    IonButton,
+    IonCol,
+    IonSearchbar,
+    IonCard,
+    IonIcon,
+    IonItem,
+    IonCardContent,
+    IonCardTitle,
+    IonCardSubtitle,
+    IonCardHeader,
+    IonImg,
+    IonLabel,
+    IonGrid,
+    IonButtons,
+    IonBackButton,
+    IonList,
+    IonDatetime,
+    IonInput,
     CommonModule,
     FormsModule,
   ],
 })
 export class PaypalPage implements OnInit {
   totalAmount: number = 0;
+  bookingDetails: any;
 
   @ViewChild('paymentRef', { static: true }) paymentRef!: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
     private payment: PayPalService,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private router: Router
   ) {}
 
   ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      if (params['bookingDetails']) {
+        this.bookingDetails = JSON.parse(params['bookingDetails']);
+      }
+    });
     this.route.queryParams.subscribe((params) => {
       if (params['totalAmount']) {
         this.totalAmount = parseFloat(params['totalAmount']);
@@ -56,7 +102,7 @@ export class PaypalPage implements OnInit {
             purchase_units: [
               {
                 amount: {
-                  value: this.totalAmount.toString(),
+                  value: this.bookingDetails.totalAmount.toString(),
                   currency_code: 'SGD',
                 },
               },
