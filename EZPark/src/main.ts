@@ -40,16 +40,6 @@ bootstrapApplication(AppComponent, {
       })
     ),
     provideAuth(() => getAuth()),
-    provideAppCheck(() => {
-      // TODO get a reCAPTCHA Enterprise here https://console.cloud.google.com/security/recaptcha?project=_
-      const provider = new ReCaptchaEnterpriseProvider(
-        '6Lfw1C0qAAAAAIamHqnAAKbpCw4FHMJZvGVWwj-Y'
-      );
-      return initializeAppCheck(undefined, {
-        provider,
-        isTokenAutoRefreshEnabled: true,
-      });
-    }),
     provideFirestore(() => getFirestore()),
     provideDatabase(() => getDatabase()),
     providePerformance(() => getPerformance()),
