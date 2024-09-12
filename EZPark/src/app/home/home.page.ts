@@ -105,17 +105,54 @@ export class HomePage implements OnInit {
     this.userName$ = this.getUserName();
     this.recentParking$ = this.getRecentParking();
     this.favouriteParking$ = this.getFavouriteParking();
-    console.log('HomePage initialized'); // Add this line
+    console.log('HomePage initialized');
   }
 
   getUserImage(): Observable<string> {
-    const imageRef = ref(this.storage, 'path/to/user/image.jpg');
-    return from(getDownloadURL(imageRef));
+    return new Observable<string>((observer) => {
+      this.auth.onAuthStateChanged((user) => {
+        if (user) {
+          const imageRef = ref(
+            this.storage,
+            `path/to/user/${user.uid}/image.jpg`
+          );
+          from(getDownloadURL(imageRef)).subscribe(
+            (url) => {
+              observer.next(url);
+              observer.complete();
+            },
+            (error) => {
+              observer.error(error);
+            }
+          );
+        } else {
+          observer.error('User is not authenticated');
+        }
+      });
+    });
   }
 
   getUserName(): Observable<string> {
-    const userDoc = doc(this.firestore, 'users/userId');
-    return docData(userDoc).pipe(map((data) => data?.['name'] ?? ''));
+    return new Observable<string>((observer) => {
+      this.auth.onAuthStateChanged((user) => {
+        if (user) {
+          const userDoc = doc(this.firestore, `users/${user.uid}`);
+          docData(userDoc)
+            .pipe(map((data) => data?.['name'] ?? ''))
+            .subscribe(
+              (name) => {
+                observer.next(name);
+                observer.complete();
+              },
+              (error) => {
+                observer.error(error);
+              }
+            );
+        } else {
+          observer.error('User is not authenticated');
+        }
+      });
+    });
   }
 
   getRecentParking(): Observable<ParkingLocation[]> {
@@ -126,71 +163,81 @@ export class HomePage implements OnInit {
   }
 
   getFavouriteParking(): Observable<ParkingLocation[]> {
-    const user = this.auth.currentUser;
-    if (user) {
-      const userDoc = doc(this.firestore, `users/${user.uid}`);
-      return docData(userDoc).pipe(
-        map((data: any) => {
-          console.log('Fetched user data:', data); // Add this line
-          const favoriteParking = data['favoriteParking'] || [];
-          return favoriteParking
-            .map((spot: string) => {
-              // Map the parking spot to the corresponding data
-              switch (spot) {
-                case 'The Mall, Gadong':
-                  return {
-                    title: 'Shopping Mall Gadong',
-                    subtitle: 'The Mall, Gadong',
-                    imageUrl: '../assets/Themall.jpg',
-                    freeSpace: 24,
-                  };
-                case 'Times Square':
-                  return {
-                    title: 'Times Square',
-                    subtitle: 'Times Square',
-                    imageUrl: '../assets/Timessquare.jpg',
-                    freeSpace: 20,
-                  };
-                case 'Airport Mall':
-                  return {
-                    title: 'The Airport Mall',
-                    subtitle: 'Airport Mall',
-                    imageUrl: '../assets/Theairportmall.jpg',
-                    freeSpace: 30,
-                  };
-                case 'Yayasan Complex':
-                  return {
-                    title: 'Yayasan Complex',
-                    subtitle: 'Yayasan Complex',
-                    imageUrl: '../assets/Yayasanmall.jpg',
-                    freeSpace: 20,
-                  };
-                case 'Mabohai Shopping Complex':
-                  return {
-                    title: 'Mabohai Shopping Complex',
-                    subtitle: 'Mabohai Shopping Complex',
-                    imageUrl: '../assets/mabohai.jpg',
-                    freeSpace: 15,
-                  };
-                case 'Aman Hills Brunei':
-                  return {
-                    title: 'Aman Hills Basement',
-                    subtitle: 'Aman Hills Shopping Centre',
-                    imageUrl: '../assets/amanhills.jpg',
-                    freeSpace: 25,
-                  };
-                default:
-                  return null;
+    return new Observable<ParkingLocation[]>((observer) => {
+      this.auth.onAuthStateChanged((user) => {
+        if (user) {
+          const userDoc = doc(this.firestore, `users/${user.uid}`);
+          docData(userDoc)
+            .pipe(
+              map((data: any) => {
+                console.log('Fetched user data:', data);
+                const favoriteParking = data['favoriteParking'] || [];
+                return favoriteParking
+                  .map((spot: string) => {
+                    switch (spot) {
+                      case 'The Mall, Gadong':
+                        return {
+                          title: 'Shopping Mall Gadong',
+                          subtitle: 'The Mall, Gadong',
+                          imageUrl: '../assets/Themall.jpg',
+                          freeSpace: 24,
+                        };
+                      case 'Times Square':
+                        return {
+                          title: 'Times Square',
+                          subtitle: 'Times Square',
+                          imageUrl: '../assets/Timessquare.jpg',
+                          freeSpace: 20,
+                        };
+                      case 'Airport Mall':
+                        return {
+                          title: 'The Airport Mall',
+                          subtitle: 'Airport Mall',
+                          imageUrl: '../assets/Theairportmall.jpg',
+                          freeSpace: 30,
+                        };
+                      case 'Yayasan Complex':
+                        return {
+                          title: 'Yayasan Complex',
+                          subtitle: 'Yayasan Complex',
+                          imageUrl: '../assets/Yayasanmall.jpg',
+                          freeSpace: 20,
+                        };
+                      case 'Mabohai Shopping Complex':
+                        return {
+                          title: 'Mabohai Shopping Complex',
+                          subtitle: 'Mabohai Shopping Complex',
+                          imageUrl: '../assets/mabohai.jpg',
+                          freeSpace: 15,
+                        };
+                      case 'Aman Hills Brunei':
+                        return {
+                          title: 'Aman Hills Basement',
+                          subtitle: 'Aman Hills Shopping Centre',
+                          imageUrl: '../assets/amanhills.jpg',
+                          freeSpace: 25,
+                        };
+                      default:
+                        return null;
+                    }
+                  })
+                  .filter((spot: ParkingLocation | null) => spot !== null);
+              })
+            )
+            .subscribe(
+              (parkingLocations) => {
+                observer.next(parkingLocations);
+                observer.complete();
+              },
+              (error) => {
+                observer.error(error);
               }
-            })
-            .filter((spot: ParkingLocation | null) => spot !== null);
-        })
-      );
-    } else {
-      return new Observable<ParkingLocation[]>((observer) => {
-        observer.next([]);
-        observer.complete();
+            );
+        } else {
+          observer.next([]);
+          observer.complete();
+        }
       });
-    }
+    });
   }
 }
