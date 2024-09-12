@@ -11,10 +11,9 @@ import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
-import { initializeAppCheck, ReCaptchaV3Provider } from 'firebase/app-check';
 
 @NgModule({
-  declarations: [AppComponent, ReservationPage, PaymentPage],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -22,12 +21,6 @@ import { initializeAppCheck, ReCaptchaV3Provider } from 'firebase/app-check';
     FormsModule,
     provideFirebaseApp(() => {
       const app = initializeApp(environment.firebase);
-      initializeAppCheck(app, {
-        provider: new ReCaptchaV3Provider(
-          environment.firebase.appCheck.siteKey
-        ),
-        isTokenAutoRefreshEnabled: true,
-      });
       return app;
     }),
     provideAuth(() => getAuth()),

@@ -1,14 +1,16 @@
 import { enableProdMode } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { RouteReuseStrategy, provideRouter } from '@angular/router';
-import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalone';
+import {
+  IonicRouteStrategy,
+  provideIonicAngular,
+} from '@ionic/angular/standalone';
 
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
-import { initializeAppCheck, ReCaptchaEnterpriseProvider, provideAppCheck } from '@angular/fire/app-check';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { getPerformance, providePerformance } from '@angular/fire/performance';
@@ -22,10 +24,24 @@ bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
-    provideRouter(routes), provideFirebaseApp(() => initializeApp({"projectId":"ezpark-9ac40","appId":"1:546396358335:web:6d2cec62e7f19abff8e80a","databaseURL":"https://ezpark-9ac40-default-rtdb.asia-southeast1.firebasedatabase.app","storageBucket":"ezpark-9ac40.appspot.com","apiKey":"AIzaSyBeefgv-ytofUfqz_iDMrczDqpMLOVhHVE","authDomain":"ezpark-9ac40.firebaseapp.com","messagingSenderId":"546396358335","measurementId":"G-LNMLYQJCNK"})), provideAuth(() => getAuth()), provideAppCheck(() => {
-  // TODO get a reCAPTCHA Enterprise here https://console.cloud.google.com/security/recaptcha?project=_
-  const provider = new ReCaptchaEnterpriseProvider('6Lfw1C0qAAAAAIamHqnAAKbpCw4FHMJZvGVWwj-Y');
-  return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
-}), provideFirestore(() => getFirestore()), provideDatabase(() => getDatabase()), providePerformance(() => getPerformance()), provideStorage(() => getStorage()),
+    provideRouter(routes),
+    provideFirebaseApp(() =>
+      initializeApp({
+        projectId: 'ezpark-9ac40',
+        appId: '1:546396358335:web:6d2cec62e7f19abff8e80a',
+        databaseURL:
+          'https://ezpark-9ac40-default-rtdb.asia-southeast1.firebasedatabase.app',
+        storageBucket: 'ezpark-9ac40.appspot.com',
+        apiKey: 'AIzaSyBeefgv-ytofUfqz_iDMrczDqpMLOVhHVE',
+        authDomain: 'ezpark-9ac40.firebaseapp.com',
+        messagingSenderId: '546396358335',
+        measurementId: 'G-LNMLYQJCNK',
+      })
+    ),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideDatabase(() => getDatabase()),
+    providePerformance(() => getPerformance()),
+    provideStorage(() => getStorage()),
   ],
 });
