@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { ProfileEditPage } from './profile-edit/profile-edit.page';
+// import { ProfileEditPage } from './profile-edit/profile-edit.page';
+import { SignupPage } from './pages/signup/signup.page';
 
 export const routes: Routes = [
   {
@@ -92,7 +93,19 @@ export const routes: Routes = [
   loadChildren: () => import('./pages/journal/journal.module').then( m => m.JournalPageModule)
 },
 
+{
+  path: '',
+  component: SignupPage
+},
+
 ];
+
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class SignupPageRoutingModule {}
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })    
@@ -100,3 +113,16 @@ export const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
+
+// @NgModule({
+//   imports: [RouterModule.forChild(routes)],
+//   exports: [RouterModule],
+// })
+// export class SignupPageRoutingModule {}
+
+// @NgModule({
+//   imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })    
+//   ],
+//   exports: [RouterModule],
+// })
+// export class AppRoutingModule {}
