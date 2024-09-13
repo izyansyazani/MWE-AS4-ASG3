@@ -23,6 +23,7 @@ import {
   IonGrid,
   IonButtons,
   IonBackButton,
+  IonCheckbox,
 } from '@ionic/angular/standalone';
 import { Firestore, doc, setDoc, getDoc } from '@angular/fire/firestore';
 import { Auth } from '@angular/fire/auth';
@@ -55,6 +56,7 @@ import { Auth } from '@angular/fire/auth';
     IonGrid,
     IonButtons,
     IonBackButton,
+    IonCheckbox,
   ],
 })
 export class ParkingspotsPage implements OnInit {
