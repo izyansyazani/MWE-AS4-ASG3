@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+// import { ProfileEditPage } from './profile-edit/profile-edit.page';
+import { SignupPage } from './pages/signup/signup.page';
 
 const routes: Routes = [
   {
@@ -89,7 +91,53 @@ const routes: Routes = [
     loadComponent: () =>
       import('./profile-edit/profile-edit.page').then((m) => m.ProfileEditPage),
   },
+
+{
+  path: 'login',
+  loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+},
+{
+  path: 'forgot-password',
+  loadChildren: () => import('./pages/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
+},
+{
+  path: 'signup',
+  loadChildren: () => import('./pages/signup/signup.module').then( m => m.SignupPageModule)
+},
+{
+  path: 'verify',
+  loadChildren: () => import('./pages/verify/verify.module').then( m => m.VerifyPageModule)
+},
+{
+  path: 'landing',
+  loadChildren: () => import('./pages/landing/landing.module').then( m => m.LandingPageModule)
+},
+{
+  path: 'confirmation',
+  loadChildren: () => import('./pages/confirmation/confirmation.module').then( m => m.ConfirmationPageModule)
+},
+{
+  path: 'journals',
+  loadChildren: () => import('./pages/journals/journals.module').then( m => m.JournalsPageModule)
+},
+{
+  path: 'journal',
+  loadChildren: () => import('./pages/journal/journal.module').then( m => m.JournalPageModule)
+},
+
+{
+  path: '',
+  component: SignupPage
+},
+
 ];
+
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class SignupPageRoutingModule {}
 
 @NgModule({
   imports: [
@@ -98,3 +146,16 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
+
+// @NgModule({
+//   imports: [RouterModule.forChild(routes)],
+//   exports: [RouterModule],
+// })
+// export class SignupPageRoutingModule {}
+
+// @NgModule({
+//   imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })    
+//   ],
+//   exports: [RouterModule],
+// })
+// export class AppRoutingModule {}
