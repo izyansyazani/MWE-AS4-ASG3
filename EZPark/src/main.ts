@@ -1,7 +1,10 @@
 import { enableProdMode } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { RouteReuseStrategy, provideRouter } from '@angular/router';
-import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalone';
+import {
+  IonicRouteStrategy,
+  provideIonicAngular,
+} from '@ionic/angular/standalone';
 
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
@@ -23,21 +26,23 @@ bootstrapApplication(AppComponent, {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
     provideRouter(routes),
-    provideFirebaseApp(() => initializeApp({
-      "projectId": "ezpark-7ec4d",
-      "appId": "1:495351849846:web:1fe95033e09a44a63ed057",
-      "databaseURL": "https://ezpark-7ec4d-default-rtdb.asia-southeast1.firebasedatabase.app",
-      "storageBucket": "ezpark-7ec4d.appspot.com",
-      "apiKey": "AIzaSyBPkqCi7EM1WWmJ755fmCcjvH15-RYCuAc",
-      "authDomain": "ezpark-7ec4d.firebaseapp.com",
-      "messagingSenderId": "495351849846",
-      "measurementId": "G-VLQB2P7SE8"
-    })),
+    provideFirebaseApp(() =>
+      initializeApp({
+        projectId: 'ezpark-9ac40',
+        appId: '1:546396358335:web:6d2cec62e7f19abff8e80a',
+        databaseURL:
+          'https://ezpark-9ac40-default-rtdb.asia-southeast1.firebasedatabase.app',
+        storageBucket: 'ezpark-9ac40.appspot.com',
+        apiKey: 'AIzaSyBeefgv-ytofUfqz_iDMrczDqpMLOVhHVE',
+        authDomain: 'ezpark-9ac40.firebaseapp.com',
+        messagingSenderId: '546396358335',
+        measurementId: 'G-LNMLYQJCNK',
+      })
+    ),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideDatabase(() => getDatabase()),
     providePerformance(() => getPerformance()),
     provideStorage(() => getStorage()),
-    
   ],
 });

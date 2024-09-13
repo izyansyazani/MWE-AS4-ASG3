@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -33,6 +33,8 @@ import { Auth } from '@angular/fire/auth';
   styleUrls: ['./parkingspots.page.scss'],
   standalone: true,
   imports: [
+    CommonModule,
+    FormsModule,
     IonContent,
     IonHeader,
     IonTitle,
@@ -61,7 +63,8 @@ export class ParkingspotsPage implements OnInit {
   constructor(
     private router: Router,
     private firestore: Firestore,
-    @Inject(Auth) private auth: Auth
+    private auth: Auth,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -75,6 +78,7 @@ export class ParkingspotsPage implements OnInit {
       const userDoc = await getDoc(userDocRef);
       const userData = userDoc.data() || {};
       this.favoriteParking = userData['favoriteParking'] || [];
+      this.cdr.detectChanges(); // Ensure change detection
     }
   }
 
@@ -102,12 +106,15 @@ export class ParkingspotsPage implements OnInit {
           { merge: true }
         );
         this.favoriteParking = updatedFavorites;
+        console.log('Removed from favorites:', parkingSpot);
       } else {
         // Add to favorites
         favoriteParking.push(parkingSpot);
         await setDoc(userDocRef, { favoriteParking }, { merge: true });
         this.favoriteParking = favoriteParking;
+        console.log('Added to favorites:', parkingSpot);
       }
+      this.cdr.detectChanges(); // Ensure change detection
     } else {
       console.log('User not authenticated');
     }

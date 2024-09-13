@@ -28,12 +28,16 @@ h1 {
   padding: 20px;
   width: 100%; /* Ensure the container takes up the full width */
   max-width: 500px; /* Adjust this value to limit the container width */
+  margin: 0 auto; /* Center the container within the parent */
 }
 
 ion-card {
   --background: #E0E0E0; /* Set background color of the card */
   --border-radius: 10px;
   text-align: center;
+  display: flex; /* Add flexbox properties */
+  flex-direction: column; /* Ensure content is stacked vertically */
+  align-items: center; /* Center content horizontally */
 }
 
 ion-card img {
@@ -54,7 +58,14 @@ ion-card-content {
 .favorite-btn {
   --background: #8888D7;
   color: white;
-  margin-top: 2px;
-  width: 120px;
- border-radius: 30%;
+  margin-top: -5px; /* Adjusted value to move the button higher */
+  width: 90px; /* Keep the width as is */
+  height: 30px; /* Adjust height to make it smaller */
+  border-radius: 15px; /* Ensure the button is more circular */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none; /* Ensure no border is applied */
+  outline: none; /* Remove outline */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better visibility */
 }
