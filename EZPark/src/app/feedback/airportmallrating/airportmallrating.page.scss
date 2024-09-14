@@ -1,17 +1,16 @@
 ion-content {
-  --ion-background-color: #FBF3EF;
-  display: flex; /* Make ion-content a flex container */
-  flex-direction: column; /* Stack children vertically */
-  justify-content: center; /* Center children vertically */
-  align-items: center; /* Center children horizontally */
-  height: 100%; /* Make sure ion-content takes up the full height */
-  padding: 0 10px; /* Optional: add some padding to prevent boxes from touching the edges */
+  --ion-background-color: #fbf3ef;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0 10px;
 }
 
 h1 {
   color: #000;
   font-size: 24px;
-  display: block;
   text-align: center;
   margin-top: -20px;
 }
@@ -23,41 +22,114 @@ h1 {
 }
 
 .airportmall-image {
-  width: 70%; /* Reduce the width to make the image smaller */
-  height: auto; /* Maintain the aspect ratio */
-  margin-top: 10px; /* Spacing from the title */
-  border-radius: 10px; /* Optional: rounded corners */
-  display: block; /* Ensure the image is treated as a block element */
-  margin-left: auto; /* Center the image horizontally */
-  margin-right: auto; /* Center the image horizontally */
+  width: 80%; /* Adjusted to match the width of the comment boxes */
+  height: auto;
+  margin-top: 10px;
+  border-radius: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.note {
+  font-size: 12px;
+  color: #555;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.comment-input-container {
+  display: flex;
+  width: 80%; /* Adjusted to match the width of the comment boxes */
+  margin-top: 20px;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.comment-input-container ion-input {
+  flex: 1;
+  margin-right: 10px;
+  border: 1px solid #ccc; /* Add border for visibility */
+  padding: 10px; /* Add padding for better spacing */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #fff; /* White background for input */
+  color: #000; /* Ensure text color is black for visibility */
+}
+
+.comment-input-container ion-button {
+  --background: #31D97E; /* Change Post button color */
+  color: #fff; /* Ensure text color is white for contrast */
 }
 
 .box-container {
-  display: flex; /* Make box-container a flex container */
-  flex-direction: column; /* Stack boxes vertically */
-  align-items: center; /* Center boxes horizontally */
-  width: 100%; /* Make sure it takes up full width */
-  max-width: 600px; /* Limit the width of the box container */
-  margin-top: 20px; /* Add margin to create space below the image */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
 }
 
 .colored-box {
-  width: 80%; /* Adjust this width to fit your design */
-  height: 100px; /* Adjust the height as needed */
-  margin-top: 10px; /* Add some space above the box */
-  border-radius: 10px; /* Optional: rounded corners */
+  width: 80%; /* Adjust width */
+  padding: 20px;
+  margin-top: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row; /* Arrange profile pic and content in a row */
+  align-items: flex-start; /* Align items to the start */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #8888e7;
+  margin-left: auto;
+  margin-right: auto;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  overflow: hidden;
+}
+
+.profile-picture {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.comment-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-left: 10px; /* Space between profile pic and content */
+  color: #000;
+}
+
+.comment-header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: add shadow */
-  background-color: #8888E7; /* Default color */
+}
+
+.comment-header h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.comment-content p {
+  margin: 5px 0 0 0;
+  font-size: 14px;
+}
+
+.delete-button {
+  --background: #ff4d4d; /* Red background color */
+  color: #000; /* Black text color */
+  align-self: flex-end; /* Align delete button to the end */
 }
 
 /* Use nth-child to alternate colors */
 .colored-box:nth-child(odd) {
-  background-color: #8888E7;
+  background-color: #8888e7;
 }
 
 .colored-box:nth-child(even) {
-  background-color: #E0E0E0;
+  background-color: #e0e0e0;
 }
