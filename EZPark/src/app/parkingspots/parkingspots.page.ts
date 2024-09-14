@@ -109,12 +109,14 @@ export class ParkingspotsPage implements OnInit {
         );
         this.favoriteParking = updatedFavorites;
         console.log('Removed from favorites:', parkingSpot);
+        console.log('Updated favoriteParking array:', updatedFavorites);
       } else {
         // Add to favorites
         favoriteParking.push(parkingSpot);
         await setDoc(userDocRef, { favoriteParking }, { merge: true });
         this.favoriteParking = favoriteParking;
         console.log('Added to favorites:', parkingSpot);
+        console.log('Updated favoriteParking array:', favoriteParking);
       }
       this.cdr.detectChanges(); // Ensure change detection
     } else {
