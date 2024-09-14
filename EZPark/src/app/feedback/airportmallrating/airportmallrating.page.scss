@@ -72,13 +72,13 @@ h1 {
 }
 
 .colored-box {
-  width: 80%; /* Adjust width */
+  width: 80%;
   padding: 20px;
   margin-top: 10px;
   border-radius: 10px;
   display: flex;
-  flex-direction: row; /* Arrange profile pic and content in a row */
-  align-items: flex-start; /* Align items to the start */
+  flex-direction: row;
+  align-items: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-color: #8888e7;
   margin-left: auto;
@@ -87,7 +87,12 @@ h1 {
   overflow-wrap: break-word;
   white-space: normal;
   overflow: hidden;
+  height: auto;
+  min-height: 50px; /* Ensure the box has a minimum height */
+  max-width: 100%;
+  max-height: 100%;
 }
+
 
 .profile-picture {
   width: 50px;
@@ -102,6 +107,9 @@ h1 {
   flex: 1;
   margin-left: 10px; /* Space between profile pic and content */
   color: #000;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
 }
 
 .comment-header {
