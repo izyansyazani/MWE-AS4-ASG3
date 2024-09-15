@@ -24,6 +24,7 @@ import {
   IonButtons,
   IonBackButton,
   IonCheckbox,
+  ViewWillEnter,
 } from '@ionic/angular/standalone';
 import { Firestore, doc, setDoc, getDoc } from '@angular/fire/firestore';
 import { Auth } from '@angular/fire/auth';
@@ -59,7 +60,7 @@ import { Auth } from '@angular/fire/auth';
     IonCheckbox,
   ],
 })
-export class ParkingspotsPage implements OnInit {
+export class ParkingspotsPage implements OnInit, ViewWillEnter {
   favoriteParking: string[] = [];
 
   constructor(
@@ -70,6 +71,10 @@ export class ParkingspotsPage implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.loadFavorites();
+  }
+
+  ionViewWillEnter() {
     this.loadFavorites();
   }
 
