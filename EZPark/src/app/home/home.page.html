@@ -30,8 +30,8 @@
       <ion-menu-button class="colorblack"></ion-menu-button>
     </ion-buttons>
     <ion-content class="ion-padding">
-      <img id="userimage" src="../assets/joe.png" alt="userimage" />
-      <span id="txtpad2" class="colorblack">Arthur B</span>
+      <img id="userimage" [src]="userImage$ | async" alt="userimage" />
+      <span id="txtpad2" class="colorblack">{{ userName$ | async }}</span>
       <br />
       <ion-grid>
         <ion-row>
