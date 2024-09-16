@@ -8,34 +8,82 @@
   <h1>Find Parking:</h1>
 
   <div class="cards-container">
-    <ion-card (click)="goToMall()">
+    <ion-card>
       <img src="../assets/Themall.jpg" />
       <ion-card-content>The Mall, Gadong</ion-card-content>
+      <ion-item lines="none">
+        <ion-label>Favorite</ion-label>
+        <ion-checkbox
+          slot="end"
+          [checked]="isFavorite('The Mall, Gadong')"
+          (ionChange)="toggleFavorite($event, 'The Mall, Gadong')"
+        ></ion-checkbox>
+      </ion-item>
     </ion-card>
 
     <ion-card>
       <img src="../assets/Timessquare.jpg" />
       <ion-card-content>Times Square</ion-card-content>
+      <ion-item lines="none">
+        <ion-label>Favorite</ion-label>
+        <ion-checkbox
+          slot="end"
+          [checked]="isFavorite('Times Square')"
+          (ionChange)="toggleFavorite($event, 'Times Square')"
+        ></ion-checkbox>
+      </ion-item>
     </ion-card>
 
-    <ion-card (click)="goToAirportMall()">
+    <ion-card>
       <img src="../assets/Theairportmall.jpg" />
       <ion-card-content>Airport Mall</ion-card-content>
+      <ion-item lines="none">
+        <ion-label>Favorite</ion-label>
+        <ion-checkbox
+          slot="end"
+          [checked]="isFavorite('Airport Mall')"
+          (ionChange)="toggleFavorite($event, 'Airport Mall')"
+        ></ion-checkbox>
+      </ion-item>
     </ion-card>
 
     <ion-card>
       <img src="../assets/Yayasanmall.jpg" />
       <ion-card-content>Yayasan Complex</ion-card-content>
+      <ion-item lines="none">
+        <ion-label>Favorite</ion-label>
+        <ion-checkbox
+          slot="end"
+          [checked]="isFavorite('Yayasan Complex')"
+          (ionChange)="toggleFavorite($event, 'Yayasan Complex')"
+        ></ion-checkbox>
+      </ion-item>
     </ion-card>
 
     <ion-card>
       <img src="../assets/mabohai.jpg" />
       <ion-card-content>Mabohai Shopping Complex</ion-card-content>
+      <ion-item lines="none">
+        <ion-label>Favorite</ion-label>
+        <ion-checkbox
+          slot="end"
+          [checked]="isFavorite('Mabohai Shopping Complex')"
+          (ionChange)="toggleFavorite($event, 'Mabohai Shopping Complex')"
+        ></ion-checkbox>
+      </ion-item>
     </ion-card>
 
-    <ion-card (click)="goToAmanHills()">
+    <ion-card>
       <img src="../assets/amanhills.jpg" />
       <ion-card-content>Aman Hills Brunei</ion-card-content>
+      <ion-item lines="none">
+        <ion-label>Favorite</ion-label>
+        <ion-checkbox
+          slot="end"
+          [checked]="isFavorite('Aman Hills Brunei')"
+          (ionChange)="toggleFavorite($event, 'Aman Hills Brunei')"
+        ></ion-checkbox>
+      </ion-item>
     </ion-card>
   </div>
 </ion-content>
