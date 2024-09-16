@@ -43,9 +43,9 @@
         ></ion-input>
         <img src="path/to/username-icon.svg" alt="username icon" class="icon">
       </ion-item>
-      <div class="error-messages" *ngIf="ionicForm.controls?.['email'].touched && ionicForm.controls?.['email'].invalid">
-        <ion-text *ngIf="errorControl.email.errors?.required" class="errorInput" color="danger">Email is required.</ion-text>
-        <ion-text *ngIf="errorControl.email.errors?.pattern" class="errorInput" color="danger">Please provide a valid email.</ion-text>
+      <div class="error-messages" *ngIf="ionicForm.get('email')?.touched && ionicForm.get('email')?.invalid">
+        <ion-text *ngIf="ionicForm.get('email')?.errors?.['required']" class="errorInput" color="danger">Email is required.</ion-text>
+        <ion-text *ngIf="ionicForm.get('email')?.errors?.['pattern']" class="errorInput" color="danger">Please provide a valid email.</ion-text>
       </div>
 
       <ion-label class="text textColor">Password:</ion-label>
@@ -60,9 +60,9 @@
         ></ion-input>
         <img src="path/to/password-icon.svg" alt="password icon" class="icon">
       </ion-item>
-      <div class="error-messages" *ngIf="ionicForm.controls?.['password'].touched && ionicForm.controls?.['password'].invalid">
-        <ion-text *ngIf="errorControl.password.errors?.required" class="errorInput" color="danger">Password is required.</ion-text>
-        <ion-text *ngIf="errorControl.password.errors?.pattern" class="errorInput" color="danger">Password must contain at least one uppercase letter, one lowercase letter, and one digit.</ion-text>
+      <div class="error-messages" *ngIf="ionicForm.get('password')?.touched && ionicForm.get('password')?.invalid">
+        <ion-text *ngIf="ionicForm.get('password')?.errors?.['required']" class="errorInput" color="danger">Password is required.</ion-text>
+        <ion-text *ngIf="ionicForm.get('password')?.errors?.['pattern']" class="errorInput" color="danger">Password must contain at least one uppercase letter, one lowercase letter, and one digit.</ion-text>
       </div>
 
       <ion-checkbox 

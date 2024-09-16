@@ -36,9 +36,9 @@ import {
     IonHeader,
     IonTitle,
     IonToolbar,
-    // CommonModule,
-    // FormsModule,
-    // ReactiveFormsModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     // RouterModule,
   ],
 })
