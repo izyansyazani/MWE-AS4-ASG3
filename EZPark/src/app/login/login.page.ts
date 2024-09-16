@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthServiceService } from 'src/app/auth-service.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import {
   IonContent,
   IonHeader,
@@ -33,13 +36,78 @@ import {
     IonHeader,
     IonTitle,
     IonToolbar,
-    CommonModule,
-    FormsModule,
-    RouterModule, // Import RouterModule here
+    // CommonModule,
+    // FormsModule,
+    // ReactiveFormsModule,
+    // RouterModule,
   ],
 })
 export class LoginPage implements OnInit {
-  constructor() {}
+  ionicForm!: FormGroup;
 
-  ngOnInit() {}
+  constructor(
+    private toastController: ToastController,
+    private alertController: AlertController,
+    private loadingController: LoadingController,
+    private authService: AuthServiceService,
+    private router: Router,
+    public formBuilder: FormBuilder
+  ) {}
+
+  ngOnInit() {
+    this.ionicForm = this.formBuilder.group({
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('[a-zA-Z0-9]*'),
+        ],
+      ],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'),
+        ],
+      ],
+      rememberMe: [false],  // Initialize rememberMe checkbox
+    });
+  }
+
+  async login() {
+    const loading = await this.loadingController.create();
+    await loading.present();
+
+    if (this.ionicForm.valid) {
+      try {
+        const { email, password } = this.ionicForm.value;
+        const user = await this.authService.loginUser(email, password);
+        if (user) {
+          await loading.dismiss();
+          this.router.navigate(['/home']);
+        }
+      } catch (err:any) {
+        this.presentToast(err?.message);
+        console.log(err);
+        await loading.dismiss();
+      }
+    } else {
+      await loading.dismiss();
+      console.log('Please provide all the required values!');
+    }
+  }
+
+  get errorControl() {
+    return this.ionicForm.controls;
+  }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 1500,
+      position: 'top',
+    });
+
+    await toast.present();
+  }
 }
