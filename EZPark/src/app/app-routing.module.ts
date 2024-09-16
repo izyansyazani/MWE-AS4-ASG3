@@ -125,7 +125,8 @@ export class SignupPageRoutingModule {}
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {},
+
 
 // @NgModule({
 //   imports: [RouterModule.forChild(routes)],

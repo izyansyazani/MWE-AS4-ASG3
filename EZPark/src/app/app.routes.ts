@@ -1,6 +1,8 @@
-import { Routes } from '@angular/router';
+import { Routes, RouterModule} from '@angular/router';
 import { ReceiptsPage } from './receipts/receipts.page';
 import { HistoryPage } from './history/history.page';
+import { SignupPage } from './signup/signup.page';
+import { NgModule } from '@angular/core';
 
 export const routes: Routes = [
   {
@@ -12,6 +14,12 @@ export const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full',
   },
+
+  {
+    path: '',
+    component: SignupPage
+  },
+
   {
     path: 'signup-login',
     loadComponent: () =>
@@ -173,9 +181,17 @@ export const routes: Routes = [
     path: 'paypal',
     loadComponent: () =>
       import('./paypal/paypal.page').then((m) => m.PaypalPage),
-  },  {
+  },
+  {
     path: 'favorite.service.ts',
     loadComponent: () => import('./favorite.service.ts/favorite.service.ts.page').then( m => m.FavoriteServiceTsPage)
   },
 
 ];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class SignupPageRoutingModule  {}
+
