@@ -17,152 +17,105 @@
       <ion-col>
         <ion-grid class="group">
           <ion-row>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
+            <ion-col class="box" *ngIf="!isBooked('A1')" (click)="bookSpot('A1')">A1</ion-col>
+            <ion-col class="box"><img *ngIf="isBooked('A1')" src="../assets/sports-car.png" /></ion-col>
+
+            <ion-col class="box" *ngIf="!isBooked('A2')" (click)="bookSpot('A2')">A2</ion-col>
+            <ion-col class="box"><img *ngIf="isBooked('A2')" src="../assets/sports-car.png" /></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
+            <ion-col class="box" *ngIf="!isBooked('A3')" (click)="bookSpot('A3')">A3</ion-col>
+            <ion-col class="box"><img *ngIf="isBooked('A3')" src="../assets/sports-car.png" /></ion-col>
+
+            <ion-col class="box" *ngIf="!isBooked('A4')" (click)="bookSpot('A4')">A4</ion-col>
+            <ion-col class="box"><img *ngIf="isBooked('A4')" src="../assets/sports-car.png" /></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col class="box" (click)="goToBook()">A9</ion-col>
-            <ion-col class="box" (click)="goToBook()">A4</ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
-            <ion-col class="box" (click)="goToBook()">A5</ion-col>
+            <ion-col class="box" *ngIf="!isBooked('A5')" (click)="bookSpot('A5')">A5</ion-col>
+            <ion-col class="box"><img *ngIf="isBooked('A5')" src="../assets/sports-car.png" /></ion-col>
+
+            <ion-col class="box" *ngIf="!isBooked('A6')" (click)="bookSpot('A6')">A6</ion-col>
+            <ion-col class="box"><img *ngIf="isBooked('A6')" src="../assets/sports-car.png" /></ion-col>
           </ion-row>
         </ion-grid>
       </ion-col>
+
       <ion-col>
         <ion-grid class="group">
           <ion-row>
-            <ion-col class="box" (click)="goToBook()">B1</ion-col>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
+            <ion-col class="box" *ngIf="!isBooked('B1')" (click)="bookSpot('B1')">B1</ion-col>
+            <ion-col class="box"><img *ngIf="isBooked('B1')" src="../assets/sports-car.png" /></ion-col>
+
+            <ion-col class="box" *ngIf="!isBooked('B2')" (click)="bookSpot('B2')">B2</ion-col>
+            <ion-col class="box"><img *ngIf="isBooked('B2')" src="../assets/sports-car.png" /></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="box" (click)="goToBook()">B2</ion-col>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
+            <ion-col class="box" *ngIf="!isBooked('B3')" (click)="bookSpot('B3')">B3</ion-col>
+            <ion-col class="box"><img *ngIf="isBooked('B3')" src="../assets/sports-car.png" /></ion-col>
+
+            <ion-col class="box" *ngIf="!isBooked('B4')" (click)="bookSpot('B4')">B4</ion-col>
+            <ion-col class="box"><img *ngIf="isBooked('B4')" src="../assets/sports-car.png" /></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col class="box" (click)="goToBook()">B4</ion-col>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
+            <ion-col class="box" *ngIf="!isBooked('B5')" (click)="bookSpot('B5')">B5</ion-col>
+            <ion-col class="box"><img *ngIf="isBooked('B5')" src="../assets/sports-car.png" /></ion-col>
+
+            <ion-col class="box" *ngIf="!isBooked('B6')" (click)="bookSpot('B6')">B6</ion-col>
+            <ion-col class="box"><img *ngIf="isBooked('B6')" src="../assets/sports-car.png" /></ion-col>
           </ion-row>
         </ion-grid>
       </ion-col>
     </ion-row>
+
     <ion-row>
       <ion-col>
         <ion-grid class="group">
           <ion-row>
-            <ion-col class="box" (click)="goToBook()">C6</ion-col>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
+            <ion-col class="box" *ngIf="!isBooked('C1')" (click)="bookSpot('C1')">C1</ion-col>
+            <ion-col class="box"><img *ngIf="isBooked('C1')" src="../assets/sports-car.png" /></ion-col>
+
+            <ion-col class="box" *ngIf="!isBooked('C2')" (click)="bookSpot('C2')">C2</ion-col>
+            <ion-col class="box"><img *ngIf="isBooked('C2')" src="../assets/sports-car.png" /></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
+            <ion-col class="box" *ngIf="!isBooked('C3')" (click)="bookSpot('C3')">C3</ion-col>
+            <ion-col class="box"><img *ngIf="isBooked('C3')" src="../assets/sports-car.png" /></ion-col>
+
+            <ion-col class="box" *ngIf="!isBooked('C4')" (click)="bookSpot('C4')">C4</ion-col>
+            <ion-col class="box"><img *ngIf="isBooked('C4')" src="../assets/sports-car.png" /></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="box" (click)="goToBook()">C8</ion-col>
-            <ion-col class="box" (click)="goToBook()">C3</ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
-            <ion-col class="box" (click)="goToBook()">C4</ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
+            <ion-col class="box" *ngIf="!isBooked('C5')" (click)="bookSpot('C5')">C5</ion-col>
+            <ion-col class="box"><img *ngIf="isBooked('C5')" src="../assets/sports-car.png" /></ion-col>
+
+            <ion-col class="box" *ngIf="!isBooked('C6')" (click)="bookSpot('C6')">C6</ion-col>
+            <ion-col class="box"><img *ngIf="isBooked('C6')" src="../assets/sports-car.png" /></ion-col>
           </ion-row>
         </ion-grid>
       </ion-col>
+
       <ion-col>
         <ion-grid class="group">
           <ion-row>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
+            <ion-col class="box" *ngIf="!isBooked('D1')" (click)="bookSpot('D1')">D1</ion-col>
+            <ion-col class="box"><img *ngIf="isBooked('D1')" src="../assets/sports-car.png" /></ion-col>
+
+            <ion-col class="box" *ngIf="!isBooked('D2')" (click)="bookSpot('D2')">D2</ion-col>
+            <ion-col class="box"><img *ngIf="isBooked('D2')" src="../assets/sports-car.png" /></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="box" (click)="goToBook()">D2</ion-col>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
+            <ion-col class="box" *ngIf="!isBooked('D3')" (click)="bookSpot('D3')">D3</ion-col>
+            <ion-col class="box"><img *ngIf="isBooked('D3')" src="../assets/sports-car.png" /></ion-col>
+
+            <ion-col class="box" *ngIf="!isBooked('D4')" (click)="bookSpot('D4')">D4</ion-col>
+            <ion-col class="box"><img *ngIf="isBooked('D4')" src="../assets/sports-car.png" /></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="box" (click)="goToBook()">D3</ion-col>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col class="box"
-              ><img src="../assets/sports-car.png"
-            /></ion-col>
-            <ion-col class="box" (click)="goToBook()">D10</ion-col>
+            <ion-col class="box" *ngIf="!isBooked('D5')" (click)="bookSpot('D5')">D5</ion-col>
+            <ion-col class="box"><img *ngIf="isBooked('D5')" src="../assets/sports-car.png" /></ion-col>
+
+            <ion-col class="box" *ngIf="!isBooked('D6')" (click)="bookSpot('D6')">D6</ion-col>
+            <ion-col class="box"><img *ngIf="isBooked('D6')" src="../assets/sports-car.png" /></ion-col>
           </ion-row>
         </ion-grid>
       </ion-col>
