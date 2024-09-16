@@ -35,7 +35,3 @@ import { SignupPage } from './pages/signup/signup.page';
   bootstrap: [AppComponent],
 })
 export class AppModule {}
-<<<<<<< HEAD
-=======
-
->>>>>>> 79aa4f93b972ad1832fb253e80a41ca2642ad353
