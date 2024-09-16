@@ -11,16 +11,18 @@ import { environment } from '../environments/environment';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 // import { provideStorage, getStorage } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { AngularFireModule } from '@angular/fire/app';
+import { AngularFireModule } from '@angular/fire';
 import { SignupPageRoutingModule } from './pages/signup/signup-routing.module';
 import { SignupPage } from './signup/signup.page';
 import { routes } from './app.routes';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { LoginPageRoutingModule } from './login-routing.module';
+import { LoginPage } from './login.page';
 
 
 @NgModule({
-  declarations: [AppComponent, SignupPage],
+  declarations: [AppComponent, SignupPage, LoginPage],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -28,6 +30,7 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     AngularFireAuthModule,
+    loginPageRoutingModule,
     RouterModule.forChild(routes),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
