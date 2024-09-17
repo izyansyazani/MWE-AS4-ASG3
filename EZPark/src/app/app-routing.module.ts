@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 // import { ProfileEditPage } from './profile-edit/profile-edit.page';
-// import { SignupPage } from './signup/signup.page';
+import { SignupPage } from './signup/signup.page';
 // import { LoginPage } from './login/login.page';
 
 
@@ -73,10 +73,10 @@ export const routes: Routes = [
   //   loadChildren: () =>
   //     import('./pages/landing/landing.module').then((m) => m.LandingPageModule),
   // },
-  // {
-  //   path: '',
-  //   component: SignupPage,
-  // },
+  {
+    path: '',
+    component: SignupPage,
+  },
   // {
   //   path: '',
   //   component: LoginPage,
