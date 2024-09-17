@@ -26,18 +26,16 @@ bootstrapApplication(AppComponent, {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
     provideRouter(routes),
-    provideFirebaseApp(() =>
-      initializeApp({
-        projectId: 'ezpark-9ac40',
-        appId: '1:546396358335:web:6d2cec62e7f19abff8e80a',
-        databaseURL:
-          'https://ezpark-9ac40-default-rtdb.asia-southeast1.firebasedatabase.app',
-        storageBucket: 'ezpark-9ac40.appspot.com',
-        apiKey: 'AIzaSyBeefgv-ytofUfqz_iDMrczDqpMLOVhHVE',
-        authDomain: 'ezpark-9ac40.firebaseapp.com',
-        messagingSenderId: '546396358335',
-        measurementId: 'G-LNMLYQJCNK',
-      })
+    provideFirebaseApp(() => initializeApp (environment.firebaseConfig),
+        // projectId: 'ezpark-9ac40',
+        // appId: '1:546396358335:web:6d2cec62e7f19abff8e80a',
+        // databaseURL:
+        //   'https://ezpark-9ac40-default-rtdb.asia-southeast1.firebasedatabase.app',
+        // storageBucket: 'ezpark-9ac40.appspot.com',
+        // apiKey: 'AIzaSyBeefgv-ytofUfqz_iDMrczDqpMLOVhHVE',
+        // authDomain: 'ezpark-9ac40.firebaseapp.com',
+        // messagingSenderId: '546396358335',
+        // measurementId: 'G-LNMLYQJCNK', 
     ),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
@@ -45,4 +43,5 @@ bootstrapApplication(AppComponent, {
     providePerformance(() => getPerformance()),
     provideStorage(() => getStorage()),
   ],
-});
+})
+.catch(err => console.error(err));

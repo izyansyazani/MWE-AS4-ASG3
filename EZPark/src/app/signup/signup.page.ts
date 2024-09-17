@@ -188,18 +188,11 @@ export class SignupPage implements OnInit {
       fullname: ['', Validators.required],
       contact: [
         '',
-        [
-          Validators.required,
-          Validators.pattern('^[0-9]*$'),
-          Validators.minLength(8),
-        ],
+        [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(8)],
       ],
       email: [
         '',
-        [
-          Validators.required,
-          Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$'),
-        ],
+        [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$')],
       ],
       password: [
         '',
@@ -223,28 +216,30 @@ export class SignupPage implements OnInit {
     
     if (this.ionicForm.valid) {
       try {
-        await this.authService.registerUser(
+        // Register user using the AuthServiceService
+        const userCredential = await this.authService.registerUser(
           this.ionicForm.value.email,
           this.ionicForm.value.password,
           this.ionicForm.value.fullname
         );
+
         loading.dismiss();
-      this.router.navigate(['/home']);
-    } catch (err) {
-      loading.dismiss();
-      if (err instanceof Error) {
-        await this.presentToast(err.message);
-      } else {
-        // Handle the case where 'err' is not an instance of 'Error'
-        await this.presentToast('An unexpected error occurred.');
+        
+        // Navigate to home after successful registration
+        this.router.navigate(['/home']);
+      } catch (err) {
+        loading.dismiss();
+        if (err instanceof Error) {
+          await this.presentToast(err.message);
+        } else {
+          await this.presentToast('An unexpected error occurred.');
+        }
       }
-      console.log(err);
+    } else {
+      loading.dismiss();
+      await this.presentToast('Please provide all the required values!');
     }
-  } else {
-    loading.dismiss();
-    await this.presentToast('Please provide all the required values!');
   }
-}
 
   async presentToast(message: string) {
     const toast = await this.toastController.create({
@@ -252,7 +247,7 @@ export class SignupPage implements OnInit {
       duration: 1500,
       position: 'top',
     });
-
     await toast.present();
   }
 }
+

@@ -1,8 +1,8 @@
 import { Routes, RouterModule} from '@angular/router';
 import { ReceiptsPage } from './receipts/receipts.page';
 import { HistoryPage } from './history/history.page';
-import { SignupPage } from './signup/signup.page';
-import { NgModule } from '@angular/core';
+// import { SignupPage } from './signup/signup.page';
+// import { NgModule } from '@angular/core';
 
 export const routes: Routes = [
   {
@@ -11,14 +11,14 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'signup-login',
     pathMatch: 'full',
   },
 
-  {
-    path: '',
-    component: SignupPage
-  },
+  // {
+  //   path: '',
+  //   component: SignupPage
+  // },
 
   {
     path: 'signup-login',
@@ -61,11 +61,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./receipts/receipts.page').then((m) => m.ReceiptsPage),
   },
-  {
-    path: 'mall',
-    loadComponent: () =>
-      import('./parkingspots/mall/mall.page').then((m) => m.MallPage),
-  },
+  // {
+  //   path: 'mall',
+  //   loadComponent: () =>
+  //     import('./parkingspots/mall/mall.page').then((m) => m.MallPage),
+  // },
   {
     path: 'splash-screen',
     loadComponent: () =>
@@ -189,9 +189,9 @@ export const routes: Routes = [
 
 ];
 
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-})
-export class SignupPageRoutingModule  {}
+// @NgModule({
+//   imports: [RouterModule.forChild(routes)],
+//   exports: [RouterModule],
+// })
+// export class SignupPageRoutingModule  {}
 
