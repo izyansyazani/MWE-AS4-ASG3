@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
 
@@ -74,10 +74,13 @@ export class ReservationPage implements OnInit {
     totalAmount: 0,
   };
 
+  spot: string = '';
+
   constructor(
     private router: Router,
     private alertController: AlertController,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private route: ActivatedRoute
   ) {}
 
   updateTotalAmount() {
@@ -98,52 +101,15 @@ export class ReservationPage implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      if (params['spot']) {
+        this.spot = params['spot'];
+        this.bookingDetails.parkingSpaceNumber = this.spot;
+      }
+    });
+  }
   goToParkingspots() {
     this.router.navigate(['/parkingspots']);
   }
-
-  // async showPopup() {
-  //   const alert = await this.alertController.create({
-  //     header: 'Confirm Booking',
-  //     message: 'Are you sure you want to confirm this booking?',
-  //     buttons: [
-  //       {
-  //         text: 'Cancel',
-  //         role: 'cancel',
-  //         handler: () => {
-  //           console.log('Booking cancelled');
-  //         },
-  //       },
-  //       {
-  //         text: 'Confirm',
-  //         handler: async () => {
-  //           console.log('Booking confirmed');
-  //           this.router.navigate(['/home']);
-  //           await this.scheduleNotification();
-  //         },
-  //       },
-  //     ],
-  //   });
-
-  //   await alert.present();
-  // }
-
-  // async scheduleNotification() {
-  //   let options: ScheduleOptions = {
-  //     notifications: [
-  //       {
-  //         id: 111,
-  //         title: 'Booking Confirmed',
-  //         body: 'You have booked a parking.',
-  //       },
-  //     ],
-  //   };
-
-  //   try {
-  //     await LocalNotifications.schedule(options);
-  //   } catch (ex) {
-  //     alert(JSON.stringify(ex));
-  //   }
-  // }
 }

@@ -32,6 +32,7 @@ import { LoginPage } from './login.page';
     LoginPageRoutingModule,
     RouterModule.forChild(routes),
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
     SignupPageRoutingModule,

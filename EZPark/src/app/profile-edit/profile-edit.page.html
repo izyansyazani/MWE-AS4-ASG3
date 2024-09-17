@@ -1,9 +1,3 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Edit Profile</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content class="ion-padding">
   <div class="avatar-container">
     <ion-avatar class="large-avatar">
@@ -46,7 +40,11 @@
     ></ion-input>
   </ion-item>
 
-  <ion-button expand="full" type="submit" class="ion-margin-top"
+  <ion-button
+    expand="full"
+    type="submit"
+    class="ion-margin-top"
+    (click)="saveProfile()"
     >Save</ion-button
   >
 </ion-content>

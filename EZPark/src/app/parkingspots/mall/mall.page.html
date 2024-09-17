@@ -1,4 +1,4 @@
-<!-- <ion-content>
+<ion-content>
   <img (click)="goToParking()" id="back" src="../assets/backbutton.png" />
   <ion-card class="custom-card">
     <div class="grey-box">
@@ -17,30 +17,72 @@
       <ion-col>
         <ion-grid class="group">
           <ion-row>
-            <ion-col class="box" *ngIf="!isBooked('A1')" (click)="bookSpot('A1')">A1</ion-col>
-            <ion-col class="box"><img *ngIf="isBooked('A1')" src="../assets/sports-car.png" /></ion-col>
+            <ion-col
+              class="box"
+              *ngIf="!isBooked('A1')"
+              (click)="bookSpot('A1')"
+              >A1</ion-col
+            >
+            <ion-col class="box" *ngIf="isBooked('A1')"
+              ><img src="../assets/sports-car.png"
+            /></ion-col>
 
-            <ion-col class="box" *ngIf="!isBooked('A2')" (click)="bookSpot('A2')">A2</ion-col>
-            <ion-col class="box"><img *ngIf="isBooked('A2')" src="../assets/sports-car.png" /></ion-col>
+            <ion-col
+              class="box"
+              *ngIf="!isBooked('A2')"
+              (click)="bookSpot('A2')"
+              >A2</ion-col
+            >
+            <ion-col class="box" *ngIf="isBooked('A2')"
+              ><img src="../assets/sports-car.png"
+            /></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="box" *ngIf="!isBooked('A3')" (click)="bookSpot('A3')">A3</ion-col>
-            <ion-col class="box"><img *ngIf="isBooked('A3')" src="../assets/sports-car.png" /></ion-col>
+            <ion-col
+              class="box"
+              *ngIf="!isBooked('A3')"
+              (click)="bookSpot('A3')"
+              >A3</ion-col
+            >
+            <ion-col class="box" *ngIf="isBooked('A3')"
+              ><img src="../assets/sports-car.png"
+            /></ion-col>
 
-            <ion-col class="box" *ngIf="!isBooked('A4')" (click)="bookSpot('A4')">A4</ion-col>
-            <ion-col class="box"><img *ngIf="isBooked('A4')" src="../assets/sports-car.png" /></ion-col>
+            <ion-col
+              class="box"
+              *ngIf="!isBooked('A4')"
+              (click)="bookSpot('A4')"
+              >A4</ion-col
+            >
+            <ion-col class="box" *ngIf="isBooked('A4')"
+              ><img src="../assets/sports-car.png"
+            /></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="box" *ngIf="!isBooked('A5')" (click)="bookSpot('A5')">A5</ion-col>
-            <ion-col class="box"><img *ngIf="isBooked('A5')" src="../assets/sports-car.png" /></ion-col>
+            <ion-col
+              class="box"
+              *ngIf="!isBooked('A5')"
+              (click)="bookSpot('A5')"
+              >A5</ion-col
+            >
+            <ion-col class="box" *ngIf="isBooked('A5')"
+              ><img src="../assets/sports-car.png"
+            /></ion-col>
 
-            <ion-col class="box" *ngIf="!isBooked('A6')" (click)="bookSpot('A6')">A6</ion-col>
-            <ion-col class="box"><img *ngIf="isBooked('A6')" src="../assets/sports-car.png" /></ion-col>
+            <ion-col
+              class="box"
+              *ngIf="!isBooked('A6')"
+              (click)="bookSpot('A6')"
+              >A6</ion-col
+            >
+            <ion-col class="box" *ngIf="isBooked('A6')"
+              ><img src="../assets/sports-car.png"
+            /></ion-col>
           </ion-row>
         </ion-grid>
       </ion-col>
 
-      <ion-col>
+      <!-- <ion-col>
         <ion-grid class="group">
           <ion-row>
             <ion-col class="box" *ngIf="!isBooked('B1')" (click)="bookSpot('B1')">B1</ion-col>
@@ -118,7 +160,7 @@
             <ion-col class="box"><img *ngIf="isBooked('D6')" src="../assets/sports-car.png" /></ion-col>
           </ion-row>
         </ion-grid>
-      </ion-col>
+      </ion-col> -->
     </ion-row>
   </ion-grid>
-</ion-content> -->
+</ion-content>
