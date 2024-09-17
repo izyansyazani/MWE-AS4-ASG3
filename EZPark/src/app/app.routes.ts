@@ -2,7 +2,7 @@ import { Routes, RouterModule} from '@angular/router';
 import { ReceiptsPage } from './receipts/receipts.page';
 import { HistoryPage } from './history/history.page';
 // import { SignupPage } from './signup/signup.page';
-import { NgModule } from '@angular/core';
+// import { NgModule } from '@angular/core';
 
 export const routes: Routes = [
   {
@@ -189,9 +189,9 @@ export const routes: Routes = [
 
 ];
 
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-})
-export class SignupPageRoutingModule  {}
+// @NgModule({
+//   imports: [RouterModule.forChild(routes)],
+//   exports: [RouterModule],
+// })
+// export class SignupPageRoutingModule  {}
 
