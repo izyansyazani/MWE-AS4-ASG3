@@ -61,11 +61,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./receipts/receipts.page').then((m) => m.ReceiptsPage),
   },
-  {
-    path: 'mall',
-    loadComponent: () =>
-      import('./parkingspots/mall/mall.page').then((m) => m.MallPage),
-  },
+  // {
+  //   path: 'mall',
+  //   loadComponent: () =>
+  //     import('./parkingspots/mall/mall.page').then((m) => m.MallPage),
+  // },
   {
     path: 'splash-screen',
     loadComponent: () =>

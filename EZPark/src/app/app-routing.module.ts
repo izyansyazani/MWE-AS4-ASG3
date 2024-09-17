@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 // import { ProfileEditPage } from './profile-edit/profile-edit.page';
-import { SignupPage } from './signup/signup.page';
-import { LoginPage } from './login/login.page';
+// import { SignupPage } from './signup/signup.page';
+// import { LoginPage } from './login/login.page';
 
 
 export const routes: Routes = [
@@ -61,18 +61,18 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./profile-edit/profile-edit.page').then((m) => m.ProfileEditPage),
   },
-  {
-    path: 'forgot-password',
-    loadChildren: () =>
-      import('./pages/forgot-password/forgot-password.module').then(
-        (m) => m.ForgotPasswordPageModule
-      ),
-  },
-  {
-    path: 'landing',
-    loadChildren: () =>
-      import('./pages/landing/landing.module').then((m) => m.LandingPageModule),
-  },
+  // {
+  //   path: 'forgot-password',
+  //   loadChildren: () =>
+  //     import('./pages/forgot-password/forgot-password.module').then(
+  //       (m) => m.ForgotPasswordPageModule
+  //     ),
+  // },
+  // {
+  //   path: 'landing',
+  //   loadChildren: () =>
+  //     import('./pages/landing/landing.module').then((m) => m.LandingPageModule),
+  // },
   // {
   //   path: '',
   //   component: SignupPage,
