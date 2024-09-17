@@ -20,7 +20,6 @@ import { RouterModule } from '@angular/router';
 import { LoginPageRoutingModule } from './login-routing.module';
 import { LoginPage } from './login.page';
 
-
 @NgModule({
   declarations: [AppComponent, SignupPage, LoginPage],
   imports: [
