@@ -1,7 +1,7 @@
 import { Routes, RouterModule} from '@angular/router';
 import { ReceiptsPage } from './receipts/receipts.page';
 import { HistoryPage } from './history/history.page';
-import { SignupPage } from './signup/signup.page';
+// import { SignupPage } from './signup/signup.page';
 import { NgModule } from '@angular/core';
 
 export const routes: Routes = [
@@ -11,14 +11,14 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'signup-login',
     pathMatch: 'full',
   },
 
-  {
-    path: '',
-    component: SignupPage
-  },
+  // {
+  //   path: '',
+  //   component: SignupPage
+  // },
 
   {
     path: 'signup-login',
