@@ -2,40 +2,23 @@
   <ion-menu contentId="main-content">
     <ion-header>
       <ion-toolbar>
-        <ion-title id="toolbarcolor" class="center colorblack"
-          >EZPark</ion-title
-        >
+        <ion-title id="toolbarcolor" class="center colorblack">EZPark</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <ion-list
-        class="ion-padding colorblack white-menu list-item"
-        [routerLink]="['/userprofile']"
-      >
+      <ion-list class="ion-padding colorblack white-menu list-item" [routerLink]="['/userprofile']">
         User Profile
       </ion-list>
-      <ion-list
-        class="ion-padding colorblack white-menu list-item"
-        [routerLink]="['/parkingspots']"
-      >
+      <ion-list class="ion-padding colorblack white-menu list-item" [routerLink]="['/parkingspots']">
         Parking Spots
       </ion-list>
-      <ion-list
-        class="ion-padding colorblack white-menu list-item"
-        [routerLink]="['/history']"
-      >
+      <ion-list class="ion-padding colorblack white-menu list-item" [routerLink]="['/history']">
         Parking History
       </ion-list>
-      <ion-list
-        class="ion-padding colorblack white-menu list-item"
-        [routerLink]="['/aboutus']"
-      >
+      <ion-list class="ion-padding colorblack white-menu list-item" [routerLink]="['/aboutus']">
         About Us
       </ion-list>
-      <ion-list
-        class="ion-padding colorblack white-menu list-item"
-        [routerLink]="['/feedback']"
-      >
+      <ion-list class="ion-padding colorblack white-menu list-item" [routerLink]="['/feedback']">
         Feedback
       </ion-list>
       <ion-list id="fullwhite" class="white-menu"></ion-list>
@@ -47,18 +30,13 @@
       <ion-menu-button class="colorblack"></ion-menu-button>
     </ion-buttons>
     <ion-content class="ion-padding">
-      <img id="userimage" src="../assets/joe.png" alt="userimage" />
-      <span id="txtpad2" class="colorblack">Arthur B</span>
+      <img id="userimage" [src]="userImage$ | async" alt="userimage" />
+      <span id="txtpad2" class="colorblack">{{ userName$ | async }}</span>
       <br />
       <ion-grid>
         <ion-row>
           <ion-col size-xs="12" size-md="8" offset-md="2">
-            <ion-button
-              id="centerbtn"
-              shape="round"
-              [routerLink]="['/parkingspots']"
-              >Find Parking</ion-button
-            >
+            <ion-button id="centerbtn" shape="round" [routerLink]="['/parkingspots']">Find Parking</ion-button>
           </ion-col>
         </ion-row>
 
@@ -74,9 +52,7 @@
               <ion-card class="recent-parking-card">
                 <img alt="The Mall" src="../assets/mall.jpg" />
                 <ion-card-header>
-                  <ion-card-title class="colorblack"
-                    >Shopping Mall Gadong</ion-card-title
-                  >
+                  <ion-card-title class="colorblack">Shopping Mall Gadong</ion-card-title>
                   <ion-card-subtitle>The Mall, Gadong</ion-card-subtitle>
                 </ion-card-header>
                 <ion-card-content class="colorblack">$Rate/h</ion-card-content>
@@ -84,9 +60,7 @@
               <ion-card class="recent-parking-card">
                 <img alt="Hua Ho Yayasan" src="../assets/yayasan.jpg" />
                 <ion-card-header>
-                  <ion-card-title class="colorblack"
-                    >Gedung Perniagaan Hua Ho</ion-card-title
-                  >
+                  <ion-card-title class="colorblack">Gedung Perniagaan Hua Ho</ion-card-title>
                   <ion-card-subtitle>Yayasan</ion-card-subtitle>
                 </ion-card-header>
                 <ion-card-content class="colorblack">$Rate/h</ion-card-content>
@@ -94,9 +68,7 @@
               <ion-card class="recent-parking-card">
                 <img alt="Airport Mall" src="../assets/airportmall.jpg" />
                 <ion-card-header>
-                  <ion-card-title class="colorblack"
-                    >The Airport Mall</ion-card-title
-                  >
+                  <ion-card-title class="colorblack">The Airport Mall</ion-card-title>
                   <ion-card-subtitle>Airport Mall</ion-card-subtitle>
                 </ion-card-header>
                 <ion-card-content class="colorblack">$Rate/h</ion-card-content>
@@ -115,41 +87,20 @@
         </ion-row>
         <ion-row>
           <ion-col size="12" class="flex-container">
-            <ion-card
-              class="cardsize2"
-              *ngFor="let parking of favouriteParking$ | async"
-            >
+            <ion-card class="cardsize2" *ngFor="let parking of favouriteParking$ | async">
               <div class="card-content">
                 <div class="card-text">
                   <ion-card-header>
-                    <ion-card-title class="colorblack"
-                      >{{ parking.title }}</ion-card-title
-                    >
-                    <ion-card-subtitle
-                      >{{ parking.subtitle }}</ion-card-subtitle
-                    >
+                    <ion-card-title class="colorblack">{{ parking.title }}</ion-card-title>
+                    <ion-card-subtitle>{{ parking.subtitle }}</ion-card-subtitle>
                   </ion-card-header>
                   <ion-card-content>
-                    <ion-button
-                      class="ratebtn"
-                      shape="round"
-                      [routerLink]="['/rate-hours']"
-                      >$Rate/h</ion-button
-                    >
+                    <ion-button class="ratebtn" shape="round" [routerLink]="['/rate-hours']">$Rate/h</ion-button>
                     <br /><br />
-                    <ion-button
-                      class="spacebtn"
-                      shape="round"
-                      [routerLink]="['/parkingspots']"
-                      >{{ parking.freeSpace }} Free Space</ion-button
-                    >
+                    <ion-button class="spacebtn" shape="round" [routerLink]="['/parkingspots']">{{ parking.freeSpace }} Free Space</ion-button>
                   </ion-card-content>
                 </div>
-                <img
-                  class="img"
-                  [alt]="parking.title"
-                  [src]="parking.imageUrl"
-                />
+                <img class="img" [alt]="parking.title" [src]="parking.imageUrl" />
               </div>
             </ion-card>
           </ion-col>

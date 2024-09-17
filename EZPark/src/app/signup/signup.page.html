@@ -4,41 +4,45 @@
       <div id="welcome">Welcome to</div>
       <div id="ezpark">EZPark</div>
     </ion-text>
-    <ion-label class="text textColor">Username:</ion-label>
-    <ion-input
-      class="input textarea"
-      pattern="[a-zA-Z0-9]*"
-      required
-    ></ion-input>
-    <ion-label class="text textColor">Password:</ion-label>
-    <ion-input
-      class="input textarea"
-      type="password"
-      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-      required
-    ></ion-input>
-    <ion-label class="text textColor">Confirm Password:</ion-label>
-    <ion-input
-      class="input textarea"
-      type="password"
-      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-      required
-    ></ion-input>
-    <ion-label class="text textColor">Email Address:</ion-label>
-    <ion-input
-      class="input textarea"
-      type="email"
-      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-      required
-    ></ion-input>
-    <ion-label class="text textColor">Phone Number:</ion-label>
-    <ion-input
-      class="input textarea"
-      type="tel"
-      pattern="[0-9]{7}"
-      required
-    ></ion-input>
-    <ion-button [routerLink]="['/login']">CREATE ACCOUNT</ion-button>
+
+    <form [formGroup]="ionicForm" (ngSubmit)="signUP()">
+      <div class="form-item">
+        <label for="fullname" class="textColor">Full Name:</label>
+        <input id="fullname" formControlName="fullname" type="text" class="input textarea">
+      </div>
+      <div *ngIf="errorControl['fullname'].touched && errorControl['fullname'].invalid">
+        <ion-text color="danger">Full Name is required.</ion-text>
+      </div>
+
+      <div class="form-item">
+        <label for="email" class="textColor">Email Address:</label>
+        <input id="email" formControlName="email" type="email" class="input textarea">
+      </div>
+      <div *ngIf="errorControl['email'].touched && errorControl['email'].invalid">
+        <ion-text color="danger">Invalid email format.</ion-text>
+      </div>
+
+      <div class="form-item">
+        <label for="contact" class="textColor">Phone Number:</label>
+        <input id="contact" formControlName="contact" type="tel" class="input textarea">
+      </div>
+      <div *ngIf="errorControl['contact'].touched && errorControl['contact'].invalid">
+        <ion-text color="danger">Phone number must be at least 10 digits.</ion-text>
+      </div>
+
+      <div class="form-item">
+        <label for="password" class="textColor">Password:</label>
+        <input id="password" formControlName="password" type="password" class="input textarea">
+      </div>
+      <div *ngIf="errorControl['password'].touched && errorControl['password'].invalid">
+        <ion-text color="danger">
+          Password must be at least 8 characters, including an uppercase letter, a lowercase letter, a number, and a special character.
+        </ion-text>
+      </div>
+
+      <ion-button expand="block" type="submit" [disabled]="!ionicForm.valid">CREATE ACCOUNT</ion-button>
+    </form>
+
     <ion-text class="textColor">
       <div class="text">Already have an account?</div>
       <div id="logintxt" class="text" [routerLink]="['/login']">Log In</div>

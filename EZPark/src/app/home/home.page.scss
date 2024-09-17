@@ -43,10 +43,11 @@ ion-content {
 }
 
 #userimage {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  border: rgb(190, 170, 13) solid 1px;
+  margin-right: 10px;
+  vertical-align: middle;
 }
 
 #centerbtn {
@@ -63,8 +64,10 @@ ion-content {
 }
 
 #txtpad2 {
-  padding-bottom: 10px;
-  font-size: 24px;
+  font-size: 18px;
+  font-weight: bold;
+  vertical-align: middle;
+  display: inline-block;
 }
 
 /* Style for Recent Parking section */

@@ -7,13 +7,30 @@
   />
   <h1>Mabohai Shopping Complex</h1>
 
-  <!-- Add the airport mall image here -->
+  <!-- Add the Mabohai image here -->
   <img src="../assets/mabohai.jpg" alt="Mabohai" class="mabohai-image" />
+
+  <!-- Note under the image -->
+  <p class="note">Please maintain a respectful tone and use appropriate language.</p>
+
+  <!-- Comment input -->
+  <div class="comment-input-container">
+    <ion-input [(ngModel)]="newCommentText" placeholder="Write a comment..." class="comment-input"></ion-input>
+    <ion-button (click)="postComment()">Post</ion-button>
+  </div>
+
   <!-- Box container -->
   <div class="box-container">
-    <div class="colored-box"></div>
-    <div class="colored-box"></div>
-    <div class="colored-box"></div>
-    <!-- Add more boxes as needed -->
+    <div *ngIf="comments.length === 0" class="colored-box">No Review</div>
+    <div *ngFor="let comment of comments" class="colored-box">
+      <img [src]="comment.profilePicture" alt="Profile Picture" class="profile-picture" />
+      <div class="comment-content">
+        <div class="comment-header">
+          <h2>{{ comment.username }}</h2>
+        </div>
+        <p>{{ comment.text }}</p>
+      </div>
+      <ion-button *ngIf="comment.username === currentUser.username" (click)="deleteComment(comment.id)" class="delete-button">Delete</ion-button>
+    </div>
   </div>
 </ion-content>
