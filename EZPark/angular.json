@@ -24,7 +24,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "hmr": true,
+            
             "assets": [
               {
                 "glob": "**/*",
