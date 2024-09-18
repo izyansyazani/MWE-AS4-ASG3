@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import {
   IonContent,
@@ -42,7 +42,7 @@ export class ProfileEditPage {
     phone: '',
   };
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   onFileChange(event: any) {
     const file = event.target.files[0];
@@ -58,5 +58,8 @@ export class ProfileEditPage {
   saveProfile() {
     // Implement save profile logic here
     console.log('Profile saved', this.user);
+
+    // Navigate back to user profile page
+    this.router.navigate(['/userprofile']);
   }
 }
