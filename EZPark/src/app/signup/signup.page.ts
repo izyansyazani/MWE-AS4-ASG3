@@ -188,7 +188,7 @@ export class SignupPage implements OnInit {
       fullname: ['', Validators.required],
       contact: [
         '',
-        [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(8)],
+        [Validators.required, Validators.pattern('^[0-9]{7}$'), Validators.minLength(7)],
       ],
       email: [
         '',
