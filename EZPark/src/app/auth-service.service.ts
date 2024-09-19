@@ -69,41 +69,128 @@
 
 // }
 
+// import { Injectable } from '@angular/core';
+// import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, sendPasswordResetEmail, onAuthStateChanged, signOut, GoogleAuthProvider, UserCredential, User, updateProfile } from '@firebase/auth';
+// import { Firestore, addDoc, collection, getFirestore } from '@firebase/firestore';
+// import { Observable } from 'rxjs';
+// import { getAuth } from '@firebase/auth';
+
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class AuthServiceService {
+//   private auth: Auth;
+//   private firestore: Firestore;
+
+//   constructor() {
+//     this.auth = getAuth();
+//     this.firestore = getFirestore();
+//   }
+
+//   // Register a new user
+//   async registerUser(email: string, password: string, name: string): Promise<UserCredential> {
+//     try {
+//       const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
+      
+//       // Update user profile with name
+//       if (userCredential.user) {
+//         await updateProfile(userCredential.user, { displayName: name });
+
+//         // Save additional user data in Firestore
+//         const usersRef = collection(this.firestore, 'users');
+//         await addDoc(usersRef, {
+//           uid: userCredential.user.uid,
+//           name: name,
+//           email: email
+//         });
+//       }
+
+//       return userCredential;
+//     } catch (error) {
+//       console.error('Error registering user:', error);
+//       throw error;
+//     }
+//   }
+
+//   // Login existing user
+//   async loginUser(email: string, password: string): Promise<UserCredential> {
+//     return await signInWithEmailAndPassword(this.auth, email, password);
+//   }
+
+//   // Reset password
+//   async resetPassword(email: string): Promise<void> {
+//     return await sendPasswordResetEmail(this.auth, email);
+//   }
+
+//   // Get current user profile
+//   async getProfile(): Promise<User | null> {
+//     return new Promise<User | null>((resolve, reject) => {
+//       onAuthStateChanged(this.auth, user => {
+//         resolve(user);
+//       }, reject);
+//     });
+//   }
+
+//   // Sign out
+//   async signOut(): Promise<void> {
+//     return await signOut(this.auth);
+//   }
+
+//   // Google Sign-In
+//   async googleSignIn(): Promise<UserCredential> {
+//     const provider = new GoogleAuthProvider();
+//     return await signInWithPopup(this.auth, provider);
+//   }
+
+//   // Observable for auth state
+//   getAuthState(): Observable<User | null> {
+//     return new Observable(observer => {
+//       const unsubscribe = onAuthStateChanged(this.auth, user => {
+//         observer.next(user);
+//       });
+//       return unsubscribe;
+//     });
+//   }
+// }
+
+// auth-service.service.ts
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, sendPasswordResetEmail, onAuthStateChanged, signOut, GoogleAuthProvider, UserCredential, User, updateProfile } from '@firebase/auth';
-import { Firestore, addDoc, collection, getFirestore } from '@firebase/firestore';
+import {
+  Auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+  signOut,
+  UserCredential,
+  User,
+  updateProfile,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from '@angular/fire/auth';
+import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { getAuth } from '@firebase/auth';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthServiceService {
-  private auth: Auth;
-  private firestore: Firestore;
-
-  constructor() {
-    this.auth = getAuth();
-    this.firestore = getFirestore();
-  }
+  constructor(private auth: Auth, private firestore: Firestore) {}
 
   // Register a new user
   async registerUser(email: string, password: string, name: string): Promise<UserCredential> {
     try {
       const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
-      
-      // Update user profile with name
-      if (userCredential.user) {
-        await updateProfile(userCredential.user, { displayName: name });
 
-        // Save additional user data in Firestore
-        const usersRef = collection(this.firestore, 'users');
-        await addDoc(usersRef, {
-          uid: userCredential.user.uid,
-          name: name,
-          email: email
-        });
-      }
+      // Update user profile with name
+      await updateProfile(userCredential.user, { displayName: name });
+
+      // Save additional user data in Firestore
+      const usersRef = collection(this.firestore, 'users');
+      await addDoc(usersRef, {
+        uid: userCredential.user.uid,
+        name: name,
+        email: email,
+      });
 
       return userCredential;
     } catch (error) {
@@ -125,9 +212,14 @@ export class AuthServiceService {
   // Get current user profile
   async getProfile(): Promise<User | null> {
     return new Promise<User | null>((resolve, reject) => {
-      onAuthStateChanged(this.auth, user => {
-        resolve(user);
-      }, reject);
+      this.auth.onAuthStateChanged(
+        (user) => {
+          resolve(user);
+        },
+        (error) => {
+          reject(error);
+        }
+      );
     });
   }
 
@@ -144,12 +236,11 @@ export class AuthServiceService {
 
   // Observable for auth state
   getAuthState(): Observable<User | null> {
-    return new Observable(observer => {
-      const unsubscribe = onAuthStateChanged(this.auth, user => {
+    return new Observable((observer) => {
+      const unsubscribe = this.auth.onAuthStateChanged((user) => {
         observer.next(user);
       });
       return unsubscribe;
     });
   }
 }
-

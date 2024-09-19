@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthServiceService } from 'src/app/auth-service.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+// import { LoginPage } from './login.page';
 import {
   IonContent,
   IonHeader,
@@ -41,6 +42,7 @@ import {
     ReactiveFormsModule,
     // RouterModule,
   ],
+
 })
 export class LoginPage implements OnInit {
   ionicForm!: FormGroup;
