@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <img (click)="goToHome()" id="back" src="../assets/backbutton.png" />
+    </ion-buttons>
+    <ion-title>Parking History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar placeholder="Search..."></ion-searchbar>
+
+  <ion-card *ngFor="let parking of parkingHistory">
+    <ion-img src="{{ parking.imageUrl }}"></ion-img>
+    <ion-card-header>
+      <ion-card-subtitle>{{ parking.location }}</ion-card-subtitle>
+      <ion-card-title>{{ parking.date }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ parking.duration }}</p>
+      <ion-item lines="none">
+        <ion-button fill="outline" slot="start" (click)="viewReceipt(parking)">
+          View Receipts
+        </ion-button>
+      </ion-item>      
+    </ion-card-content>
+  </ion-card>
+</ion-content>
