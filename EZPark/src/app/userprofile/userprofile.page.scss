@@ -2,7 +2,13 @@ ion-content {
   display: flex;
   flex-direction: column; /* Stack children vertically */
   justify-content: space-between; /* Space items evenly */
+  background-color: #FBF3EF !important; /* Ensure content background color */
 }
+
+body {
+  background-color: #FBF3EF;
+}
+
 
 .profile-avatar {
   display: block;
