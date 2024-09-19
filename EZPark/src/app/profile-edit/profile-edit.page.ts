@@ -1,40 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import {
-  IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
-  IonItem,
-  IonAvatar,
-  IonLabel,
-  IonInput,
-  IonButton,
-} from '@ionic/angular/standalone';
+import { IonicModule } from '@ionic/angular';
+import { UserService } from '../services/user.service'; // Ensure this path is correct
 
 @Component({
   selector: 'app-profile-edit',
   templateUrl: './profile-edit.page.html',
   styleUrls: ['./profile-edit.page.scss'],
   standalone: true,
-  imports: [
-    IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
-    IonItem,
-    IonAvatar,
-    IonLabel,
-    IonInput,
-    IonButton,
-    CommonModule,
-    FormsModule,
-  ],
+  imports: [CommonModule, FormsModule, IonicModule],
 })
-export class ProfileEditPage {
+export class ProfileEditPage implements OnInit {
   profileImage: string | ArrayBuffer | null = null;
   user = {
     name: '',
@@ -42,7 +20,13 @@ export class ProfileEditPage {
     phone: '',
   };
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private userService: UserService) {}
+
+  ngOnInit() {
+    // Load user data from the service
+    this.user = this.userService.getUserData();
+    this.profileImage = this.userService.getProfileImage();
+  }
 
   onFileChange(event: any) {
     const file = event.target.files[0];
@@ -56,10 +40,11 @@ export class ProfileEditPage {
   }
 
   saveProfile() {
-    // Implement save profile logic here
-    console.log('Profile saved', this.user);
+    // Save user data to the service
+    this.userService.setUserData(this.user);
+    this.userService.setProfileImage(this.profileImage);
 
-    // Navigate back to user profile page
-    this.router.navigate(['/userprofile']);
+    console.log('Profile saved', this.user);
+    this.router.navigate(['/userprofile']); // Navigate back to user profile
   }
 }
