@@ -23,12 +23,10 @@
 //   email: string
 // }
 
-
 // @Injectable({
 //   providedIn: 'root'
 // })
 // export class AuthServiceService {
-
 
 //   constructor(public ngFireAuth: AngularFireAuth) {
 
@@ -64,19 +62,33 @@
 //     return await this.ngFireAuth.signOut();
 //   }
 
-  
-
-
 // }
 
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, sendPasswordResetEmail, onAuthStateChanged, signOut, GoogleAuthProvider, UserCredential, User, updateProfile } from '@firebase/auth';
-import { Firestore, addDoc, collection, getFirestore } from '@firebase/firestore';
+import {
+  Auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  sendPasswordResetEmail,
+  onAuthStateChanged,
+  signOut,
+  GoogleAuthProvider,
+  UserCredential,
+  User,
+  updateProfile,
+} from '@firebase/auth';
+import {
+  Firestore,
+  addDoc,
+  collection,
+  getFirestore,
+} from '@firebase/firestore';
 import { Observable } from 'rxjs';
 import { getAuth } from '@firebase/auth';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthServiceService {
   private auth: Auth;
@@ -88,10 +100,18 @@ export class AuthServiceService {
   }
 
   // Register a new user
-  async registerUser(email: string, password: string, name: string): Promise<UserCredential> {
+  async registerUser(
+    email: string,
+    password: string,
+    name: string
+  ): Promise<UserCredential> {
     try {
-      const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
-      
+      const userCredential = await createUserWithEmailAndPassword(
+        this.auth,
+        email,
+        password
+      );
+
       // Update user profile with name
       if (userCredential.user) {
         await updateProfile(userCredential.user, { displayName: name });
@@ -101,7 +121,7 @@ export class AuthServiceService {
         await addDoc(usersRef, {
           uid: userCredential.user.uid,
           name: name,
-          email: email
+          email: email,
         });
       }
 
@@ -125,9 +145,13 @@ export class AuthServiceService {
   // Get current user profile
   async getProfile(): Promise<User | null> {
     return new Promise<User | null>((resolve, reject) => {
-      onAuthStateChanged(this.auth, user => {
-        resolve(user);
-      }, reject);
+      onAuthStateChanged(
+        this.auth,
+        (user) => {
+          resolve(user);
+        },
+        reject
+      );
     });
   }
 
@@ -144,12 +168,11 @@ export class AuthServiceService {
 
   // Observable for auth state
   getAuthState(): Observable<User | null> {
-    return new Observable(observer => {
-      const unsubscribe = onAuthStateChanged(this.auth, user => {
+    return new Observable((observer) => {
+      const unsubscribe = onAuthStateChanged(this.auth, (user) => {
         observer.next(user);
       });
       return unsubscribe;
     });
   }
 }
-

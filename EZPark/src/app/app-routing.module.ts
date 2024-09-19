@@ -4,7 +4,6 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { SignupPage } from './signup/signup.page';
 // import { LoginPage } from './login/login.page';
 
-
 export const routes: Routes = [
   {
     path: 'home',
@@ -83,7 +82,6 @@ export const routes: Routes = [
   // },
 ];
 
-
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
@@ -98,10 +96,8 @@ export class AppRoutingModule {}
 // })
 // export class LoginPageRoutingModule {}
 
-
 // @NgModule({
 //   imports: [RouterModule.forChild(routes)],
 //   exports: [RouterModule],
 // })
 // export class SignupPageRoutingModule {}
-
