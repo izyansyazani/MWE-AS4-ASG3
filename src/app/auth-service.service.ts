@@ -23,10 +23,12 @@
 //   email: string
 // }
 
+
 // @Injectable({
 //   providedIn: 'root'
 // })
 // export class AuthServiceService {
+
 
 //   constructor(public ngFireAuth: AngularFireAuth) {
 
@@ -62,6 +64,9 @@
 //     return await this.ngFireAuth.signOut();
 //   }
 
+  
+
+
 // }
 
 // import { Injectable } from '@angular/core';
@@ -86,7 +91,7 @@
 //   async registerUser(email: string, password: string, name: string): Promise<UserCredential> {
 //     try {
 //       const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
-
+      
 //       // Update user profile with name
 //       if (userCredential.user) {
 //         await updateProfile(userCredential.user, { displayName: name });
@@ -172,17 +177,9 @@ export class AuthServiceService {
   constructor(private auth: Auth, private firestore: Firestore) {}
 
   // Register a new user
-  async registerUser(
-    email: string,
-    password: string,
-    name: string
-  ): Promise<UserCredential> {
+  async registerUser(email: string, password: string, name: string): Promise<UserCredential> {
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        this.auth,
-        email,
-        password
-      );
+      const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
 
       // Update user profile with name
       await updateProfile(userCredential.user, { displayName: name });
