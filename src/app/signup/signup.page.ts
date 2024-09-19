@@ -130,7 +130,6 @@
 //   }
 // }
 
-
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -225,8 +224,8 @@ export class SignupPage implements OnInit {
 
         loading.dismiss();
         
-        // Navigate to home after successful registration
-        this.router.navigate(['/home']);
+        // Navigate to login page after successful registration
+        this.router.navigate(['/login']);  // Change to /login
       } catch (err) {
         loading.dismiss();
         if (err instanceof Error) {
@@ -250,84 +249,3 @@ export class SignupPage implements OnInit {
     await toast.present();
   }
 }
-// import { Component, OnInit } from '@angular/core';
-// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { Router } from '@angular/router';
-// import { LoadingController, ToastController } from '@ionic/angular';
-// import { AuthServiceService } from './services/auth-service.service';
-
-// @Component({
-//   selector: 'app-signup',
-//   templateUrl: './signup.page.html',
-//   styleUrls: ['./signup.page.scss'],
-// })
-// export class SignupPage implements OnInit {
-//   ionicForm!: FormGroup;
-
-//   constructor(
-//     private formBuilder: FormBuilder,
-//     private authService: AuthServiceService,
-//     private router: Router,
-//     private loadingController: LoadingController,
-//     private toastController: ToastController
-//   ) {}
-
-//   ngOnInit() {
-//     this.ionicForm = this.formBuilder.group({
-//       fullname: ['', Validators.required],
-//       contact: [
-//         '',
-//         [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(8)],
-//       ],
-//       email: [
-//         '',
-//         [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$')],
-//       ],
-//       password: [
-//         '',
-//         [
-//           Validators.required,
-//           Validators.minLength(8),
-//           Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$'),
-//         ],
-//       ],
-//     });
-//   }
-
-//   get errorControl() {
-//     return this.ionicForm.controls;
-//   }
-
-//   async signUP() {
-//     if (this.ionicForm.valid) {
-//       const loading = await this.loadingController.create({
-//         message: 'Creating account...',
-//       });
-//       await loading.present();
-
-//       this.authService.registerUser(this.ionicForm.value).then(
-//         async (res) => {
-//           await loading.dismiss();
-//           const toast = await this.toastController.create({
-//             message: 'Account created successfully!',
-//             duration: 2000,
-//             color: 'success',
-//           });
-//           toast.present();
-//           this.router.navigate(['/login']);
-//         },
-//         async (err) => {
-//           await loading.dismiss();
-//           const toast = await this.toastController.create({
-//             message: err.message,
-//             duration: 2000,
-//             color: 'danger',
-//           });
-//           toast.present();
-//         }
-//       );
-//     } else {
-//       console.log('Form not valid');
-//     }
-//   }
-// }
