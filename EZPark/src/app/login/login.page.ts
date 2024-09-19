@@ -1,11 +1,9 @@
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthServiceService } from 'src/app/auth-service.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
-// import { LoginPage } from './login.page';
 import {
   IonContent,
   IonHeader,
@@ -40,9 +38,7 @@ import {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    // RouterModule,
   ],
-
 })
 export class LoginPage implements OnInit {
   ionicForm!: FormGroup;
@@ -62,7 +58,7 @@ export class LoginPage implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern('[a-zA-Z0-9]*'),
+          Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}'),
         ],
       ],
       password: [
@@ -72,7 +68,7 @@ export class LoginPage implements OnInit {
           Validators.pattern('(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'),
         ],
       ],
-      rememberMe: [false],  // Initialize rememberMe checkbox
+      rememberMe: [false], // Initialize rememberMe checkbox
     });
   }
 
@@ -88,14 +84,15 @@ export class LoginPage implements OnInit {
           await loading.dismiss();
           this.router.navigate(['/home']);
         }
-      } catch (err:any) {
-        this.presentToast(err?.message);
-        console.log(err);
+      } catch (err: any) {
         await loading.dismiss();
+        this.presentToast(err?.message || 'Login failed. Please try again.');
+        console.log(err);
       }
     } else {
       await loading.dismiss();
-      console.log('Please provide all the required values!');
+      this.presentToast('Please provide all the required values!');
+      console.log('Invalid form submission');
     }
   }
 
@@ -109,7 +106,6 @@ export class LoginPage implements OnInit {
       duration: 1500,
       position: 'top',
     });
-
     await toast.present();
   }
 }
