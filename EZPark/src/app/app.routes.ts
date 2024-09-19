@@ -1,4 +1,4 @@
-import { Routes, RouterModule} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { ReceiptsPage } from './receipts/receipts.page';
 import { HistoryPage } from './history/history.page';
 // import { SignupPage } from './signup/signup.page';
@@ -61,11 +61,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./receipts/receipts.page').then((m) => m.ReceiptsPage),
   },
-  // {
-  //   path: 'mall',
-  //   loadComponent: () =>
-  //     import('./parkingspots/mall/mall.page').then((m) => m.MallPage),
-  // },
+  {
+    path: 'mall',
+    loadComponent: () =>
+      import('./parkingspots/mall/mall.page').then((m) => m.MallPage),
+  },
   {
     path: 'splash-screen',
     loadComponent: () =>
@@ -184,9 +184,11 @@ export const routes: Routes = [
   },
   {
     path: 'favorite.service.ts',
-    loadComponent: () => import('./favorite.service.ts/favorite.service.ts.page').then( m => m.FavoriteServiceTsPage)
+    loadComponent: () =>
+      import('./favorite.service.ts/favorite.service.ts.page').then(
+        (m) => m.FavoriteServiceTsPage
+      ),
   },
-
 ];
 
 // @NgModule({
@@ -194,4 +196,3 @@ export const routes: Routes = [
 //   exports: [RouterModule],
 // })
 // export class SignupPageRoutingModule  {}
-
