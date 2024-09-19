@@ -1,0 +1,34 @@
+.parking-receipt-card {
+    width: 300px;
+    margin: auto; 
+    border-radius: 10px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  }
+  
+  .parking-receipt-card-header {
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .parking-receipt-list-item {
+    --ion-item-padding: 0px 10px; 
+    border-bottom: 1px solid #eee; 
+  }
+  
+  .parking-receipt-list-item ion-label {
+    font-weight: normal;
+  }
+  
+  .parking-receipt-list-item ion-label:first-child {
+    flex: 1; 
+  }
+  
+  .parking-receipt-list-item ion-label:last-child {
+    text-align: right; 
+  }
+  
+  .parking-receipt-done-button {
+    margin-top: 10px; 
+  }
+  

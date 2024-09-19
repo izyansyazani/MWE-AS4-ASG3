@@ -1,0 +1,143 @@
+ion-content {
+  --ion-background-color: #fbf3ef;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0 10px;
+}
+
+h1 {
+  color: #000;
+  font-size: 24px;
+  text-align: center;
+  margin-top: -20px;
+}
+
+.back-button {
+  width: 24px;
+  height: 24px;
+  margin-top: 20px;
+}
+
+.amanhills-image {
+  width: 80%; /* Adjusted to match the width of the comment boxes */
+  height: auto;
+  margin-top: 10px;
+  border-radius: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.note {
+  font-size: 12px;
+  color: #555;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.comment-input-container {
+  display: flex;
+  width: 80%; /* Adjusted to match the width of the comment boxes */
+  margin-top: 20px;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.comment-input-container ion-input {
+  flex: 1;
+  margin-right: 10px;
+  border: 1px solid #ccc; /* Add border for visibility */
+  padding: 10px; /* Add padding for better spacing */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #fff; /* White background for input */
+  color: #000; /* Ensure text color is black for visibility */
+}
+
+.comment-input-container ion-button {
+  --background: #31D97E; /* Change Post button color */
+  color: #fff; /* Ensure text color is white for contrast */
+}
+
+.box-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
+}
+
+.colored-box {
+  width: 80%;
+  padding: 20px;
+  margin-top: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; /* Aligns the content properly */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #8888e7;
+  margin-left: auto;
+  margin-right: auto;
+  word-wrap: break-word; /* Break long words */
+  overflow-wrap: break-word; /* Wrap content to fit inside */
+  white-space: normal; /* Allow content to wrap */
+  overflow: hidden;
+  height: auto; /* Automatically adjust the height based on content */
+  min-height: 50px; /* Ensure the box has a minimum height */
+  max-width: 100%;
+}
+
+.profile-picture {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.comment-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-left: 10px; /* Space between profile pic and content */
+  color: #000;
+  word-wrap: break-word; /* Ensure words break when necessary */
+  overflow-wrap: break-word; /* Ensure proper word wrapping */
+  white-space: normal; /* Ensure text wraps to the next line */
+  word-break: break-word; /* Allow words to break mid-word */
+}
+
+.comment-header {
+  display: flex;
+  align-items: center;
+}
+
+.comment-header h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.comment-content p {
+  margin: 5px 0 0 0;
+  font-size: 14px;
+  word-break: break-word; /* Ensure long words break properly */
+}
+
+.delete-button {
+  --background: #ff4d4d; /* Red background color */
+  color: #000; /* Black text color */
+  align-self: flex-end; /* Align delete button to the end */
+}
+
+/* Use nth-child to alternate colors */
+.colored-box:nth-child(odd) {
+  background-color: #8888e7;
+}
+
+.colored-box:nth-child(even) {
+  background-color: #e0e0e0;
+}
