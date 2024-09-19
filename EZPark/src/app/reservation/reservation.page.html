@@ -1,5 +1,5 @@
 <ion-content>
-  <img (click)="goToParkingspots()" id="back" src="../assets/backbutton.png" />
+  <img (click)="goToBack()" id="back" src="../assets/backbutton.png" />
   <h1>Choose Parking</h1>
   <ion-card class="custom-card">
     <div class="grey-box">
@@ -23,8 +23,8 @@
       [(ngModel)]="bookingDetails.parkingSpaceNumber"
       name="parkingSpaceNumber"
       type="text"
-      placeholder="     Enter here"
       class="inputs"
+      readonly
     ></ion-input>
     <h2>Reservation Date</h2>
     <ion-input

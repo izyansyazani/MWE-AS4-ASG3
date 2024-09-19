@@ -6,18 +6,17 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { environment } from '../environments/environment';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
 // import { provideStorage, getStorage } from '@angular/fire/storage';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { AngularFireModule } from '@angular/fire';
-// import { SignupPageRoutingModule } from './signup/signup-routing.module';
+// import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+// import { AngularFireModule } from '@angular/fire';
 // import { SignupPage } from './signup/signup.page';
-import { routes } from './app.routes';
+// import { routes } from './app.routes';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule } from '@angular/router';
-// import { LoginPageRoutingModule } from './login-routing.module';
+// import { RouterModule } from '@angular/router';
 // import { LoginPage } from './login/login.page';
 
 @NgModule({
@@ -28,12 +27,16 @@ import { RouterModule } from '@angular/router';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFireAuthModule,
+    // AngularFireAuthModule,
     // LoginPageRoutingModule,
-    RouterModule.forChild(routes),
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
+    // RouterModule.forChild(routes),
+    // AngularFireModule.initializeApp(environment.firebaseConfig),
+    // AngularFirestoreModule,
+
+    // Initialize Firebase
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    // Provide Firebase Auth and Firestore services
+    provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     // SignupPageRoutingModule,
   ],

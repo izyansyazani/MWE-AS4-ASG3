@@ -1,29 +1,3 @@
-<!-- <ion-content>
-  <div id="centered-content">
-    <ion-text class="textColor">
-      <div id="welcome">Welcome to</div>
-      <div id="ezpark">EZPark</div>
-    </ion-text>
-    <ion-label class="text textColor">Username:</ion-label>
-    <ion-input
-      class="input textarea"
-      pattern="[a-zA-Z0-9]*"
-      required
-    ></ion-input>
-    <ion-label class="text textColor">Password:</ion-label>
-    <ion-input
-      class="input textarea"
-      type="password"
-      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-      required
-    ></ion-input>
-    <ion-button [routerLink]="['/home']">LOGIN</ion-button>
-    <br />
-    <ion-checkbox class="text textColor" labelPlacement="end"
-      >Remember me?</ion-checkbox
-    >
-  </div>
-</ion-content> -->
 <ion-content fullscreen="true">
   <div id="centered-content" class="header">
     <ion-text class="textColor">
@@ -31,56 +5,52 @@
       <div id="ezpark">EZPark</div>
     </ion-text>
     <p class="subtitle">Sign in to access your account</p>
+    
     <form [formGroup]="ionicForm" novalidate>
-      <ion-label class="text textColor">Username:</ion-label>
+      
+      <!-- Email Field -->
+      <ion-label class="text textColor">Email:</ion-label>
       <ion-item>
         <ion-input 
-          placeholder="username" 
+          placeholder="Email" 
           formControlName="email" 
           class="input textarea" 
-          pattern="[a-zA-Z0-9]*" 
+          pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" 
           required
         ></ion-input>
-        <img src="path/to/username-icon.svg" alt="username icon" class="icon">
       </ion-item>
       <div class="error-messages" *ngIf="ionicForm.get('email')?.touched && ionicForm.get('email')?.invalid">
         <ion-text *ngIf="ionicForm.get('email')?.errors?.['required']" class="errorInput" color="danger">Email is required.</ion-text>
         <ion-text *ngIf="ionicForm.get('email')?.errors?.['pattern']" class="errorInput" color="danger">Please provide a valid email.</ion-text>
       </div>
 
+      <!-- Password Field -->
       <ion-label class="text textColor">Password:</ion-label>
       <ion-item>
         <ion-input 
           type="password" 
-          placeholder="password" 
+          placeholder="Password" 
           formControlName="password" 
           class="input textarea" 
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
           required
         ></ion-input>
-        <img src="path/to/password-icon.svg" alt="password icon" class="icon">
       </ion-item>
       <div class="error-messages" *ngIf="ionicForm.get('password')?.touched && ionicForm.get('password')?.invalid">
         <ion-text *ngIf="ionicForm.get('password')?.errors?.['required']" class="errorInput" color="danger">Password is required.</ion-text>
         <ion-text *ngIf="ionicForm.get('password')?.errors?.['pattern']" class="errorInput" color="danger">Password must contain at least one uppercase letter, one lowercase letter, and one digit.</ion-text>
       </div>
 
+      <!-- Remember Me Checkbox -->
       <ion-checkbox 
         class="text textColor" 
         labelPlacement="end" 
         formControlName="rememberMe"
       >Remember me?</ion-checkbox>
-<!-- 
-      <div class="forgotpassword">
-        <a [routerLink]="['/forgot-password']" style="color: #FFC33F">Forgot Password?</a>
-      </div>
 
-      <div class="signupLink">
-        <p class="p">New member? <a [routerLink]="['/signup']" style="color: #FFC33F">Sign Up now</a></p>
-      </div> -->
-
+      <!-- Login Button -->
       <ion-button (click)="login()">LOGIN</ion-button>
+      
     </form>
   </div>
 </ion-content>
-

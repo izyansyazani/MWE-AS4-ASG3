@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
+import { Location } from '@angular/common';
 
 import {
   IonContent,
@@ -80,8 +81,15 @@ export class ReservationPage implements OnInit {
     private router: Router,
     private alertController: AlertController,
     private navCtrl: NavController,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private location: Location
+  ) {
+    this.route.queryParams.subscribe((params) => {
+      if (params['parkingSpaceNumber']) {
+        this.bookingDetails.parkingSpaceNumber = params['parkingSpaceNumber'];
+      }
+    });
+  }
 
   updateTotalAmount() {
     const duration = parseFloat(this.bookingDetails.duration);
@@ -109,7 +117,7 @@ export class ReservationPage implements OnInit {
       }
     });
   }
-  goToParkingspots() {
-    this.router.navigate(['/parkingspots']);
+  goToBack() {
+    this.location.back();
   }
 }
