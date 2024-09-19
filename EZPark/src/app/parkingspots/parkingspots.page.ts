@@ -26,7 +26,7 @@ import {
   IonCheckbox,
   ViewWillEnter,
 } from '@ionic/angular/standalone';
-import { Firestore, doc, setDoc, getDoc } from '@angular/fire/firestore';
+import { Firestore, doc, setDoc, getDoc, updateDoc } from '@angular/fire/firestore';
 import { Auth } from '@angular/fire/auth';
 
 @Component({
@@ -107,21 +107,15 @@ export class ParkingspotsPage implements OnInit, ViewWillEnter {
         const updatedFavorites = favoriteParking.filter(
           (spot: string) => spot !== parkingSpot
         );
-        await setDoc(
-          userDocRef,
-          { favoriteParking: updatedFavorites },
-          { merge: true }
-        );
+        await updateDoc(userDocRef, { favoriteParking: updatedFavorites });
         this.favoriteParking = updatedFavorites;
         console.log('Removed from favorites:', parkingSpot);
-        console.log('Updated favoriteParking array:', updatedFavorites);
       } else {
         // Add to favorites
         favoriteParking.push(parkingSpot);
-        await setDoc(userDocRef, { favoriteParking }, { merge: true });
+        await updateDoc(userDocRef, { favoriteParking });
         this.favoriteParking = favoriteParking;
         console.log('Added to favorites:', parkingSpot);
-        console.log('Updated favoriteParking array:', favoriteParking);
       }
       this.cdr.detectChanges(); // Ensure change detection
     } else {

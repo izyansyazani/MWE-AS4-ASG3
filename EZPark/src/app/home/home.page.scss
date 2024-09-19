@@ -114,60 +114,44 @@ ion-card-content {
   font-size: 12px;
 }
 
-/* Removed old SCSS for Favourite Parking section */
-.colspace {
-  padding: 0 10px;
+/* Style for Favourite Parking section */
+.favorite-parking-list {
+  --ion-item-padding-end: 0;
 }
 
-.cardsize2 {
-  background-color: #D9D9D9;
-  border-radius: 40px;
-  width: 50%;
+.favorite-parking-list ion-item {
+  margin-bottom: 10px;
+  border: 1px solid #E0E0E0; /* Add border to items */
+  border-radius: 10px; /* Rounded corners */
+  padding: 10px; /* Padding inside item */
+  background-color: #F9F9F9; /* Light background color for better visibility */
 }
 
-.card-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.favorite-parking-list ion-thumbnail {
+  margin-right: 10px;
 }
 
-.card-text {
-  flex: 1;
-  order: 1;
+.favorite-parking-list ion-label h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0; /* Remove default margin */
 }
 
-.img {
-  order: 2;
-  border-radius: 40px;
-  width: 40%;
+.favorite-parking-list ion-label p {
+  font-size: 14px;
+  margin: 0; /* Remove default margin */
 }
 
-.flex-container {
-  display: flex;
-  justify-content: center;
+.ratebtn {
+  margin-top: 10px;
 }
 
-.spacebtn {
-  --background: #31D97E;
-  display: block;
-  margin: 0 100px;
-}
-
-ion-menu-button {
-  font-size: 55px;
-}
-
-.list-item {
-  border-bottom: 1px solid #E0E0E0;
-}
-
+/* Responsive design adjustments */
 @media only screen and (max-width: 600px) {
   #centerbtn {
     width: 90%;
   }
-  .colspace {
-    padding: 0 10px;
-  }
+  
   .cardsize2 {
     background-color: #D9D9D9;
     border-radius: 40px;
@@ -175,10 +159,11 @@ ion-menu-button {
     margin-left: 0; /* Reset margin adjustments */
     margin-right: 0; /* Reset margin adjustments */
   }
-  
+
   .img {
     width: 100%;
-  }  
+  }
+
   .spacebtn {
     margin: 0 10px; /* Retain original margin settings */
     --background: #31D97E;
@@ -189,7 +174,7 @@ ion-menu-button {
     position: relative; /* Make positioning relative to the normal flow */
     left: -9px; /* Move the button to the left */
   }
-  
+
   .ratebtn {
     --background: #8888D7;
     width: 150px;           /* Set desired width */
@@ -199,12 +184,12 @@ ion-menu-button {
     position: relative;     /* Make positioning relative to the normal flow */
     top: 9px;               /* Move the button down by 5 pixels */
   }
-  
+
   #cardsize {
     width: 90%;
     height: 95%;
   }
-  
+
   ion-menu-button {
     font-size: 50px;
   }
