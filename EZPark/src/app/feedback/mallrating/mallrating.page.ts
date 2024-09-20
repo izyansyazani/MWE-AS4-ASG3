@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
+import { AuthServiceService } from '../../auth-service.service'; // Adjust based on actual file location
+
 import {
   IonContent,
   IonHeader,
@@ -53,20 +55,40 @@ export class MallratingPage implements OnInit {
 
   newCommentText: string = '';
   currentUser = {
-    username: 'CurrentUser',
-    profilePicture: '../assets/currentuser.png',
+    username: '',
+    profilePicture: '../assets/defaultuser.png', // Default profile picture if none exists
   };
 
-  constructor(private router: Router, private changeDetectorRef: ChangeDetectorRef) {}
+  constructor(
+    private router: Router,
+    private changeDetectorRef: ChangeDetectorRef,
+    private authService: AuthServiceService // Inject AuthService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loadCurrentUser();
+  }
+
+  // Fetch the current user's profile
+  async loadCurrentUser() {
+    try {
+      const user = await this.authService.getProfile();
+      if (user) {
+        this.currentUser.username = user.displayName || 'Anonymous';
+        this.currentUser.profilePicture =
+          user.photoURL || '../assets/defaultuser.png';
+      }
+    } catch (error) {
+      console.error('Error fetching user profile:', error);
+    }
+  }
 
   postComment() {
     if (this.newCommentText.trim()) {
       const newComment: Comment = {
         id: this.comments.length + 1,
-        username: this.currentUser.username,
-        profilePicture: this.currentUser.profilePicture,
+        username: this.currentUser.username, // Use logged-in user's name
+        profilePicture: this.currentUser.profilePicture, // Use logged-in user's profile picture
         text: this.newCommentText,
       };
       this.comments.push(newComment);
