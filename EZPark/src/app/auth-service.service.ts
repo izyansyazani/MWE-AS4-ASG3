@@ -1,4 +1,3 @@
-// auth-service.service.ts
 import { Injectable } from '@angular/core';
 import {
   Auth,
@@ -12,7 +11,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from '@angular/fire/auth';
-import { Firestore, addDoc, collection } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, getDocs } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -95,5 +94,18 @@ export class AuthServiceService {
       });
       return unsubscribe;
     });
+  }
+
+  // Save a new comment
+  async saveComment(comment: { username: string; profilePicture: string; text: string }): Promise<void> {
+    const commentsRef = collection(this.firestore, 'comments');
+    await addDoc(commentsRef, comment);
+  }
+
+  // Get all comments
+  async getComments(): Promise<any[]> {
+    const commentsRef = collection(this.firestore, 'comments');
+    const snapshot = await getDocs(commentsRef);
+    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
   }
 }

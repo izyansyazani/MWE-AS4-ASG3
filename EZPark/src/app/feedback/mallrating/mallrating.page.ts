@@ -15,7 +15,7 @@ import {
 } from '@ionic/angular/standalone';
 
 interface Comment {
-  id: number;
+  id: number; // Ensure id is always a number
   username: string;
   profilePicture: string;
   text: string;
@@ -86,7 +86,7 @@ export class MallratingPage implements OnInit {
   postComment() {
     if (this.newCommentText.trim()) {
       const newComment: Comment = {
-        id: this.comments.length + 1,
+        id: this.comments.length + 1, // Ensure a valid ID
         username: this.currentUser.username, // Use logged-in user's name
         profilePicture: this.currentUser.profilePicture, // Use logged-in user's profile picture
         text: this.newCommentText,
