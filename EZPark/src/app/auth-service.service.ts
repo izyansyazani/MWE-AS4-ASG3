@@ -11,7 +11,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from '@angular/fire/auth';
-import { Firestore, addDoc, collection, getDocs, query, where } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, getDocs, query, where, deleteDoc, doc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -108,5 +108,11 @@ export class AuthServiceService {
     const q = query(commentsRef, where('pageId', '==', pageId));
     const snapshot = await getDocs(q);
     return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  }
+
+  // Delete a comment by id
+  async deleteComment(commentId: string): Promise<void> {
+    const commentDoc = doc(this.firestore, 'comments', commentId);
+    await deleteDoc(commentDoc);
   }
 }

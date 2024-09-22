@@ -116,8 +116,14 @@ export class TimessquareratingPage implements OnInit {
     }
   }
 
-  deleteComment(commentId: string) {
-    this.comments = this.comments.filter((comment) => comment.id !== commentId);
+  // Delete a comment
+  async deleteComment(commentId: string) {
+    try {
+      await this.authService.deleteComment(commentId);
+      this.comments = this.comments.filter((comment) => comment.id !== commentId);
+    } catch (error) {
+      console.error('Error deleting comment:', error);
+    }
   }
 
   goToFeedback() {
