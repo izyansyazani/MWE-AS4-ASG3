@@ -11,7 +11,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from '@angular/fire/auth';
-import { Firestore, addDoc, collection, getDocs } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, getDocs, query, where } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -97,15 +97,16 @@ export class AuthServiceService {
   }
 
   // Save a new comment
-  async saveComment(comment: { username: string; profilePicture: string; text: string; userId: string }): Promise<void> {
+  async saveComment(comment: { username: string; profilePicture: string; text: string; userId: string; pageId: string }): Promise<void> {
     const commentsRef = collection(this.firestore, 'comments');
     await addDoc(commentsRef, comment);
   }
 
-  // Get all comments
-  async getComments(): Promise<any[]> {
+  // Get comments by pageId
+  async getComments(pageId: string): Promise<any[]> {
     const commentsRef = collection(this.firestore, 'comments');
-    const snapshot = await getDocs(commentsRef);
+    const q = query(commentsRef, where('pageId', '==', pageId));
+    const snapshot = await getDocs(q);
     return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
   }
 }

@@ -46,6 +46,7 @@ export class MallratingPage implements OnInit {
     profilePicture: '../assets/defaultuser.png', // Default profile picture if none exists
     userId: '',
   };
+  pageId = 'mallrating'; // Unique identifier for this page
 
   constructor(
     private router: Router,
@@ -76,7 +77,7 @@ export class MallratingPage implements OnInit {
   // Fetch comments from Firestore
   async loadComments() {
     try {
-      this.comments = await this.authService.getComments();
+      this.comments = await this.authService.getComments(this.pageId);
     } catch (error) {
       console.error('Error fetching comments:', error);
     }
@@ -99,6 +100,7 @@ export class MallratingPage implements OnInit {
           profilePicture: this.currentUser.profilePicture,
           text: this.newCommentText,
           userId: this.currentUser.userId,
+          pageId: this.pageId,
         });
 
         // Reload comments to include the new one
