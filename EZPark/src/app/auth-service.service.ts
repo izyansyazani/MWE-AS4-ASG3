@@ -97,7 +97,7 @@ export class AuthServiceService {
   }
 
   // Save a new comment
-  async saveComment(comment: { username: string; profilePicture: string; text: string }): Promise<void> {
+  async saveComment(comment: { username: string; profilePicture: string; text: string; userId: string }): Promise<void> {
     const commentsRef = collection(this.firestore, 'comments');
     await addDoc(commentsRef, comment);
   }
