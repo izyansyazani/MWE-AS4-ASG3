@@ -12,7 +12,7 @@
   </div>
 
   <ion-item lines="full" class="separated-item">
-    <ion-label position="stacked">Name</ion-label>
+    <ion-label position="floating">Name</ion-label>
     <ion-input
       [(ngModel)]="user.name"
       placeholder="Enter your name"
@@ -21,7 +21,7 @@
   </ion-item>
 
   <ion-item lines="full" class="separated-item">
-    <ion-label position="stacked">Email</ion-label>
+    <ion-label position="floating">Email</ion-label>
     <ion-input
       [(ngModel)]="user.email"
       placeholder="Enter your email"
@@ -31,7 +31,7 @@
   </ion-item>
 
   <ion-item lines="full" class="separated-item">
-    <ion-label position="stacked">Phone</ion-label>
+    <ion-label position="floating">Phone</ion-label>
     <ion-input
       [(ngModel)]="user.phone"
       placeholder="Enter your phone number"
@@ -43,7 +43,7 @@
   <ion-button
     expand="full"
     type="submit"
-    class="ion-margin-top"
+    class="save-button ion-margin-top"
     (click)="saveProfile()"
     >Save</ion-button
   >

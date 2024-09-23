@@ -1,14 +1,49 @@
+/* Center the avatar container */
 .avatar-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
 
+/* Style the large avatar */
 .large-avatar {
   width: 100px;
   height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #ccc; /* Add a border for better visibility */
 }
 
+/* Style the ion-item for separation */
 .separated-item {
-  margin-bottom: 24px;
+  margin-bottom: 16px; /* Space between items */
+}
+
+/* Style the labels */
+ion-label {
+  font-weight: 600; /* Slightly lighter than bold */
+  color: #333; /* Darker color for better readability */
+}
+
+/* Style the input fields */
+ion-input {
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --background: #716969; /* Lighter background for input fields */
+  border: 1px solid #ccc; /* Subtle border */
+  border-radius: 4px;
+}
+
+/* Prevent overlap of placeholder text */
+ion-input::part(native) {
+  padding-top: 12px; /* Ensure space for placeholder */
+}
+
+/* Style the save button */
+.save-button {
+  --background: #3880ff; /* Primary color */
+  --color: #fff; /* White text */
+  border-radius: 4px;
+  padding: 12px;
+  font-weight: 600; /* Slightly bolder for emphasis */
 }
