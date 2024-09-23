@@ -34,9 +34,10 @@ import {
 
 interface ParkingLocation {
   title: string;
-  subtitle: string;
+  location: string;
   imageUrl: string;
-  freeSpace: number;
+  rate: number; // Added property
+  freeSpace?: number;
 }
 
 @Component({
@@ -105,43 +106,49 @@ export class HomePage implements OnInit {
             case 'The Mall, Gadong':
               return {
                 title: 'Shopping Mall Gadong',
-                subtitle: 'The Mall, Gadong',
+                location: 'The Mall, Gadong',
                 imageUrl: '../assets/Themall.jpg',
+                rate: 2, // Hardcoded rate
                 freeSpace: 24,
               };
             case 'Times Square':
               return {
                 title: 'Times Square',
-                subtitle: 'Times Square',
+                location: 'Times Square',
                 imageUrl: '../assets/Timessquare.jpg',
+                rate: 2, // Hardcoded rate
                 freeSpace: 20,
               };
             case 'Airport Mall':
               return {
                 title: 'The Airport Mall',
-                subtitle: 'Airport Mall',
+                location: 'Airport Mall',
                 imageUrl: '../assets/Theairportmall.jpg',
+                rate: 2, // Hardcoded rate
                 freeSpace: 30,
               };
             case 'Yayasan Complex':
               return {
                 title: 'Yayasan Complex',
-                subtitle: 'Yayasan Complex',
+                location: 'Yayasan Complex',
                 imageUrl: '../assets/Yayasanmall.jpg',
+                rate: 2, // Hardcoded rate
                 freeSpace: 15,
               };
             case 'Mabohai Shopping Complex':
               return {
                 title: 'Mabohai Shopping Complex',
-                subtitle: 'Mabohai Shopping Complex',
+                location: 'Mabohai Shopping Complex',
                 imageUrl: '../assets/mabohai.jpg',
+                rate: 2, // Hardcoded rate
                 freeSpace: 10,
               };
             case 'Aman Hills Brunei':
               return {
                 title: 'Aman Hills Brunei',
-                subtitle: 'Aman Hills Brunei',
+                location: 'Aman Hills Brunei',
                 imageUrl: '../assets/amanhills.jpg',
+                rate: 2, // Hardcoded rate
                 freeSpace: 12,
               };
             default:

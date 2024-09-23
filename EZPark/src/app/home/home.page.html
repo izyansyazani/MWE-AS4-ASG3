@@ -74,34 +74,33 @@
           </ion-col>
         </ion-row>
 
-        <!-- Favourite Parking -->
-        <ion-row>
-          <ion-col>
-            <ion-text>
-              <h1 class="colorblack txtpad">Favourite Parking</h1>
-            </ion-text>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col size="12" class="flex-container">
-            <ion-card class="cardsize2" *ngFor="let parking of favouriteParking$ | async">
-              <div class="card-content">
-                <div class="card-text">
-                  <ion-card-header>
-                    <ion-card-title class="colorblack">{{ parking.title }}</ion-card-title>
-                    <ion-card-subtitle>{{ parking.subtitle }}</ion-card-subtitle>
-                  </ion-card-header>
-                  <ion-card-content>
-                    <ion-button class="ratebtn" shape="round" [routerLink]="['/rate-hours']">$Rate/h</ion-button>
-                    <br /><br />
-                    <ion-button class="spacebtn" shape="round" [routerLink]="['/parkingspots']">{{ parking.freeSpace }} Free Space</ion-button>
-                  </ion-card-content>
-                </div>
-                <img class="img" [alt]="parking.title" [src]="parking.imageUrl" />
-              </div>
-            </ion-card>
-          </ion-col>
-        </ion-row>
+       <!-- Favorite Parking -->
+<ion-row>
+  <ion-col>
+    <ion-text>
+      <h1 class="colorblack txtpad">Favorite Parking</h1>
+    </ion-text>
+  </ion-col>
+</ion-row>
+<ion-row>
+  <ion-col size="12" class="flex-container">
+    <ion-card class="cardsize2" *ngFor="let parking of favouriteParking$ | async">
+      <div class="card-content">
+        <div class="card-text">
+          <ion-card-header>
+            <ion-card-title class="colorblack">{{ parking.title }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-button class="ratebtn" shape="round" [routerLink]="['/rate-hours']">$Rate/h</ion-button>
+            <br /><br />
+            <ion-button class="spacebtn" shape="round" [routerLink]="['/parkingspots']">{{ parking.freeSpace }} Free Space</ion-button>
+          </ion-card-content>
+        </div>
+        <img class="img" [alt]="parking.title" [src]="parking.imageUrl" />
+      </div>
+    </ion-card>
+  </ion-col>
+</ion-row>
       </ion-grid>
     </ion-content>
   </div>
