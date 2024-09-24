@@ -1,36 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router'; // Import Angular Router
+import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
-
 import {
   IonContent,
   IonHeader,
   IonTitle,
   IonToolbar,
-  IonRow,
   IonButtons,
-  IonCol,
-  IonSearchbar,
   IonCard,
   IonIcon,
   IonItem,
-  IonCardContent,
   IonCardTitle,
   IonCardSubtitle,
   IonCardHeader,
-  IonImg,
   IonLabel,
   IonList,
-  IonRouterLink,
   IonFooter,
   IonAvatar,
-  IonBackButton,
-  // AlertController,
 } from '@ionic/angular/standalone';
+import { AuthServiceService } from '../auth-service.service';
 
 @Component({
   selector: 'app-userprofile',
@@ -40,47 +30,57 @@ import {
   imports: [
     CommonModule,
     FormsModule,
-    IonCol,
     IonButtons,
-    IonRow,
     IonContent,
     IonHeader,
     IonTitle,
     IonToolbar,
-    IonSearchbar,
     IonCard,
     IonIcon,
     IonItem,
-    IonCardContent,
     IonCardTitle,
     IonCardSubtitle,
     IonCardHeader,
-    IonImg,
     IonLabel,
     IonList,
-    IonRouterLink,
     IonFooter,
     IonAvatar,
-    IonBackButton,
   ],
 })
 export class UserprofilePage implements OnInit {
-  profile = {
-    name: 'Arthur B',
-    email: 'arthur.b@gmail.com',
-    phone: '+973 800 8000',
-    image: 'assets/profile-pic.jpg', // Adjust the path to your image asset
-    payment: '**** **** **** 1234', // Masked card number
-    notification: 'Enabled',
-    security: 'High',
+  currentUser = {
+    name: '',
+    email: '',
+    userId: '',
   };
 
   constructor(
     private router: Router,
-    private alertController: AlertController
-  ) {} // Inject Router
+    private alertController: AlertController,
+    private authService: AuthServiceService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loadCurrentUser();
+  }
+
+  ionViewWillEnter() {
+    this.loadCurrentUser();
+  }
+
+  // Fetch the current user's profile
+  async loadCurrentUser() {
+    try {
+      const user = await this.authService.getProfile();
+      if (user) {
+        this.currentUser.name = user.displayName || 'Anonymous';
+        this.currentUser.email = user.email || 'No email provided'; // Added email assignment
+        this.currentUser.userId = user.uid;
+      }
+    } catch (error) {
+      console.error('Error fetching user profile:', error);
+    }
+  }
 
   profileEdit() {
     console.log('Edit Profile button clicked');
@@ -108,13 +108,12 @@ export class UserprofilePage implements OnInit {
           {
             text: 'Cancel',
             role: 'cancel',
-            handler: () => {}, // Empty handler for cancel
+            handler: () => {},
           },
           {
             text: 'Logout',
             handler: () => {
-              // Handle logout logic here (e.g., clear session data)
-              this.router.navigate(['/signup-login']); // Navigate to signup page after confirmation
+              this.router.navigate(['/signup-login']);
             },
           },
         ],
