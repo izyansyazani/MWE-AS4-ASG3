@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
 import { Location } from '@angular/common';
+import { ParkingService } from '../services/parking.service';
 
 import {
   IonContent,
@@ -82,7 +83,8 @@ export class ReservationPage implements OnInit {
     private alertController: AlertController,
     private navCtrl: NavController,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private parkingService: ParkingService
   ) {
     this.route.queryParams.subscribe((params) => {
       if (params['parkingSpaceNumber']) {
@@ -101,6 +103,7 @@ export class ReservationPage implements OnInit {
   }
 
   confirmBooking() {
+    this.parkingService.bookSpot(this.bookingDetails.parkingSpaceNumber);
     this.updateTotalAmount();
     this.router.navigate(['/paypal'], {
       queryParams: {

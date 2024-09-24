@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { ParkingService } from '../../services/parking.service';
 import {
   IonContent,
   IonHeader,
@@ -58,7 +59,8 @@ export class MallPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    public parkingService: ParkingService
   ) {}
 
   ngOnInit() {}
@@ -70,8 +72,10 @@ export class MallPage implements OnInit {
     this.router.navigate(['/parkingspots']);
   }
   goToBook(parkingSpaceNumber: string) {
-    this.router.navigate(['/reservation'], {
-      queryParams: { parkingSpaceNumber },
-    });
+    if (!this.parkingService.isSpotTaken(parkingSpaceNumber)) {
+      this.router.navigate(['/reservation'], {
+        queryParams: { parkingSpaceNumber },
+      });
+    }
   }
 }

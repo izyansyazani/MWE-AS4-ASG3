@@ -17,8 +17,8 @@
       <ion-col>
         <ion-grid class="group">
           <ion-row>
-            <ion-col class="box" (click)="goToBook('A6')">A6</ion-col>
-            <ion-col class="box" (click)="goToBook('A1')">A1</ion-col>
+            <ion-col class="box" (click)="goToBook('A6')" [class.taken]="parkingService.isSpotTaken('A6')">A6</ion-col>
+            <ion-col class="box" (click)="goToBook('A1')" [class.taken]="parkingService.isSpotTaken('A1')">A1</ion-col>
           </ion-row>
           <ion-row>
             <ion-col class="box" (click)="goToBook('A7')">A7</ion-col>

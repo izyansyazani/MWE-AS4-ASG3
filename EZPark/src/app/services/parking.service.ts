@@ -1,9 +1,18 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ParkingService {
+  private spots: { [key: string]: boolean } = {};
 
-  constructor() { }
+  constructor() {}
+
+  isSpotTaken(spot: string): boolean {
+    return this.spots[spot] === true;
+  }
+
+  bookSpot(spot: string): void {
+    this.spots[spot] = true;
+  }
 }
