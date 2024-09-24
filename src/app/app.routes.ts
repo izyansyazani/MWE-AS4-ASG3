@@ -182,13 +182,6 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./paypal/paypal.page').then((m) => m.PaypalPage),
   },
-  {
-    path: 'favorite.service.ts',
-    loadComponent: () =>
-      import('./favorite.service.ts/favorite.service.ts.page').then(
-        (m) => m.FavoriteServiceTsPage
-      ),
-  },
 ];
 
 // @NgModule({
