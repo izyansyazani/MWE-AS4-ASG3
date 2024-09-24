@@ -12,6 +12,7 @@
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid #ccc; /* Add a border for better visibility */
+  margin: 0 auto; /* Center the avatar horizontally */
 }
 
 /* Style the ion-item for separation */
@@ -23,20 +24,22 @@
 ion-label {
   font-weight: 600; /* Slightly lighter than bold */
   color: #333; /* Darker color for better readability */
+  margin-bottom: 8px; /* Add some space between label and input */
 }
 
 /* Style the input fields */
 ion-input {
   --padding-start: 12px;
   --padding-end: 12px;
-  --background: #716969; /* Lighter background for input fields */
+  --background: #786969; /* Lighter background for input fields */
   border: 1px solid #ccc; /* Subtle border */
   border-radius: 4px;
+  padding: 12px; /* Add some padding for better usability */
 }
 
 /* Prevent overlap of placeholder text */
 ion-input::part(native) {
-  padding-top: 12px; /* Ensure space for placeholder */
+  padding-top: 8px; /* Reduce padding to move the placeholder upwards */
 }
 
 /* Style the save button */
@@ -46,4 +49,6 @@ ion-input::part(native) {
   border-radius: 4px;
   padding: 12px;
   font-weight: 600; /* Slightly bolder for emphasis */
+  width: 100%; /* Make the button full-width */
+  margin-top: 24px; /* Add some space between the button and the input fields */
 }
