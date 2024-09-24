@@ -1,13 +1,10 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <img (click)="goToHome()" id="back" src="../assets/backbutton.png" />
-    </ion-buttons>
-    <ion-title>Parking History</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content padding>
+  <img
+    (click)="goToHome()"
+    src="../assets/backbutton.png"
+    class="back-button"
+  />
+  <h1>Parking History</h1>
   <ion-searchbar placeholder="Search..."></ion-searchbar>
 
   <ion-card *ngFor="let parking of parkingHistory">
