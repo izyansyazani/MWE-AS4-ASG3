@@ -52,6 +52,7 @@ export class UserprofilePage implements OnInit {
     name: '',
     email: '',
     userId: '',
+    profilePicture: null,
   };
 
   constructor(
