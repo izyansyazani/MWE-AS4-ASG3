@@ -1,11 +1,23 @@
 /* Global Styles */
 ion-content {
   --ion-background-color: #FBF3EF;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+}
+
+.searchbar-container {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Center the search bar */
 }
 
 ion-searchbar {
   margin-bottom: 10px;
   color: black;
+  --border-radius: 18px; /* Add border radius */
+  width: 90%; /* Adjust width as needed */
+  --background: #D9D9D9; /* Change background color */
 }
 
 /* Card Styles */

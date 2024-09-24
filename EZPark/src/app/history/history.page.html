@@ -5,7 +5,9 @@
     class="back-button"
   />
   <h1>Parking History</h1>
-  <ion-searchbar placeholder="Search..."></ion-searchbar>
+  <div class="searchbar-container">
+    <ion-searchbar placeholder="Search..."></ion-searchbar>
+  </div>
 
   <ion-card *ngFor="let parking of parkingHistory">
     <ion-img src="{{ parking.imageUrl }}"></ion-img>
