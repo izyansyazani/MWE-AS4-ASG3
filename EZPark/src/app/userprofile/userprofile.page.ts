@@ -20,7 +20,7 @@ import {
   IonFooter,
   IonAvatar,
 } from '@ionic/angular/standalone';
-import { AuthServiceService } from '../auth-service.service';
+import { AuthServiceService } from '../services/auth-service.service';
 
 @Component({
   selector: 'app-userprofile',
