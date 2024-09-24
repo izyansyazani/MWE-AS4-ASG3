@@ -16,7 +16,7 @@ ion-searchbar {
   margin-bottom: 10px;
   color: black;
   --border-radius: 18px; /* Add border radius */
-  width: 80%; /* Adjust width as needed */
+  width: 90%; /* Adjust width as needed */
   --background: #D9D9D9; /* Change background color */
 }
 
@@ -31,14 +31,28 @@ ion-card {
   margin-bottom: 15px;
   border-radius: 20px; /* Add border radius */
   background-color: #d9d9d9;
-  width: 75%; /* Adjust width as needed */
-  height: 400px; /* Adjust height as needed */
+  width: 85%; /* Adjust width as needed */
+  height: 150px; /* Adjust height as needed */
+}
+
+.card-content {
+  display: flex;
+  justify-content: space-between; /* Space between text and image */
+  align-items: center; /* Center items vertically */
+  height: 100%;
+}
+
+.text-content {
+  flex: 1;
+  padding: 10px;
 }
 
 ion-img {
-  width: 100%;
-  height: 150px;
+  height: 100%; /* Make the image height match the card height */
+  width: 100%; /* Make the image square by setting width equal to height */
+  max-width: 150px; /* Ensure the image does not exceed a certain width */
   object-fit: cover; /* Ensures image fills the container */
+  border-radius: 20px; /* Match card border radius */
 }
 
 ion-card-header {
