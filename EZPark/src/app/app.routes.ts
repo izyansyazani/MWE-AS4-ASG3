@@ -1,6 +1,8 @@
-import { Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { ReceiptsPage } from './receipts/receipts.page';
 import { HistoryPage } from './history/history.page';
+// import { SignupPage } from './signup/signup.page';
+// import { NgModule } from '@angular/core';
 
 export const routes: Routes = [
   {
@@ -9,9 +11,15 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'signup-login',
     pathMatch: 'full',
   },
+
+  // {
+  //   path: '',
+  //   component: SignupPage
+  // },
+
   {
     path: 'signup-login',
     loadComponent: () =>
@@ -91,4 +99,100 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./reservation/reservation.page').then((m) => m.ReservationPage),
   },
+  {
+    path: 'feedback',
+    loadComponent: () =>
+      import('./feedback/feedback.page').then((m) => m.FeedbackPage),
+  },
+  {
+    path: 'payment',
+    loadComponent: () =>
+      import('./payment/payment.page').then((m) => m.PaymentPage),
+  },
+  {
+    path: 'profile-edit',
+    loadComponent: () =>
+      import('./profile-edit/profile-edit.page').then((m) => m.ProfileEditPage),
+  },
+  {
+    path: 'mallrating',
+    loadComponent: () =>
+      import('./feedback/mallrating/mallrating.page').then(
+        (m) => m.MallratingPage
+      ),
+  },
+  {
+    path: 'timessquarerating',
+    loadComponent: () =>
+      import('./feedback/timessquarerating/timessquarerating.page').then(
+        (m) => m.TimessquareratingPage
+      ),
+  },
+  {
+    path: 'airportmallrating',
+    loadComponent: () =>
+      import('./feedback/airportmallrating/airportmallrating.page').then(
+        (m) => m.AirportmallratingPage
+      ),
+  },
+  {
+    path: 'yayasanrating',
+    loadComponent: () =>
+      import('./feedback/yayasanrating/yayasanrating.page').then(
+        (m) => m.YayasanratingPage
+      ),
+  },
+  {
+    path: 'mabohairating',
+    loadComponent: () =>
+      import('./feedback/mabohairating/mabohairating.page').then(
+        (m) => m.MabohairatingPage
+      ),
+  },
+  {
+    path: 'amanhillsrating',
+    loadComponent: () =>
+      import('./feedback/amanhillsrating/amanhillsrating.page').then(
+        (m) => m.AmanhillsratingPage
+      ),
+  },
+  {
+    path: 'auth',
+    loadComponent: () => import('./auth/auth.page').then((m) => m.AuthPage),
+  },
+  {
+    path: 'timessquare',
+    loadComponent: () =>
+      import('./parkingspots/timessquare/timessquare.page').then(
+        (m) => m.TimessquarePage
+      ),
+  },
+  {
+    path: 'yayasan',
+    loadComponent: () =>
+      import('./parkingspots/yayasan/yayasan.page').then((m) => m.YayasanPage),
+  },
+  {
+    path: 'mabohai',
+    loadComponent: () =>
+      import('./parkingspots/mabohai/mabohai.page').then((m) => m.MabohaiPage),
+  },
+  {
+    path: 'paypal',
+    loadComponent: () =>
+      import('./paypal/paypal.page').then((m) => m.PaypalPage),
+  },
+  {
+    path: 'favorite.service.ts',
+    loadComponent: () =>
+      import('./favorite.service.ts/favorite.service.ts.page').then(
+        (m) => m.FavoriteServiceTsPage
+      ),
+  },
 ];
+
+// @NgModule({
+//   imports: [RouterModule.forChild(routes)],
+//   exports: [RouterModule],
+// })
+// export class SignupPageRoutingModule  {}

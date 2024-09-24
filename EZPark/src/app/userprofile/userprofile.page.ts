@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router'; // Import Angular Router
 import { AlertController } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
+import { RouterModule } from '@angular/router';
 
 import {
   IonContent,
@@ -80,8 +82,9 @@ export class UserprofilePage implements OnInit {
 
   ngOnInit() {}
 
-  editProfile() {
-    this.router.navigate(['/userprofile']); // Define the route for editing profile
+  profileEdit() {
+    console.log('Edit Profile button clicked');
+    this.router.navigate(['/profile-edit']);
   }
 
   parkingHistory() {

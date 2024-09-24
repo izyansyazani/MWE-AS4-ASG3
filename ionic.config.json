@@ -1,0 +1,10 @@
+{
+  "name": "EZPark",
+  "integrations": {
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {}
+  },
+  "type": "angular-standalone"
+}

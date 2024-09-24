@@ -1,52 +1,81 @@
-.custom-card {
-    height: 100%;
-  }
-  
-  .grey-box {
-    background-color: #ccc;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    border-radius: 20px;
-  }
+ion-content {
+  --ion-background-color: #FBF3EF;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  flex-direction: column;
+}
 
-  h1 {
-    font-size:35px;
-    display: flex;
-    justify-content: center;
-    align-items:center;
-  }
-  
-  ion-card {
-    background-color: transparent;
-    box-shadow: none;
-  }
-  
-  ion-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 20px;
-  }
+h1 {
+  color: #000;
+  font-size: 24px;
+  display: block;
+  text-align: center;
+  margin-top: -20px;
+}
 
-  ion-content{
-    --ion-background-color: #FBF3EF;
-  }
-  
-  .image-label {
-    display: block;
-    text-align: center;
-    margin-top: 1px;
-    color: #000;
-    font-weight:bold;
-  }
+.back-button {
+  width: 24px;
+  height: 24px;
+  margin-top: 20px;
+}
 
-  #back{
-    width:30px;
-    height:30px;
-    margin-left:30px;
-    margin-top:20px;
-  }
+.cards-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns */
+  gap: 15px; /* Space between cards */
+  padding: 20px;
+  width: 100%; /* Ensure the container takes up the full width */
+  max-width: 500px; /* Adjust this value to limit the container width */
+  margin: 0 auto; /* Center the container within the parent */
+}
+
+ion-card {
+  --background: #E0E0E0; /* Set background color of the card */
+  --border-radius: 10px;
+  text-align: center;
+  display: flex; /* Add flexbox properties */
+  flex-direction: column; /* Ensure content is stacked vertically */
+  align-items: center; /* Center content horizontally */
+}
+
+ion-card img {
+  width: 100%;
+  height: 150px; /* Consistent height for all images */
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+ion-card-content {
+  color: #000;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 10px 0;
+}
+
+ion-item {
+  --background: transparent;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ion-checkbox {
+  --background: #E0E0E0; /* Background color when unchecked */
+  --border-color: #8888D7; /* Border color */
+  --color-checked: #8888D7; /* Background color when checked */
+  --checkmark-color: white; /* Checkmark color */
+  --checkmark-width: 1px; /* Ensure checkmark is visible */
+  --checkmark-opacity: 1; /* Ensure checkmark is fully opaque */
+  --padding: 0; /* Remove default padding */
+  --size: 20px; /* Adjust size if needed */
+}
+
+ion-label {
+  font-size: 14px;
+  color: #8888D7 !important; /* Change label color */
+  font-weight: bold; /* Make label bold */
+}

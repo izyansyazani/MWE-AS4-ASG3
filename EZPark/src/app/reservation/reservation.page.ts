@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
+import { Location } from '@angular/common';
 
 import {
   IonContent,
@@ -36,6 +38,7 @@ import {
   styleUrls: ['./reservation.page.scss'],
   standalone: true,
   imports: [
+    FormsModule,
     IonContent,
     IonHeader,
     IonTitle,
@@ -62,57 +65,59 @@ import {
   ],
 })
 export class ReservationPage implements OnInit {
+  bookingDetails = {
+    parkingLevel: '',
+    parkingSpaceNumber: '',
+    reservationDate: '',
+    reservationTime: '',
+    duration: '',
+    carLicenseNumber: '',
+    totalAmount: 0,
+  };
+
+  spot: string = '';
+
   constructor(
     private router: Router,
-    private alertController: AlertController
-  ) {}
-
-  ngOnInit() {}
-  goToHome() {
-    this.router.navigate(['/home']);
+    private alertController: AlertController,
+    private navCtrl: NavController,
+    private route: ActivatedRoute,
+    private location: Location
+  ) {
+    this.route.queryParams.subscribe((params) => {
+      if (params['parkingSpaceNumber']) {
+        this.bookingDetails.parkingSpaceNumber = params['parkingSpaceNumber'];
+      }
+    });
   }
 
-  // async showPopup() {
-  //   const alert = await this.alertController.create({
-  //     header: 'Confirm Booking',
-  //     message: 'Are you sure you want to confirm this booking?',
-  //     buttons: [
-  //       {
-  //         text: 'Cancel',
-  //         role: 'cancel',
-  //         handler: () => {
-  //           console.log('Booking cancelled');
-  //         },
-  //       },
-  //       {
-  //         text: 'Confirm',
-  //         handler: async () => {
-  //           console.log('Booking confirmed');
-  //           this.router.navigate(['/home']);
-  //           await this.scheduleNotification();
-  //         },
-  //       },
-  //     ],
-  //   });
+  updateTotalAmount() {
+    const duration = parseFloat(this.bookingDetails.duration);
+    if (!isNaN(duration)) {
+      this.bookingDetails.totalAmount = duration * 1.0;
+    } else {
+      this.bookingDetails.totalAmount = 0;
+    }
+  }
 
-  //   await alert.present();
-  // }
+  confirmBooking() {
+    this.updateTotalAmount();
+    this.router.navigate(['/paypal'], {
+      queryParams: {
+        bookingDetails: JSON.stringify(this.bookingDetails),
+      },
+    });
+  }
 
-  // async scheduleNotification() {
-  //   let options: ScheduleOptions = {
-  //     notifications: [
-  //       {
-  //         id: 111,
-  //         title: 'Booking Confirmed',
-  //         body: 'You have booked a parking.',
-  //       },
-  //     ],
-  //   };
-
-  //   try {
-  //     await LocalNotifications.schedule(options);
-  //   } catch (ex) {
-  //     alert(JSON.stringify(ex));
-  //   }
-  // }
+  ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      if (params['spot']) {
+        this.spot = params['spot'];
+        this.bookingDetails.parkingSpaceNumber = this.spot;
+      }
+    });
+  }
+  goToBack() {
+    this.location.back();
+  }
 }

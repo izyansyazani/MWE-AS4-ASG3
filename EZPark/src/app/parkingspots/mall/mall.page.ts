@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import {
   IonContent,
   IonHeader,
@@ -54,7 +55,7 @@ import {
   ],
 })
 export class MallPage implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private navCtrl: NavController) {}
 
   ngOnInit() {}
 
@@ -64,7 +65,9 @@ export class MallPage implements OnInit {
   goToParking() {
     this.router.navigate(['/parkingspots']);
   }
-  goToBook() {
-    this.router.navigate(['/reservation']);
+  goToBook(parkingSpaceNumber: string) {
+    this.router.navigate(['/reservation'], {
+      queryParams: { parkingSpaceNumber },
+    });
   }
 }
