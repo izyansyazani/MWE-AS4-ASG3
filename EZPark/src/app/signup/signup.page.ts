@@ -47,11 +47,10 @@
 // //   ngOnInit() {}
 // // }
 
-
 // export class SignupPage implements OnInit {
 //   ionicForm: FormGroup;
 
-//   constructor(private toastController: ToastController,private loadingController: LoadingController,private authService:AuthServiceService,private router: Router, public formBuilder: FormBuilder) { 
+//   constructor(private toastController: ToastController,private loadingController: LoadingController,private authService:AuthServiceService,private router: Router, public formBuilder: FormBuilder) {
 
 //   }
 
@@ -92,11 +91,11 @@
 
 //   //   const user = await this.authService.GoogleAuth().then((re)=>{
 //   //     console.log(re);
-      
+
 //   //     // this.router.navigate(['/home'])
 //   //   })
 //   // }
- 
+
 //   async signUP(){
 //     const loading = await this.loadingController.create();
 //     await loading.present();
@@ -116,10 +115,10 @@
 //       return console.log('Please provide all the required values!');
 //     }
 //   }
-  
+
 //   async presentToast(message: undefined) {
 //     console.log(message);
-    
+
 //     const toast = await this.toastController.create({
 //       message: message,
 //       duration: 1500,
@@ -130,14 +129,23 @@
 //   }
 // }
 
-
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  FormGroup,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { AuthServiceService } from 'src/app/auth-service.service';
-import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import {
+  AlertController,
+  LoadingController,
+  ToastController,
+} from '@ionic/angular';
 
 import {
   IonContent,
@@ -188,11 +196,18 @@ export class SignupPage implements OnInit {
       fullname: ['', Validators.required],
       contact: [
         '',
-        [Validators.required, Validators.pattern('^[0-9]{7}$'), Validators.minLength(7)],
+        [
+          Validators.required,
+          Validators.pattern('^[0-9]{7}$'),
+          Validators.minLength(7),
+        ],
       ],
       email: [
         '',
-        [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$')],
+        [
+          Validators.required,
+          Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$'),
+        ],
       ],
       password: [
         '',
@@ -213,7 +228,7 @@ export class SignupPage implements OnInit {
   async signUP() {
     const loading = await this.loadingController.create();
     await loading.present();
-    
+
     if (this.ionicForm.valid) {
       try {
         // Register user using the AuthServiceService
@@ -224,7 +239,7 @@ export class SignupPage implements OnInit {
         );
 
         loading.dismiss();
-        
+
         // Navigate to home after successful registration
         this.router.navigate(['/home']);
       } catch (err) {
