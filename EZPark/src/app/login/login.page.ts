@@ -1,9 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  FormGroup,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthServiceService } from 'src/app/auth-service.service';
-import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
+import {
+  AlertController,
+  LoadingController,
+  ToastController,
+} from '@ionic/angular';
 import {
   IonContent,
   IonHeader,
@@ -58,7 +68,9 @@ export class LoginPage implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}'),
+          Validators.pattern(
+            '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}'
+          ),
         ],
       ],
       password: [

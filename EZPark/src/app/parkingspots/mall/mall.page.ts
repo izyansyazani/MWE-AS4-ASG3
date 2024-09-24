@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { ParkingService } from '../parking.service';
+import { Observable } from 'rxjs';
 import {
   IonContent,
   IonHeader,
@@ -55,9 +57,19 @@ import {
   ],
 })
 export class MallPage implements OnInit {
-  constructor(private router: Router, private navCtrl: NavController) {}
+  parkingSpots: Observable<{ [key: string]: boolean }>;
 
-  ngOnInit() {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private navCtrl: NavController,
+    private parkingService: ParkingService
+  ) {}
+
+  ngOnInit() {
+    const location = this.route.snapshot.paramMap.get('location');
+    this.parkingSpots = this.parkingService.getParkingSpots('mall');
+  }
 
   goToMall2() {
     this.router.navigate(['/mall2']);

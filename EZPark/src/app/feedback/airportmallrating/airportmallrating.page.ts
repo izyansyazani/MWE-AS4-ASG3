@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
-import { AuthServiceService } from '../../auth-service.service'; // Adjust based on actual file location
+import { AuthServiceService } from '../../services/auth-service.service'; // Adjust based on actual file location
 
 import {
   IonContent,
@@ -120,7 +120,9 @@ export class AirportmallratingPage implements OnInit {
   async deleteComment(commentId: string) {
     try {
       await this.authService.deleteComment(commentId);
-      this.comments = this.comments.filter((comment) => comment.id !== commentId);
+      this.comments = this.comments.filter(
+        (comment) => comment.id !== commentId
+      );
     } catch (error) {
       console.error('Error deleting comment:', error);
     }
