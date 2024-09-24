@@ -17,7 +17,15 @@
       <ion-col>
         <ion-grid class="group">
           <ion-row>
-            <ion-col class="box" (click)="goToBook('A6')" [class.taken]="parkingService.isSpotTaken('A6')">A6</ion-col>
+            <ion-col class="box" 
+            (click)="goToBook('A6')" 
+            [class.taken]="takenSpots['A6']">
+            <ng-container *ngIf="takenSpots['A6']; else available">
+              <img src="../assets/sports-car.png" alt="Taken Spot" />
+            </ng-container>
+            <ng-template #available>
+              A6
+            </ng-template></ion-col>
             <ion-col class="box" (click)="goToBook('A1')" [class.taken]="parkingService.isSpotTaken('A1')">A1</ion-col>
           </ion-row>
           <ion-row>
