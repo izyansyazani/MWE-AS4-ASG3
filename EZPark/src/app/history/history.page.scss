@@ -75,9 +75,16 @@ ion-card-content {
   padding: 10px;
 }
 
-ion-button {
-  --padding: 8px 12px; /* Adjust button padding as needed */
-  color: #8888E7;
+ion-card-content ion-button {
+  --padding: 4px 8px; /* Adjust button padding as needed */
+  --background: #8888E7 !important; /* Change button background color */
+  --color: #000 !important; /* Change button font color to black */
+  --border-radius: 20px !important; /* Add border radius */
+  font-size: 10px; /* Make the text smaller */
+  height: 20px; /* Adjust button height */
+  width: 140px; /* Adjust button width */
+  outline: none; /* Remove default focus outline */
+  box-shadow: none; /* Remove any box shadow */
 }
 
 h1 {

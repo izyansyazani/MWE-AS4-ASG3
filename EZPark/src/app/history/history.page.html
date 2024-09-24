@@ -2,8 +2,7 @@
   <img
     (click)="goToHome()"
     src="../assets/backbutton.png"
-    class="back-button"
-  />
+    class="back-button" />
   <h1>Parking History</h1>
   <div class="searchbar-container">
     <ion-searchbar placeholder="Search..."></ion-searchbar>
@@ -15,19 +14,16 @@
         <div class="text-content">
           <ion-card-header>
             <ion-card-title>{{ parking.date }}</ion-card-title>
-            <ion-card-subtitle>{{ parking.location}}</ion-card-subtitle>
+            <ion-card-subtitle>{{ parking.location }}</ion-card-subtitle>
           </ion-card-header>
           <ion-card-content>
             <p>{{ parking.duration }}</p>
-            <ion-item lines="none">
-              <ion-button
-                fill="outline"
-                slot="start"
-                (click)="viewReceipt(parking)"
-              >
-                View Receipts
-              </ion-button>
-            </ion-item>
+            <ion-button
+              slot="start"
+              (click)="viewReceipt(parking)"
+            >
+              View Receipts
+            </ion-button>
           </ion-card-content>
         </div>
         <ion-img src="{{ parking.imageUrl }}"></ion-img>
