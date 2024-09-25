@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ParkingService } from '../../services/parking.service';
 import {
   IonContent,
   IonHeader,
@@ -53,7 +54,7 @@ import {
   ],
 })
 export class Mall2Page implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, public parkingService: ParkingService) {}
 
   ngOnInit() {}
 
@@ -63,7 +64,11 @@ export class Mall2Page implements OnInit {
   goToParking() {
     this.router.navigate(['/parkingspots']);
   }
-  goToBook() {
-    this.router.navigate(['/reservation']);
+  goToBook(parkingSpaceNumber: string) {
+    if (!this.parkingService.isSpotTaken(parkingSpaceNumber)) {
+      this.router.navigate(['/reservation'], {
+        queryParams: { parkingSpaceNumber },
+      });
+    }
   }
 }
