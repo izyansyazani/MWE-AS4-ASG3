@@ -13,19 +13,19 @@ export class UserService {
 
   private profileImage: string | ArrayBuffer | null = null;
 
-  setUserData(data: { name: string; email: string; phone: string }) {
-    this.userData = data;
-  }
-
   getUserData() {
     return this.userData;
   }
 
-  setProfileImage(image: string | ArrayBuffer | null) {
-    this.profileImage = image;
+  setUserData(data: any) {
+    this.userData = data;
   }
 
   getProfileImage() {
     return this.profileImage;
+  }
+
+  setProfileImage(image: string | ArrayBuffer | null) {
+    this.profileImage = image;
   }
 }
