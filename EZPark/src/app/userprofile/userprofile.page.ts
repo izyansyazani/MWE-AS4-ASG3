@@ -77,27 +77,25 @@ export class UserprofilePage implements OnInit {
   }
 
   // Fetch the current user's profile
+  // userprofile.page.ts
   async loadCurrentUser() {
-    try {
-      const user = await this.authService.getProfile();
-      if (user) {
-        let profileImage = this.userService.getProfileImage();
-        if (profileImage instanceof ArrayBuffer) {
-          // Convert ArrayBuffer to string (Base64)
-          profileImage = btoa(
-            String.fromCharCode(...new Uint8Array(profileImage))
-          );
-        }
-
-        this.currentUser = {
-          name: user.displayName || 'Anonymous',
-          email: user.email || 'No email provided',
-          userId: user.uid,
-          profilePicture: profileImage || user.photoURL || null, // Ensure a fallback if photoURL is not present
-        };
-      }
-    } catch (error) {
-      console.error('Error fetching user profile:', error);
+    const user = await this.authService.getProfile();
+    if (user) {
+      this.currentUser = {
+        name: user.displayName || 'Anonymous',
+        email: user.email || 'No email provided',
+        userId: user.uid,
+        profilePicture:
+          this.userService.getProfileImage() ||
+          (user.photoURL ? user.photoURL : null),
+      };
+    } else {
+      // If user is not logged in, load data from UserService
+      this.currentUser = {
+        ...this.userService.getUserData(),
+        profilePicture: this.userService.getProfileImage(), // Set the profile picture from local storage
+        userId: '', // Set userId to empty if logged out
+      };
     }
   }
 
@@ -119,6 +117,7 @@ export class UserprofilePage implements OnInit {
     this.router.navigate(['/feedback']);
   }
 
+  // userprofile.page.ts
   logout() {
     this.alertController
       .create({
@@ -133,6 +132,7 @@ export class UserprofilePage implements OnInit {
           {
             text: 'Logout',
             handler: () => {
+              // this.userService.clearUserData(); // Uncomment if you want to clear data on logout
               this.router.navigate(['/signup-login']);
             },
           },
