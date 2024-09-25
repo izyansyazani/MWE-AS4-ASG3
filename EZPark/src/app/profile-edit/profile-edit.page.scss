@@ -7,8 +7,8 @@
 
 /* Style the large avatar */
 .large-avatar {
-  width: 100px;
-  height: 100px;
+  width: 150px; /* Increased size */
+  height: 150px; /* Increased size */
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid #ccc; /* Add a border for better visibility */
@@ -22,33 +22,51 @@
 
 /* Style the labels */
 ion-label {
-  font-weight: 600; /* Slightly lighter than bold */
+  font-weight: 600; /* Slightly bolder */
   color: #333; /* Darker color for better readability */
-  margin-bottom: 8px; /* Add some space between label and input */
+  margin-bottom: 8px; /* Space between label and input */
 }
 
 /* Style the input fields */
 ion-input {
   --padding-start: 12px;
   --padding-end: 12px;
-  --background: #786969; /* Lighter background for input fields */
-  border: 1px solid #ccc; /* Subtle border */
+  --background: transparent; /* Make background transparent */
+  border: none; /* Remove border */
   border-radius: 4px;
-  padding: 12px; /* Add some padding for better usability */
+  padding: 12px; /* Padding for usability */
+}
+
+/* Style the placeholder text */
+ion-input::part(native) {
+  padding-top: 8px; /* Move the placeholder upwards */
+  color: #aaa; /* Light gray for placeholder text */
 }
 
 /* Prevent overlap of placeholder text */
-ion-input::part(native) {
-  padding-top: 8px; /* Reduce padding to move the placeholder upwards */
+ion-input::part(native)::placeholder {
+  color: #aaa; /* Light gray for placeholder text */
 }
 
 /* Style the save button */
 .save-button {
-  --background: #3880ff; /* Primary color */
+  --background: #8888E7; /* Primary color */
   --color: #fff; /* White text */
   border-radius: 4px;
   padding: 12px;
-  font-weight: 600; /* Slightly bolder for emphasis */
-  width: 100%; /* Make the button full-width */
-  margin-top: 24px; /* Add some space between the button and the input fields */
+  font-weight: 600; /* Slightly bolder */
+  width: 100%; /* Full-width button */
+  margin-top: 24px; /* Space above the button */
+}
+
+/* Style for ion-content */
+ion-content {
+  background-color: #FBF3EF; /* Set background color */
+}
+
+/* Adjust input focus styles */
+ion-input:focus {
+  outline: none; /* Remove default outline on focus */
+  border-color: #3880ff; /* Change border color on focus */
+  box-shadow: 0 0 5px rgba(56, 128, 255, 0.5); /* Subtle shadow */
 }
