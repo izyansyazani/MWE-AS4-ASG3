@@ -62,6 +62,8 @@ export class HistoryPage implements OnInit {
     // Your parking history data here
   ];
 
+  searchTerm: string = ''; // Add search term property
+
   constructor(private router: Router) {}
 
   ngOnInit() {
@@ -74,5 +76,17 @@ export class HistoryPage implements OnInit {
 
   goToHome() {
     this.router.navigate(['/home']);
+  }
+
+  // Method to filter parking history based on search term
+  get filteredParkingHistory(): Parking[] {
+    if (!this.searchTerm.trim()) {
+      return this.parkingHistory;
+    }
+    return this.parkingHistory.filter(parking =>
+      parking.location.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      parking.date.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      parking.duration.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
   }
 }

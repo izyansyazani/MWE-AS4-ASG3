@@ -6,17 +6,29 @@
   />
   <h1>Parking History</h1>
   <div class="searchbar-container">
-    <ion-searchbar placeholder="Search..."></ion-searchbar>
+    <ion-searchbar
+      placeholder="Search..."
+      [(ngModel)]="searchTerm"
+    ></ion-searchbar>
   </div>
 
   <div class="card-container">
-    <ion-card *ngIf="parkingHistory.length === 0" class="no-history-card">
+    <!-- Default state: No history -->
+    <ion-card *ngIf="parkingHistory.length === 0 && !searchTerm.trim()" class="no-history-card">
       <ion-card-header>
-        <ion-card-title>No parking history available</ion-card-title>
+        <ion-card-title>No history</ion-card-title>
       </ion-card-header>
     </ion-card>
 
-    <ion-card *ngFor="let parking of parkingHistory">
+    <!-- Search state: No results found -->
+    <ion-card *ngIf="filteredParkingHistory.length === 0 && searchTerm.trim()" class="no-history-card">
+      <ion-card-header>
+        <ion-card-title>No results found</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <!-- Display parking history -->
+    <ion-card *ngFor="let parking of filteredParkingHistory">
       <div class="card-content">
         <div class="text-content">
           <ion-card-header>
