@@ -57,49 +57,7 @@ ion-content {
 
 /* Removed styles related to user image and username */
 
-/* Style for Recent Parking section */
-.recent-parking-container {
-  display: flex;
-  overflow-x: auto;             /* Enable horizontal scrolling */
-  scroll-snap-type: x mandatory;/* Smooth snap scrolling */
-  padding-bottom: 10px;
-  width: 100%;                  /* Ensure it takes full width */
-}
-
-.recent-parking-container::-webkit-scrollbar {
-  display: none; /* Hide scrollbar for a cleaner look */
-}
-
-.recent-parking-card {
-  width: 250px;
-  height: 290px;
-  background-color: #D9D9D9; /* Background color */
-  border-radius: 40px;        /* Rounded corners */
-  margin-right: 15px;         /* Space between cards */
-  flex: 0 0 auto;             /* Prevent shrinking of cards */
-  scroll-snap-align: start;   /* Cards will snap to the start on scroll */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
-  transition: transform 0.3s ease;          /* Smooth hover effect */
-}
-
-/* Hover effect for Recent Parking cards */
-.recent-parking-card:hover {
-  transform: scale(1.05);    /* Slight zoom on hover */
-}
-
-/* Text styles within Recent Parking cards */
-ion-card-title {
-  color: #000;
-  font-size: 13px;
-  font-weight: bold;
-}
-ion-card-subtitle {
-  color: #000;
-  font-size: 14px;
-}
-ion-card-content {
-  font-size: 12px;
-}
+/* Removed styles for Recent Parking section */
 
 /* Removed old SCSS for Favourite Parking section */
 .colspace {
