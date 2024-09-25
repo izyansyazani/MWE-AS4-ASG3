@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { UserService } from '../services/user.service'; // Ensure this path is correct
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-profile-edit',
@@ -20,11 +20,19 @@ export class ProfileEditPage implements OnInit {
     phone: '',
   };
 
-  constructor(private router: Router, private userService: UserService) {}
+  constructor(private router: Router, private userService: UserService) {
+    // Check if state was passed and set user data
+    const navigation = this.router.getCurrentNavigation();
+    if (navigation && navigation.extras.state) {
+      this.user = navigation.extras.state['user'];
+    }
+  }
 
   ngOnInit() {
-    // Load user data from the service
-    this.user = this.userService.getUserData();
+    // Load user data from the service if not passed
+    if (!this.user.name) {
+      this.user = this.userService.getUserData();
+    }
     this.profileImage = this.userService.getProfileImage();
   }
 
@@ -40,10 +48,8 @@ export class ProfileEditPage implements OnInit {
   }
 
   saveProfile() {
-    // Save user data to the service
     this.userService.setUserData(this.user);
     this.userService.setProfileImage(this.profileImage);
-
     console.log('Profile saved', this.user);
     this.router.navigate(['/userprofile']); // Navigate back to user profile
   }
