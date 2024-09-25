@@ -21,6 +21,7 @@ import {
   IonAvatar,
 } from '@ionic/angular/standalone';
 import { AuthServiceService } from '../services/auth-service.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-userprofile',
@@ -63,7 +64,8 @@ export class UserprofilePage implements OnInit {
   constructor(
     private router: Router,
     private alertController: AlertController,
-    private authService: AuthServiceService
+    private authService: AuthServiceService,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
@@ -79,11 +81,19 @@ export class UserprofilePage implements OnInit {
     try {
       const user = await this.authService.getProfile();
       if (user) {
+        let profileImage = this.userService.getProfileImage();
+        if (profileImage instanceof ArrayBuffer) {
+          // Convert ArrayBuffer to string (Base64)
+          profileImage = btoa(
+            String.fromCharCode(...new Uint8Array(profileImage))
+          );
+        }
+
         this.currentUser = {
           name: user.displayName || 'Anonymous',
           email: user.email || 'No email provided',
           userId: user.uid,
-          profilePicture: user.photoURL || null, // Ensure this property exists or set it to null
+          profilePicture: profileImage || user.photoURL || null, // Ensure a fallback if photoURL is not present
         };
       }
     } catch (error) {
