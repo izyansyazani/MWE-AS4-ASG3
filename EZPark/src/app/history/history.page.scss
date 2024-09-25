@@ -35,6 +35,13 @@ ion-card {
   height: 150px; /* Adjust height as needed */
 }
 
+.no-history-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px; /* Adjust height as needed */
+}
+
 .card-content {
   display: flex;
   justify-content: space-between; /* Space between text and image */
@@ -64,15 +71,21 @@ ion-card-title {
   font-weight: bold;
   font-size: 16px;
   margin-bottom: 5px;
+  color: #000; /* Change title color to black */
+  text-align: center; /* Center the text */
 }
 
 ion-card-subtitle {
   font-size: 14px;
-  color: #888;
+  color: #000; /* Change subtitle color to black */
 }
 
 ion-card-content {
   padding: 10px;
+}
+
+ion-card-content p {
+  color: #000; /* Change duration time color to black */
 }
 
 ion-card-content ion-button {
@@ -81,7 +94,7 @@ ion-card-content ion-button {
   --color: #000 !important; /* Change button font color to black */
   --border-radius: 20px !important; /* Add border radius */
   font-size: 10px; /* Make the text smaller */
-  height: 20px; /* Adjust button height */
+  height: 30px; /* Adjust button height */
   width: 140px; /* Adjust button width */
   outline: none; /* Remove default focus outline */
   box-shadow: none; /* Remove any box shadow */
