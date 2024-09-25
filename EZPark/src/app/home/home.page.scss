@@ -48,11 +48,24 @@ ion-content {
   display: block;
   margin: auto;
   color: #000;
+  margin-top: 20px; /* Lower the button */
 }
 
 .txtpad {
   padding-top: 20px;
   padding-bottom: 10px;
+}
+
+.welcome-text {
+  text-align: center;
+  color: #000;
+  margin-top: 20px; /* Add some space above the text */
+}
+
+.sub-welcome-text {
+  text-align: center;
+  color: #000;
+  margin-top: 10px; /* Add some space above the button */
 }
 
 /* Removed styles related to user image and username */
