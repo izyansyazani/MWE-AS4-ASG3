@@ -48,7 +48,12 @@ import { AuthServiceService } from '../services/auth-service.service';
   ],
 })
 export class UserprofilePage implements OnInit {
-  currentUser = {
+  currentUser: {
+    name: string;
+    email: string;
+    userId: string;
+    profilePicture: string | null;
+  } = {
     name: '',
     email: '',
     userId: '',
@@ -75,8 +80,13 @@ export class UserprofilePage implements OnInit {
       const user = await this.authService.getProfile();
       if (user) {
         this.currentUser.name = user.displayName || 'Anonymous';
-        this.currentUser.email = user.email || 'No email provided'; // Added email assignment
+        this.currentUser.email = user.email || 'No email provided';
         this.currentUser.userId = user.uid;
+        this.currentUser.profilePicture =
+          (user as any).profilePicture || 'assets/default-avatar.png'; // Set to default if missing
+
+        // Log the current user after loading
+        console.log('Current User Loaded:', this.currentUser);
       }
     } catch (error) {
       console.error('Error fetching user profile:', error);
@@ -84,8 +94,9 @@ export class UserprofilePage implements OnInit {
   }
 
   profileEdit() {
-    console.log('Edit Profile button clicked');
-    this.router.navigate(['/profile-edit']);
+    this.router.navigate(['/profile-edit'], {
+      state: { user: this.currentUser }, // Pass the current user data
+    });
   }
 
   parkingHistory() {
