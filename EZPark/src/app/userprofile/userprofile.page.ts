@@ -79,14 +79,12 @@ export class UserprofilePage implements OnInit {
     try {
       const user = await this.authService.getProfile();
       if (user) {
-        this.currentUser.name = user.displayName || 'Anonymous';
-        this.currentUser.email = user.email || 'No email provided';
-        this.currentUser.userId = user.uid;
-        this.currentUser.profilePicture =
-          (user as any).profilePicture || 'assets/default-avatar.png'; // Set to default if missing
-
-        // Log the current user after loading
-        console.log('Current User Loaded:', this.currentUser);
+        this.currentUser = {
+          name: user.displayName || 'Anonymous',
+          email: user.email || 'No email provided',
+          userId: user.uid,
+          profilePicture: user.photoURL || null, // Ensure this property exists or set it to null
+        };
       }
     } catch (error) {
       console.error('Error fetching user profile:', error);
