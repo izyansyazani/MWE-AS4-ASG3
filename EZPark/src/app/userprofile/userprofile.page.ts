@@ -78,24 +78,23 @@ export class UserprofilePage implements OnInit {
 
   // Fetch the current user's profile
   // userprofile.page.ts
+  // src/app/userprofile/userprofile.page.ts
   async loadCurrentUser() {
-    const user = await this.authService.getProfile();
-    if (user) {
-      this.currentUser = {
-        name: user.displayName || 'Anonymous',
-        email: user.email || 'No email provided',
-        userId: user.uid,
-        profilePicture:
-          this.userService.getProfileImage() ||
-          (user.photoURL ? user.photoURL : null),
-      };
-    } else {
-      // If user is not logged in, load data from UserService
-      this.currentUser = {
-        ...this.userService.getUserData(),
-        profilePicture: this.userService.getProfileImage(), // Set the profile picture from local storage
-        userId: '', // Set userId to empty if logged out
-      };
+    try {
+      const user = await this.authService.getProfile();
+      if (user) {
+        this.currentUser = {
+          name: user.displayName || 'Anonymous',
+          email: user.email || 'No email provided',
+          userId: user.uid,
+          profilePicture:
+            this.userService.getProfileImage() || user.photoURL || null,
+        };
+      } else {
+        this.currentUser = this.userService.getUserData();
+      }
+    } catch (error) {
+      console.error('Error fetching user profile:', error);
     }
   }
 
