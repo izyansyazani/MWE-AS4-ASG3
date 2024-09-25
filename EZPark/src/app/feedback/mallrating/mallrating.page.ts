@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
 import { AuthServiceService } from '../../services/auth-service.service'; // Adjust based on actual file location
+import { UserService } from '../../services/user.service'; // Import UserService
 
 import {
   IonContent,
@@ -51,7 +52,8 @@ export class MallratingPage implements OnInit {
   constructor(
     private router: Router,
     private changeDetectorRef: ChangeDetectorRef,
-    private authService: AuthServiceService // Inject AuthService
+    private authService: AuthServiceService, // Inject AuthService
+    private userService: UserService // Inject UserService
   ) {}
 
   ngOnInit() {
@@ -66,7 +68,7 @@ export class MallratingPage implements OnInit {
       if (user) {
         this.currentUser.username = user.displayName || 'Anonymous';
         this.currentUser.profilePicture =
-          user.photoURL || '../assets/defaultuser.png';
+          this.userService.getProfileImage() || '../assets/defaultuser.png';
         this.currentUser.userId = user.uid;
       }
     } catch (error) {
