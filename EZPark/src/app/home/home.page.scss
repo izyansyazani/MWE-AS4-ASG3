@@ -68,11 +68,6 @@ ion-content {
   margin-top: 10px; /* Add some space above the button */
 }
 
-/* Removed styles related to user image and username */
-
-/* Removed styles for Recent Parking section */
-
-/* Removed old SCSS for Favourite Parking section */
 .colspace {
   padding: 0 10px;
 }
@@ -165,5 +160,40 @@ ion-menu-button {
   
   ion-menu-button {
     font-size: 50px;
+  }
+
+  .logo {
+    width: 50px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+  }
+  
+  @media only screen and (max-width: 600px) {
+    .logo {
+      width: 30px; /* Smaller size for mobile screens */
+    }
+  }
+}
+
+/* Add styles for the logo image */
+.logo-img {
+  width: 100px; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+  display: block;
+  margin: 20px auto 0; /* Center horizontally and add margin at the top */
+}
+
+.center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full viewport height */
+  text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .logo-img {
+    width: 50px; /* Smaller size for mobile screens */
+    margin: 10px auto 0; /* Adjust margin for mobile screens */
   }
 }
