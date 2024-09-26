@@ -1,4 +1,5 @@
 <ion-content>
+  <!-- Side Menu -->
   <ion-menu contentId="main-content">
     <ion-header>
       <ion-toolbar>
@@ -25,6 +26,7 @@
     </ion-content>
   </ion-menu>
 
+  <!-- Main Content -->
   <div class="ion-page" id="main-content">
     <ion-buttons slot="start">
       <ion-menu-button class="colorblack"></ion-menu-button>
@@ -38,37 +40,47 @@
             <h2 class="welcome-text">Welcome!</h2>
             <h3 class="sub-welcome-text">Start by finding a parking spot</h3>
             <ion-button id="centerbtn" shape="round" [routerLink]="['/parkingspots']">Find Parking</ion-button>
-          </ion-col>
-        </ion-row>
-
-        <!-- Favorite Parking -->
-        <ion-row>
-          <ion-col>
-            <ion-text>
-              <h1 class="colorblack txtpad">Favorite Parking</h1>
-            </ion-text>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col size="12" class="flex-container">
-            <ion-card class="cardsize2" *ngFor="let parking of favouriteParking$ | async">
-              <div class="card-content">
-                <div class="card-text">
-                  <ion-card-header>
-                    <ion-card-title class="colorblack">{{ parking.title }}</ion-card-title>
-                  </ion-card-header>
-                  <ion-card-content>
-                    <ion-button class="ratebtn" shape="round" [routerLink]="['/rate-hours']">$Rate/h</ion-button>
-                    <br /><br />
-                    <ion-button class="spacebtn" shape="round" [routerLink]="['/parkingspots']">{{ parking.freeSpace }} Free Space</ion-button>
-                  </ion-card-content>
-                </div>
-                <img class="img" [alt]="parking.title" [src]="parking.imageUrl" />
-              </div>
-            </ion-card>
+            
+            <!-- Accordion Section added below the parking button -->
+            <ion-accordion-group class="accordion-group">
+              <ion-accordion value="first">
+                <ion-item slot="header" class="accordion-header">
+                  <ion-label>The Mall</ion-label>
+                </ion-item>
+                <div class="ion-padding accordion-content" slot="content">First Content</div>
+              </ion-accordion>
+              <ion-accordion value="second">
+                <ion-item slot="header" class="accordion-header">
+                  <ion-label>Airport Mall</ion-label>
+                </ion-item>
+                <div class="ion-padding accordion-content" slot="content">Second Content</div>
+              </ion-accordion>
+              <ion-accordion value="third">
+                <ion-item slot="header" class="accordion-header">
+                  <ion-label>Times Square</ion-label>
+                </ion-item>
+                <div class="ion-padding accordion-content" slot="content">Third Content</div>
+              </ion-accordion>
+              <ion-accordion value="fourth">
+                <ion-item slot="header" class="accordion-header">
+                  <ion-label>Yayasan</ion-label>
+                </ion-item>
+                <div class="ion-padding accordion-content" slot="content">Fourth Content</div>
+              </ion-accordion>
+              <ion-accordion value="fifth">
+                <ion-item slot="header" class="accordion-header">
+                  <ion-label>Mabohai</ion-label>
+                </ion-item>
+                <div class="ion-padding accordion-content" slot="content">Fifth Content</div>
+              </ion-accordion>
+              <ion-accordion value="sixth">
+                <ion-item slot="header" class="accordion-header">
+                  <ion-label>Aman Hills</ion-label>
+                </ion-item>
+                <div class="ion-padding accordion-content" slot="content">Sixth Content</div>
+              </ion-accordion>
+            </ion-accordion-group>
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-content>
-  </div>
-</ion-content>

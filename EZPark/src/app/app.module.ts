@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Router, RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -15,7 +15,6 @@ import { environment } from '../environments/environment';
 // import { AngularFireModule } from '@angular/fire';
 // import { SignupPage } from './signup/signup.page';
 // import { routes } from './app.routes';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 // import { RouterModule } from '@angular/router';
 // import { LoginPage } from './login/login.page';
 
@@ -42,6 +41,6 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA], // Added CUSTOM_ELEMENTS_SCHEMA here
 })
 export class AppModule {}

@@ -191,7 +191,10 @@ import {
   IonMenu,
   IonApp,
   IonThumbnail,
+  IonAccordionGroup, // Add this import
+  IonAccordion, // Add this import
 } from '@ionic/angular/standalone';
+
 import { FavoriteService } from '../services/favorite.service'; // Adjust the import path
 
 interface ParkingLocation {
@@ -235,15 +238,19 @@ interface ParkingLocation {
     IonApp,
     IonThumbnail,
     RouterModule,
+    IonAccordionGroup, // Include this
+    IonAccordion, // Include this
   ],
 })
 export class HomePage implements OnInit {
   arthurText = 'Arthur B.';
   findParkingText = 'Find Parking';
+  recentParkingTitle = 'Recent Parking';
   favouriteParkingTitle = 'Favourite Parking';
 
+  recentParking$: Observable<ParkingLocation[]> | undefined;
   favouriteParking$: Observable<ParkingLocation[]> | undefined;
-  favoriteParkingSpots: string[] = [];
+  favoriteParkingSpots: string[] = []; // Holds the IDs/names of favorite spots
 
   constructor(
     private firestore: Firestore,
@@ -251,6 +258,7 @@ export class HomePage implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.recentParking$ = this.getRecentParking();
     this.favouriteParking$ = this.getFavouriteParking();
 
     // Subscribe to favorite parking spots
@@ -259,6 +267,13 @@ export class HomePage implements OnInit {
     });
 
     console.log('HomePage initialized');
+  }
+
+  getRecentParking(): Observable<ParkingLocation[]> {
+    const recentParkingCollection = collection(this.firestore, 'recentParking');
+    return collectionData(recentParkingCollection) as Observable<
+      ParkingLocation[]
+    >;
   }
 
   getFavouriteParking(): Observable<ParkingLocation[]> {
