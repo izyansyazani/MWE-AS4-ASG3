@@ -1,31 +1,32 @@
+// src/app/services/user.service.ts
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private userDataKey = 'userData'; // Key for user data in local storage
-  private profileImageKey = 'profileImage'; // Key for profile image in local storage
+  private userDataKey = 'userData';
 
   getUserData() {
-    const userData = localStorage.getItem(this.userDataKey);
-    return userData ? JSON.parse(userData) : { name: '', email: '', phone: '' }; // Default value
+    const data = localStorage.getItem(this.userDataKey);
+    return data
+      ? JSON.parse(data)
+      : { name: '', email: '', phone: '', profilePicture: null };
   }
 
   setUserData(data: any) {
     localStorage.setItem(this.userDataKey, JSON.stringify(data));
   }
 
+  // Handle profile image similarly
   getProfileImage() {
-    return localStorage.getItem(this.profileImageKey); // Return the profile image URL from local storage
+    const data = this.getUserData();
+    return data.profilePicture;
   }
 
   setProfileImage(image: string | ArrayBuffer | null) {
-    localStorage.setItem(this.profileImageKey, image as string); // Store the image in local storage
-  }
-
-  clearUserData() {
-    localStorage.removeItem(this.userDataKey);
-    localStorage.removeItem(this.profileImageKey);
+    const userData = this.getUserData();
+    userData.profilePicture = image;
+    this.setUserData(userData);
   }
 }

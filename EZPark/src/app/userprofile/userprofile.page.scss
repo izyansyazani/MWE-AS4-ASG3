@@ -18,9 +18,15 @@ body {
   overflow: hidden;
 }
 
-ion-card-title,
+ion-card-title {
+  text-align: center;
+  color: #272729; /* Change the color of the username for visibility */
+  font-size: 24px; /* Make the font larger */
+}
+
 ion-card-subtitle {
   text-align: center;
+  color: #555; /* Slightly darker color for better visibility */
 }
 
 ion-item {
