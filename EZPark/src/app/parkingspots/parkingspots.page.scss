@@ -63,17 +63,6 @@ ion-item {
   align-items: center;
 }
 
-ion-checkbox {
-  --background: #E0E0E0; /* Background color when unchecked */
-  --border-color: #8888D7; /* Border color */
-  --color-checked: #8888D7; /* Background color when checked */
-  --checkmark-color: white; /* Checkmark color */
-  --checkmark-width: 1px; /* Ensure checkmark is visible */
-  --checkmark-opacity: 1; /* Ensure checkmark is fully opaque */
-  --padding: 0; /* Remove default padding */
-  --size: 20px; /* Adjust size if needed */
-}
-
 ion-label {
   font-size: 14px;
   color: #8888D7 !important; /* Change label color */
