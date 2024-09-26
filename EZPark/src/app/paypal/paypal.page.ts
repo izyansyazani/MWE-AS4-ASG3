@@ -112,8 +112,8 @@ export class PaypalPage implements OnInit {
         onApprove: (data: any, actions: any) => {
           return actions.order.capture().then((details: any) => {
             if (details.status === 'COMPLETED') {
-              alert('Payment is successful');
-              this.navCtrl.navigateRoot('/home');
+              console.log('Payment Details: ', details);
+              console.log('Reservation Details: ', this.bookingDetails);
             }
           });
         },
