@@ -2,58 +2,83 @@ ion-content {
   display: flex;
   flex-direction: column; /* Stack children vertically */
   justify-content: space-between; /* Space items evenly */
-  background-color: #FBF3EF !important; /* Ensure content background color */
+  --background: linear-gradient(180deg, #8888D7, #D9D9D9, #FBF3EF);
+  background: linear-gradient(180deg, #8888D7, #D9D9D9, #FBF3EF);
+  background-size: 100% 300%; /* Larger size for smooth transition */
+  animation: gradientMove 10s linear infinite; /* Adjust speed as needed */
 }
 
 body {
-  background-color: #FBF3EF;
+  background-color: #FBF3EF; /* Retain the background color for the body */
+}
+
+.title-container {
+  text-align: center; /* Center align text */
+  margin-top: 10px; /* Add space above the text */
 }
 
 .profile-avatar {
   display: block;
   margin: 0 auto;
-  width: 100px;
-  height: 100px;
+  width: 150px; /* Increased width */
+  height: 150px; /* Increased height */
   border-radius: 50%;
   overflow: hidden;
+  border: 3px solid #272729; /* Optional: border color for emphasis */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Optional: shadow for depth */
 }
 
 ion-card-title {
   text-align: center;
   color: #272729; /* Change the color of the username for visibility */
   font-size: 24px; /* Make the font larger */
+  font-weight: bold; /* Make the username bold */
 }
 
 ion-card-subtitle {
   text-align: center;
   color: #555; /* Slightly darker color for better visibility */
+  font-weight: bold; /* Make the email bold */
+  font-size: 18px; /* Make the font larger */
 }
 
-ion-item {
-  --padding-start: 0;
-  --inner-padding-end: 0;
-  --min-height: 44px;
-  --border-color: transparent;
-  margin-bottom: 24px; /* Increased space between ion-items */
-  padding: 12px 16px; /* Added padding for better click area and aesthetics */
+.options-container {
+  display: flex;
+  flex-direction: column; /* Stack spans vertically */
+  align-items: center; /* Center the spans */
+  margin-top: 20px; /* Add space above the options */
 }
 
-ion-item ion-label {
+.custom-label {
   font-weight: bold; /* Make the label bold */
+  color: #272729; /* Default text color */
+  display: inline; /* Maintain inline display */
+  margin: 20px 0; /* Add vertical space between spans */
+  cursor: pointer; /* Change cursor to pointer for better UX */
+  font-size: 24px; /* Increase text size */
+  transition: color 0.3s ease, background-color 0.3s ease; /* Smooth transition for hover effects */
 }
 
-ion-item ion-icon {
-  margin-right: 12px; /* Adjusted margin for icons */
+.custom-label:hover {
+  background-color: rgba(0, 123, 255, 0.1); /* Light blue background on hover */
+  color: #0056b3 !important; /* Change text color on hover */
 }
 
-#back {
-  width: 24px;
-  height: 24px;
-  margin-top: 20px;
+
+.logout {
+  color: red; /* Make the logout option red */
 }
 
-ion-header ion-toolbar {
-  --background: #FBF3EF; /* Set header background color */
+.span-color {
+  color: #272729;
+}
+
+ion-footer {
+  --background: transparent; /* Remove footer background color */
+}
+
+ion-toolbar {
+  --background: transparent; /* Remove toolbar background color */
 }
 
 ion-title {
@@ -62,10 +87,8 @@ ion-title {
   color: black;
 }
 
-ion-card {
-  background-color: #FBF3EF; /* Set card background color */
-}
-
-#top {
-  background-color: #FBF3EF; /* Set top section background color */
+#back {
+  width: 24px;
+  height: 24px;
+  margin-top: 20px;
 }
