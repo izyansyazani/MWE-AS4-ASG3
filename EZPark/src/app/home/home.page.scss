@@ -1,3 +1,21 @@
+.accordion-header {
+  --background: #8888E7;
+  --color: white; /* Optional: Set text color */
+}
+
+.accordion-group {
+  margin-top: 20px; /* Adjust the value as needed */
+  border-radius: 10px;
+}
+
+.accordion-content {
+  --background: #D9D9D9 !important; /* Ensures the background is applied */
+  background-color: #D9D9D9 !important; /* Fallback background color */
+  color: black !important; /* Ensures the text color is black */
+  padding: 10px; /* Optional: Add padding */
+}
+
+
 /* Define the gradient animation */
 @keyframes gradientMove {
   0% {
