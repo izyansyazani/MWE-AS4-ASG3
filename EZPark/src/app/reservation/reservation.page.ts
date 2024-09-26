@@ -123,4 +123,10 @@ export class ReservationPage implements OnInit {
   goToBack() {
     this.location.back();
   }
+
+  areInputsFilled() {
+    return Object.values(this.bookingDetails).every((value) => {
+      return value !== '' && value !== null && value !== undefined;
+    });
+  }
 }
