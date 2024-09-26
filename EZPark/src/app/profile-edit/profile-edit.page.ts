@@ -49,7 +49,7 @@ export class ProfileEditPage implements OnInit {
 
   saveProfile() {
     this.userService.setUserData(this.user);
-    this.userService.setProfileImage(this.profileImage); // Save the profile image
+    this.userService.setProfileImage(this.profileImage);
 
     console.log('Profile saved', this.user);
     this.router.navigate(['/userprofile']); // Navigate back to user profile
