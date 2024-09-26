@@ -11,16 +11,35 @@
     />
   </div>
 
-  <ion-item lines="full" class="separated-item">
+  <div lines="full" class="separated-item">
+    <div><ion-label>Name</ion-label></div>
+    <ion-input
+      [(ngModel)]="user.name"
+      placeholder="Enter your name"
+      required
+    ></ion-input>
+  </div>
+
+  <div lines="full" class="separated-item">
+    <div><ion-label>Email</ion-label></div>
+    <ion-input
+      [(ngModel)]="user.email"
+      placeholder="Enter your email"
+      type="email"
+      required
+    ></ion-input>
+  </div>
+
+  <!-- <ion-item lines="full" class="separated-item">
     <ion-label position="floating">Name</ion-label>
     <ion-input
       [(ngModel)]="user.name"
       placeholder="Enter your name"
       required
     ></ion-input>
-  </ion-item>
+  </ion-item> -->
 
-  <ion-item lines="full" class="separated-item">
+  <!-- <ion-item lines="full" class="separated-item">
     <ion-label position="floating">Email</ion-label>
     <ion-input
       [(ngModel)]="user.email"
@@ -28,7 +47,7 @@
       type="email"
       required
     ></ion-input>
-  </ion-item>
+  </ion-item> -->
 
   <!-- <ion-item lines="full" class="separated-item">
     <ion-label position="floating">Phone</ion-label>
