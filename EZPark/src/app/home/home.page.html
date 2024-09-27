@@ -80,7 +80,7 @@
                   <ion-button
                     class="favorite-btn"
                     shape="round"
-                    [disabled]="favoriteSpot?.location === 'The Mall, Gadong'"
+                    [disabled]="isFavorite('The Mall, Gadong')"
                     (click)="toggleFavorite('The Mall, Gadong')"
                     >Save to favorite</ion-button
                   >
@@ -107,7 +107,7 @@
                   <ion-button
                     class="favorite-btn"
                     shape="round"
-                    [disabled]="favoriteSpot?.location === 'Airport Mall'"
+                    [disabled]="isFavorite('Airport Mall')"
                     (click)="toggleFavorite('Airport Mall')"
                     >Save to favorite</ion-button
                   >
@@ -134,7 +134,7 @@
                   <ion-button
                     class="favorite-btn"
                     shape="round"
-                    [disabled]="favoriteSpot?.location === 'Times Square'"
+                    [disabled]="isFavorite('Times Square')"
                     (click)="toggleFavorite('Times Square')"
                     >Save to favorite</ion-button
                   >
@@ -161,7 +161,7 @@
                   <ion-button
                     class="favorite-btn"
                     shape="round"
-                    [disabled]="favoriteSpot?.location === 'Yayasan Complex'"
+                    [disabled]="isFavorite('Yayasan Complex')"
                     (click)="toggleFavorite('Yayasan Complex')"
                     >Save to favorite</ion-button
                   >
@@ -188,7 +188,7 @@
                   <ion-button
                     class="favorite-btn"
                     shape="round"
-                    [disabled]="favoriteSpot?.location === 'Mabohai Shopping Complex'"
+                    [disabled]="isFavorite('Mabohai Shopping Complex')"
                     (click)="toggleFavorite('Mabohai Shopping Complex')"
                     >Save to favorite</ion-button
                   >
@@ -215,7 +215,7 @@
                   <ion-button
                     class="favorite-btn"
                     shape="round"
-                    [disabled]="favoriteSpot?.location === 'Aman Hills Brunei'"
+                    [disabled]="isFavorite('Aman Hills Brunei')"
                     (click)="toggleFavorite('Aman Hills Brunei')"
                     >Save to favorite</ion-button
                   >
@@ -232,36 +232,35 @@
             </ion-accordion-group>
             <!-- Your Favourite Section -->
             <h1 class="favorite-heading"><strong>Your Favourite</strong></h1>
-            <div *ngIf="favoriteSpot">
-              <ion-card>
+            <div *ngIf="favoriteSpots.length > 0; else noFavorites">
+              <ion-card *ngFor="let spot of favoriteSpots">
                 <img
-                  [src]="favoriteSpot.imageUrl"
-                  [alt]="favoriteSpot.title + ' Image'"
+                  [src]="spot.imageUrl"
+                  [alt]="spot.title + ' Image'"
                   style="width: 100%; height: auto"
                 />
                 <ion-card-header>
-                  <ion-card-title>{{ favoriteSpot.title }}</ion-card-title>
+                  <ion-card-title>{{ spot.title }}</ion-card-title>
                 </ion-card-header>
                 <ion-card-content>
-                  <!-- Updated Buttons -->
                   <ion-button
                     class="remove-favorite-btn"
                     shape="round"
-                    (click)="removeFavorite()"
+                    (click)="removeFavorite(spot.location)"
                     >Remove</ion-button
                   >
                   <ion-button
                     class="reserve-btn"
                     shape="round"
-                    [routerLink]="['/reservation-page', favoriteSpot.location]"
+                    [routerLink]="['/reservation-page', spot.location]"
                     >Reserve</ion-button
                   >
                 </ion-card-content>
               </ion-card>
             </div>
-            <div *ngIf="!favoriteSpot">
+            <ng-template #noFavorites>
               <p class="no-favorite-text">No favorite spot selected.</p>
-            </div>
+            </ng-template>
           </ion-col>
         </ion-row>
       </ion-grid>

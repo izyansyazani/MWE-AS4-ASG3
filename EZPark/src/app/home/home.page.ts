@@ -80,15 +80,13 @@ interface ParkingLocation {
   ],
 })
 export class HomePage implements OnInit {
-  arthurText = 'Arthur B.';
   findParkingText = 'Find Parking';
-  recentParkingTitle = 'Recent Parking';
   favouriteParkingTitle = 'Favourite Parking';
 
   recentParking$: Observable<ParkingLocation[]> | undefined;
   favouriteParking$: Observable<ParkingLocation[]> | undefined;
   favoriteParkingSpots: string[] = []; // Holds the IDs/names of favorite spots
-  favoriteSpot: ParkingLocation | null = null; // Holds the current favorite spot
+  favoriteSpots: ParkingLocation[] = []; // Holds the current favorite spots
 
   constructor(
     private firestore: Firestore,
@@ -127,7 +125,7 @@ export class HomePage implements OnInit {
             switch (spot.name) {
               case 'The Mall, Gadong':
                 return {
-                  title: 'Shopping Mall Gadong',
+                  title: 'The Mall Gadong',
                   location: 'The Mall, Gadong',
                   imageUrl: '../assets/Themall.jpg',
                 };
@@ -171,14 +169,21 @@ export class HomePage implements OnInit {
   }
 
   toggleFavorite(mallName: string) {
-    if (this.favoriteSpot && this.favoriteSpot.location === mallName) {
-      this.favoriteSpot = null;
-    } else {
-      const spot = this.getSpotByName(mallName);
-      if (spot) {
-        this.favoriteSpot = spot;
+    const spot = this.getSpotByName(mallName);
+    if (spot) {
+      const index = this.favoriteSpots.findIndex(
+        (fav) => fav.location === mallName
+      );
+      if (index > -1) {
+        this.favoriteSpots.splice(index, 1);
+      } else {
+        this.favoriteSpots.push(spot);
       }
     }
+  }
+
+  isFavorite(location: string): boolean {
+    return this.favoriteSpots.some((spot) => spot.location === location);
   }
 
   getSpotByName(name: string): ParkingLocation | null {
@@ -243,7 +248,9 @@ export class HomePage implements OnInit {
     }
   }
 
-  removeFavorite() {
-    this.favoriteSpot = null;
+  removeFavorite(location: string) {
+    this.favoriteSpots = this.favoriteSpots.filter(
+      (spot) => spot.location !== location
+    );
   }
 }
