@@ -254,7 +254,7 @@ ion-menu-button {
 
 /* Add styles for the favorite button */
 .favorite-btn {
-  --background:  #8888e7;
+  --background: #8888e7;
   color: #000;
   margin-top: 10px;
   display: block;
@@ -263,4 +263,13 @@ ion-menu-button {
   border-radius: 10px;
   font-size: 14px; /* Adjusted font size */
   text-align: center;
+}
+
+/* Add styles for the "Your Favorite" heading */
+.favorite-heading {
+  text-align: center;
+  color: #000; /* Set the text color to black */
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: bold;
 }
