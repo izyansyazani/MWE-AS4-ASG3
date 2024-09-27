@@ -296,10 +296,14 @@ ion-card ion-button {
   text-align: center; /* Center the title */
 }
 
-.remove-favorite-btn,
 .reserve-btn {
   --background: #d9d9d9;
   color: #000; /* Optional: Set text color to black */
+}
+
+.remove-favorite-btn {
+  color: #fff; /* Set text color to white */
+  --background: #A50719; /* Set background color to #A50719 */
 }
 
 .no-favorite-text {

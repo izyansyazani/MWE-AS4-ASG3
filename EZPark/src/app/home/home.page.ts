@@ -248,6 +248,25 @@ export class HomePage implements OnInit {
     }
   }
 
+  getReserveLink(location: string): string {
+    switch (location) {
+      case 'The Mall, Gadong':
+        return '/mall';
+      case 'Times Square':
+        return '/timessquare';
+      case 'Airport Mall':
+        return '/airportmall';
+      case 'Yayasan Complex':
+        return '/yayasan';
+      case 'Mabohai Shopping Complex':
+        return '/mabohai';
+      case 'Aman Hills Brunei':
+        return '/amanhill';
+      default:
+        return '/';
+    }
+  }
+
   removeFavorite(location: string) {
     this.favoriteSpots = this.favoriteSpots.filter(
       (spot) => spot.location !== location

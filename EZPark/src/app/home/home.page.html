@@ -252,7 +252,7 @@
                   <ion-button
                     class="reserve-btn"
                     shape="round"
-                    [routerLink]="['/reservation-page', spot.location]"
+                    [routerLink]="getReserveLink(spot.location)"
                     >Reserve</ion-button
                   >
                 </ion-card-content>
