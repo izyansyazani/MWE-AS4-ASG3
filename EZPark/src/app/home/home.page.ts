@@ -1,9 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { RouterModule, Router } from '@angular/router';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import {
+  Firestore,
+  collection,
+  collectionData,
+  doc,
+  setDoc,
+  deleteDoc,
+} from '@angular/fire/firestore';
 import {
   IonGrid,
   IonText,
@@ -35,6 +42,7 @@ import {
 } from '@ionic/angular/standalone';
 
 import { FavoriteService } from '../services/favorite.service'; // Adjust the import path
+import { AuthServiceService } from '../services/auth-service.service'; // Adjust the import path
 
 interface ParkingLocation {
   title: string;
@@ -79,7 +87,7 @@ interface ParkingLocation {
     IonAccordion,
   ],
 })
-export class HomePage implements OnInit {
+export class HomePage implements OnInit, OnDestroy {
   findParkingText = 'Find Parking';
   favouriteParkingTitle = 'Favourite Parking';
 
@@ -87,10 +95,12 @@ export class HomePage implements OnInit {
   favouriteParking$: Observable<ParkingLocation[]> | undefined;
   favoriteParkingSpots: string[] = []; // Holds the IDs/names of favorite spots
   favoriteSpots: ParkingLocation[] = []; // Holds the current favorite spots
+  private favoriteSpotsSubscription: Subscription | undefined;
 
   constructor(
     private firestore: Firestore,
     private favoriteService: FavoriteService,
+    private authService: AuthServiceService,
     private router: Router
   ) {}
 
@@ -103,7 +113,51 @@ export class HomePage implements OnInit {
       this.favoriteParkingSpots = favorites;
     });
 
+    this.loadFavoriteSpots();
+
     console.log('HomePage initialized');
+  }
+
+  ngOnDestroy() {
+    // Unsubscribe from the favorite spots subscription when the component is destroyed
+    if (this.favoriteSpotsSubscription) {
+      this.favoriteSpotsSubscription.unsubscribe();
+    }
+  }
+
+  loadFavoriteSpots() {
+    this.authService.getProfile().then((user) => {
+      if (!user) {
+        console.error('User not authenticated');
+        return;
+      }
+
+      console.log(`Loading favorite spots for user: ${user.uid}`);
+
+      // Clear previous favorites
+      this.favoriteSpots = [];
+
+      // Access the user-specific favorites
+      const favoriteParkingCollection = collection(
+        this.firestore,
+        `users/${user.uid}/favoriteParking`
+      );
+      this.favoriteSpotsSubscription = collectionData(
+        favoriteParkingCollection
+      ).subscribe(
+        (favorites: any[]) => {
+          this.favoriteSpots = favorites.map((fav) => ({
+            title: fav.title,
+            location: fav.location,
+            imageUrl: fav.imageUrl,
+          }));
+          console.log('Favorite spots loaded:', this.favoriteSpots);
+        },
+        (error) => {
+          console.error('Error loading favorite spots: ', error);
+        }
+      );
+    });
   }
 
   getRecentParking(): Observable<ParkingLocation[]> {
@@ -169,21 +223,89 @@ export class HomePage implements OnInit {
   }
 
   toggleFavorite(mallName: string) {
-    const spot = this.getSpotByName(mallName);
-    if (spot) {
-      const index = this.favoriteSpots.findIndex(
-        (fav) => fav.location === mallName
-      );
-      if (index > -1) {
-        this.favoriteSpots.splice(index, 1);
-      } else {
-        this.favoriteSpots.push(spot);
+    this.authService.getProfile().then((user) => {
+      if (!user) {
+        console.error('User not authenticated');
+        return;
       }
-    }
+
+      const spot = this.getSpotByName(mallName);
+      if (spot) {
+        const index = this.favoriteSpots.findIndex(
+          (fav) => fav.location === mallName
+        );
+        if (index > -1) {
+          // If it's already a favorite, remove it
+          this.favoriteSpots.splice(index, 1);
+          this.removeFavoriteParking(user.uid, mallName); // Use the service to remove
+        } else {
+          // If it's not a favorite, add it
+          this.favoriteSpots.push(spot);
+          this.addFavoriteParking(user.uid, mallName, spot); // Use the service to add
+        }
+      }
+    });
+  }
+
+  addFavoriteParking(userId: string, mallName: string, spot: ParkingLocation) {
+    const favoriteParkingDocRef = doc(
+      this.firestore,
+      `users/${userId}/favoriteParking/${mallName}` // This path should be correct
+    );
+    setDoc(favoriteParkingDocRef, spot)
+      .then(() => {
+        console.log(
+          `Added ${mallName} to favorite parking for user: ${userId}`
+        );
+        this.favoriteService.addFavorite(mallName); // Optionally update local favorite list
+      })
+      .catch((error: any) => {
+        console.error('Error adding favorite parking: ', error);
+      });
+  }
+
+  removeFavoriteParking(userId: string, mallName: string) {
+    const favoriteParkingDocRef = doc(
+      this.firestore,
+      `users/${userId}/favoriteParking/${mallName}`
+    );
+    deleteDoc(favoriteParkingDocRef)
+      .then(() => {
+        console.log(
+          `Removed ${mallName} from favorite parking for user: ${userId}`
+        );
+        this.favoriteService.removeFavorite(mallName); // Update local favorite list
+      })
+      .catch((error: any) => {
+        console.error('Error removing favorite parking: ', error);
+      });
   }
 
   isFavorite(location: string): boolean {
     return this.favoriteSpots.some((spot) => spot.location === location);
+  }
+
+  checkIfFavorite(location: string): void {
+    this.authService.getProfile().then((user) => {
+      if (!user) {
+        console.error('User not authenticated');
+        return;
+      }
+
+      const favoriteParkingCollection = collection(
+        this.firestore,
+        `users/${user.uid}/favoriteParking`
+      );
+      collectionData(favoriteParkingCollection).subscribe(
+        (favorites: any[]) => {
+          const isFavorite = favorites.some((fav) => fav.location === location);
+          console.log(`Is ${location} a favorite?`, isFavorite);
+        },
+        (error) => {
+          console.error('Error checking if favorite: ', error);
+        }
+      );
+    });
   }
 
   getSpotByName(name: string): ParkingLocation | null {
@@ -223,29 +345,29 @@ export class HomePage implements OnInit {
     return spots.find((spot) => spot.location === name) || null;
   }
 
-  navigateToPage(mallName: string) {
-    switch (mallName) {
-      case 'The Mall, Gadong':
-        this.router.navigate(['/mall']);
-        break;
-      case 'Times Square':
-        this.router.navigate(['/timessquare']);
-        break;
-      case 'Airport Mall':
-        this.router.navigate(['/airportmall']);
-        break;
-      case 'Yayasan Complex':
-        this.router.navigate(['/yayasan']);
-        break;
-      case 'Mabohai Shopping Complex':
-        this.router.navigate(['/mabohai']);
-        break;
-      case 'Aman Hills Brunei':
-        this.router.navigate(['/amanhill']);
-        break;
-      default:
-        break;
-    }
+  removeFavorite(location: string) {
+    this.authService.getProfile().then((user) => {
+      if (!user) {
+        console.error('User not authenticated');
+        return;
+      }
+
+      this.favoriteSpots = this.favoriteSpots.filter(
+        (spot) => spot.location !== location
+      );
+      const favoriteParkingCollection = collection(
+        this.firestore,
+        `users/${user.uid}/favoriteParking`
+      );
+      const favoriteParkingDoc = doc(favoriteParkingCollection, location);
+      deleteDoc(favoriteParkingDoc)
+        .then(() => {
+          console.log(`Removed ${location} from favorite parking`);
+        })
+        .catch((error: any) => {
+          console.error('Error removing favorite parking: ', error);
+        });
+    });
   }
 
   getReserveLink(location: string): string {
@@ -267,9 +389,10 @@ export class HomePage implements OnInit {
     }
   }
 
-  removeFavorite(location: string) {
-    this.favoriteSpots = this.favoriteSpots.filter(
-      (spot) => spot.location !== location
-    );
+  signOut() {
+    this.authService.signOut().then(() => {
+      this.favoriteSpots = []; // Clear favorite spots on logout
+      console.log('User signed out');
+    });
   }
 }

@@ -11,20 +11,23 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from '@angular/fire/auth';
-import { 
-  Firestore, 
-  addDoc, 
-  collection, 
-  getDocs, 
-  query, 
-  where, 
-  deleteDoc, 
-  doc, 
-  setDoc, 
-  updateDoc, 
-  onSnapshot 
+import {
+  Firestore,
+  addDoc,
+  collection,
+  getDocs,
+  query,
+  where,
+  deleteDoc,
+  doc,
+  setDoc,
+  updateDoc,
+  onSnapshot,
+  getDoc,
+  arrayUnion,
+  arrayRemove,
 } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -75,6 +78,7 @@ export class AuthServiceService {
 
   // Get current user profile
   async getProfile(): Promise<User | null> {
+    // Ensure to return the latest user state
     return new Promise<User | null>((resolve, reject) => {
       this.auth.onAuthStateChanged(
         (user) => {
@@ -109,7 +113,13 @@ export class AuthServiceService {
   }
 
   // Save a new comment
-  async saveComment(comment: { username: string; profilePicture: string; text: string; userId: string; pageId: string }): Promise<void> {
+  async saveComment(comment: {
+    username: string;
+    profilePicture: string;
+    text: string;
+    userId: string;
+    pageId: string;
+  }): Promise<void> {
     const commentsRef = collection(this.firestore, 'comments');
     await addDoc(commentsRef, comment);
   }
@@ -119,7 +129,7 @@ export class AuthServiceService {
     const commentsRef = collection(this.firestore, 'comments');
     const q = query(commentsRef, where('pageId', '==', pageId));
     const snapshot = await getDocs(q);
-    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
   }
 
   // Delete a comment by id
@@ -129,23 +139,34 @@ export class AuthServiceService {
   }
 
   // Add a parking spot to user's favorites
-  async addFavoriteParking(userId: string, parkingSpotId: string, parkingSpotData: any): Promise<void> {
-    const favoriteDocRef = doc(this.firestore, `users/${userId}/favorites`, parkingSpotId);
+  async addFavoriteParking(
+    userId: string,
+    parkingSpotId: string,
+    parkingSpotData: any
+  ): Promise<void> {
+    const favoriteDocRef = doc(
+      this.firestore,
+      `users/${userId}/favoriteParking`,
+      parkingSpotId // Use the parkingSpotId as the document ID
+    );
     await setDoc(favoriteDocRef, parkingSpotData);
   }
 
   // Remove a parking spot from user's favorites
   async removeFavoriteParking(userId: string, parkingSpotId: string): Promise<void> {
-    const favoriteDocRef = doc(this.firestore, `users/${userId}/favorites`, parkingSpotId);
+    const favoriteDocRef = doc(this.firestore, `users/${userId}/favoriteParking`, parkingSpotId);
     await deleteDoc(favoriteDocRef);
   }
 
   // Get all favorite parking spots for a user
   getUserFavorites(userId: string): Observable<any[]> {
-    return new Observable(observer => {
-      const favoritesRef = collection(this.firestore, `users/${userId}/favorites`);
+    return new Observable((observer) => {
+      const favoritesRef = collection(this.firestore, `users/${userId}/favoriteParking`);
       const unsubscribe = onSnapshot(favoritesRef, (snapshot) => {
-        const favorites = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const favorites = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
         observer.next(favorites);
       });
       return unsubscribe;
