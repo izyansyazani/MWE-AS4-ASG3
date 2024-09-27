@@ -273,3 +273,25 @@ ion-menu-button {
   font-size: 24px;
   font-weight: bold;
 }
+
+/* Add styles for the ion-card */
+ion-card {
+  --background: #8888e7; /* Set the background color to #8888e7 */
+  color: #fff; /* Set the text color to white */
+  border-radius: 10px; /* Add border radius */
+  text-align: center; /* Center the title */
+  width: 90%; /* Set the width to 80% */
+  margin: 0 auto; /* Center the card */
+}
+
+/* Add styles for the ion-card-title */
+ion-card-title {
+  color: #000; /* Set the text color to black */;
+  font-weight: bold;
+}
+
+/* Add styles for the ion-buttons inside the card */
+ion-card ion-button {
+  color: #000; /* Set the text color to black */
+  text-align: center; /* Center the title */
+}
