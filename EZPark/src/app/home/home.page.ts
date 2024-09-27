@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 import {
   IonGrid,
@@ -40,8 +40,6 @@ interface ParkingLocation {
   title: string;
   location: string;
   imageUrl: string;
-  rate: number; // Added property
-  freeSpace?: number;
 }
 
 @Component({
@@ -90,10 +88,12 @@ export class HomePage implements OnInit {
   recentParking$: Observable<ParkingLocation[]> | undefined;
   favouriteParking$: Observable<ParkingLocation[]> | undefined;
   favoriteParkingSpots: string[] = []; // Holds the IDs/names of favorite spots
+  favoriteSpot: ParkingLocation | null = null; // Holds the current favorite spot
 
   constructor(
     private firestore: Firestore,
-    private favoriteService: FavoriteService
+    private favoriteService: FavoriteService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -130,48 +130,36 @@ export class HomePage implements OnInit {
                   title: 'Shopping Mall Gadong',
                   location: 'The Mall, Gadong',
                   imageUrl: '../assets/Themall.jpg',
-                  rate: 2, // Hardcoded rate
-                  freeSpace: 24,
                 };
               case 'Times Square':
                 return {
                   title: 'Times Square',
                   location: 'Times Square',
                   imageUrl: '../assets/Timessquare.jpg',
-                  rate: 2, // Hardcoded rate
-                  freeSpace: 20,
                 };
               case 'Airport Mall':
                 return {
                   title: 'The Airport Mall',
                   location: 'Airport Mall',
                   imageUrl: '../assets/Theairportmall.jpg',
-                  rate: 2, // Hardcoded rate
-                  freeSpace: 30,
                 };
               case 'Yayasan Complex':
                 return {
                   title: 'Yayasan Complex',
                   location: 'Yayasan Complex',
                   imageUrl: '../assets/Yayasanmall.jpg',
-                  rate: 2, // Hardcoded rate
-                  freeSpace: 15,
                 };
               case 'Mabohai Shopping Complex':
                 return {
                   title: 'Mabohai Shopping Complex',
                   location: 'Mabohai Shopping Complex',
                   imageUrl: '../assets/mabohai.jpg',
-                  rate: 2, // Hardcoded rate
-                  freeSpace: 10,
                 };
               case 'Aman Hills Brunei':
                 return {
                   title: 'Aman Hills Brunei',
                   location: 'Aman Hills Brunei',
                   imageUrl: '../assets/amanhills.jpg',
-                  rate: 2, // Hardcoded rate
-                  freeSpace: 12,
                 };
               default:
                 return null;
@@ -183,7 +171,79 @@ export class HomePage implements OnInit {
   }
 
   toggleFavorite(mallName: string) {
-    console.log(`${mallName} favorite toggled`);
-    // Add your logic to handle the favorite toggle here
+    if (this.favoriteSpot && this.favoriteSpot.location === mallName) {
+      this.favoriteSpot = null;
+    } else {
+      const spot = this.getSpotByName(mallName);
+      if (spot) {
+        this.favoriteSpot = spot;
+      }
+    }
+  }
+
+  getSpotByName(name: string): ParkingLocation | null {
+    const spots = [
+      {
+        title: 'Shopping Mall Gadong',
+        location: 'The Mall, Gadong',
+        imageUrl: '../assets/Themall.jpg',
+      },
+      {
+        title: 'Times Square',
+        location: 'Times Square',
+        imageUrl: '../assets/Timessquare.jpg',
+      },
+      {
+        title: 'The Airport Mall',
+        location: 'Airport Mall',
+        imageUrl: '../assets/Theairportmall.jpg',
+      },
+      {
+        title: 'Yayasan Complex',
+        location: 'Yayasan Complex',
+        imageUrl: '../assets/Yayasanmall.jpg',
+      },
+      {
+        title: 'Mabohai Shopping Complex',
+        location: 'Mabohai Shopping Complex',
+        imageUrl: '../assets/mabohai.jpg',
+      },
+      {
+        title: 'Aman Hills Brunei',
+        location: 'Aman Hills Brunei',
+        imageUrl: '../assets/amanhills.jpg',
+      },
+    ];
+
+    return spots.find((spot) => spot.location === name) || null;
+  }
+
+  navigateToPage(mallName: string) {
+    switch (mallName) {
+      case 'The Mall, Gadong':
+        this.router.navigate(['/mall']);
+        break;
+      case 'Times Square':
+        this.router.navigate(['/timessquare']);
+        break;
+      case 'Airport Mall':
+        this.router.navigate(['/airportmall']);
+        break;
+      case 'Yayasan Complex':
+        this.router.navigate(['/yayasan']);
+        break;
+      case 'Mabohai Shopping Complex':
+        this.router.navigate(['/mabohai']);
+        break;
+      case 'Aman Hills Brunei':
+        this.router.navigate(['/amanhill']);
+        break;
+      default:
+        break;
+    }
+  }
+
+  removeFavorite() {
+    this.favoriteSpot = null;
   }
 }

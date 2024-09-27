@@ -295,3 +295,15 @@ ion-card ion-button {
   color: #000; /* Set the text color to black */
   text-align: center; /* Center the title */
 }
+
+.remove-favorite-btn,
+.reserve-btn {
+  --background: #d9d9d9;
+  color: #000; /* Optional: Set text color to black */
+}
+
+.no-favorite-text {
+  color: #000; /* Set text color to black */
+  text-align: center; /* Center the text */
+  margin-top: 20px; /* Optional: Add margin to position it vertically */
+}
