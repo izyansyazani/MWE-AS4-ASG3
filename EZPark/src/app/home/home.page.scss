@@ -232,7 +232,7 @@ ion-menu-button {
   height: auto; /* Maintain aspect ratio */
   display: block;
   margin: 0 auto; /* Center horizontally and remove top margin */
-  margin-top: -90px; /* Move the logo upwards */
+  margin-top: -20px; /* Move the logo upwards */
 }
 
 .center-content {
@@ -250,4 +250,17 @@ ion-menu-button {
     width: 50px; /* Smaller size for mobile screens */
     margin: 10px auto 0; /* Adjust margin for mobile screens */
   }
+}
+
+/* Add styles for the favorite button */
+.favorite-btn {
+  --background:  #8888e7;
+  color: #000;
+  margin-top: 10px;
+  display: block;
+  width: 200px; /* Adjusted width */
+  height: 40px; /* Adjusted height */
+  border-radius: 10px;
+  font-size: 14px; /* Adjusted font size */
+  text-align: center;
 }
