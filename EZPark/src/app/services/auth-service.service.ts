@@ -23,11 +23,8 @@ import {
   setDoc,
   updateDoc,
   onSnapshot,
-  getDoc,
-  arrayUnion,
-  arrayRemove,
 } from '@angular/fire/firestore';
-import { from, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -78,7 +75,6 @@ export class AuthServiceService {
 
   // Get current user profile
   async getProfile(): Promise<User | null> {
-    // Ensure to return the latest user state
     return new Promise<User | null>((resolve, reject) => {
       this.auth.onAuthStateChanged(
         (user) => {
@@ -146,22 +142,32 @@ export class AuthServiceService {
   ): Promise<void> {
     const favoriteDocRef = doc(
       this.firestore,
-      `users/${userId}/favoriteParking`,
-      parkingSpotId // Use the parkingSpotId as the document ID
+      `users/${userId}/favorites`,
+      parkingSpotId
     );
     await setDoc(favoriteDocRef, parkingSpotData);
   }
 
   // Remove a parking spot from user's favorites
-  async removeFavoriteParking(userId: string, parkingSpotId: string): Promise<void> {
-    const favoriteDocRef = doc(this.firestore, `users/${userId}/favoriteParking`, parkingSpotId);
+  async removeFavoriteParking(
+    userId: string,
+    parkingSpotId: string
+  ): Promise<void> {
+    const favoriteDocRef = doc(
+      this.firestore,
+      `users/${userId}/favorites`,
+      parkingSpotId
+    );
     await deleteDoc(favoriteDocRef);
   }
 
   // Get all favorite parking spots for a user
   getUserFavorites(userId: string): Observable<any[]> {
     return new Observable((observer) => {
-      const favoritesRef = collection(this.firestore, `users/${userId}/favoriteParking`);
+      const favoritesRef = collection(
+        this.firestore,
+        `users/${userId}/favorites`
+      );
       const unsubscribe = onSnapshot(favoritesRef, (snapshot) => {
         const favorites = snapshot.docs.map((doc) => ({
           id: doc.id,
