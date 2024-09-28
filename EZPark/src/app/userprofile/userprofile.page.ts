@@ -54,11 +54,13 @@ export class UserprofilePage implements OnInit {
     email: string;
     userId: string;
     profilePicture: string | null;
+    phoneNumber: string;
   } = {
     name: '',
     email: '',
     userId: '',
     profilePicture: null,
+    phoneNumber: '',
   };
 
   constructor(
@@ -89,6 +91,7 @@ export class UserprofilePage implements OnInit {
           userId: user.uid,
           profilePicture:
             this.userService.getProfileImage() || user.photoURL || null,
+          phoneNumber: user.phoneNumber || 'No phone number provided',
         };
       } else {
         this.currentUser = this.userService.getUserData();
