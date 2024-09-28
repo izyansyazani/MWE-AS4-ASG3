@@ -1,9 +1,9 @@
 /* Global Styles */
 ion-content {
-  --ion-background-color: #FBF3EF;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center items horizontally */
+  --background: linear-gradient(180deg, #8888d7, #d9d9d9, #fbf3ef);
+  background: linear-gradient(180deg, #8888d7, #d9d9d9, #fbf3ef);
+  background-size: 100% 300%; /* Larger size for smooth transition */
+  animation: gradientMove 10s linear infinite; /* Adjust speed as needed */
 }
 
 .searchbar-container {
