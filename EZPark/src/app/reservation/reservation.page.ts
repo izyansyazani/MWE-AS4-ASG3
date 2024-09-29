@@ -5,7 +5,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
 import { Location } from '@angular/common';
-import { ParkingService } from '../services/parking.service';
 
 import {
   IonContent,
@@ -81,8 +80,7 @@ export class ReservationPage implements OnInit {
     private alertController: AlertController,
     private navCtrl: NavController,
     private route: ActivatedRoute,
-    private location: Location,
-    private parkingService: ParkingService
+    private location: Location
   ) {
     this.route.queryParams.subscribe((params) => {
       if (params['parkingSpaceNumber']) {
@@ -105,30 +103,19 @@ export class ReservationPage implements OnInit {
 
   confirmBooking() {
     this.updateTotalAmount();
-    const bookingDetails = {
-      name: this.bookingDetails.carLicenseNumber,
-      status: 'reserved', // Reserve the spot
-    };
-
-    // Save booking to Firestore
-    this.parkingService
-      .bookParkingSpot(this.bookingDetails.parkingSpaceNumber, bookingDetails)
-      .then(() => {
-        console.log('Reservation saved to Firestore');
-        this.router.navigate(['/paypal'], {
-          queryParams: { bookingDetails: JSON.stringify(this.bookingDetails) },
-        });
-      })
-      .catch((err) => {
-        console.error('Error booking spot:', err);
-      });
+    this.router.navigate(['/paypal'], {
+      queryParams: {
+        bookingDetails: JSON.stringify(this.bookingDetails),
+        label: this.label,
+      },
+    });
   }
   imageUrl: string = '';
   label: string = '';
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
-      console.log('Received queryParams:', params); // Debugging line
+      console.log('Received queryParams:', params);
       this.imageUrl = params['imageUrl'] || '';
       this.label = params['label'] || '';
     });

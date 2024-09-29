@@ -67,6 +67,7 @@ import { ActivatedRoute } from '@angular/router';
 export class PaypalPage implements OnInit {
   totalAmount: number = 0;
   bookingDetails: any;
+  label: string = '';
 
   @ViewChild('paymentRef', { static: true }) paymentRef!: ElementRef;
 
@@ -82,6 +83,7 @@ export class PaypalPage implements OnInit {
       if (params['bookingDetails']) {
         this.bookingDetails = JSON.parse(params['bookingDetails']);
       }
+      this.label = params['label'] || '';
     });
     this.route.queryParams.subscribe((params) => {
       if (params['totalAmount']) {
