@@ -21,6 +21,8 @@ ion-content {
   width: 300px;
   border-radius: 10px; 
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  background-color: #ffffff !important; /* Make ion-card background white */
+  color: #000000 !important; /* Make ion-card text black */
 }
 
 .parking-receipt-card-header {
@@ -30,12 +32,21 @@ ion-content {
 }
 
 .parking-receipt-list-item {
-  --ion-item-padding: 0px 10px; 
-  border-bottom: 1px solid #eee; 
+  --background: #ffffff !important; /* Set ion-item background to white */
+  --color: #000000 !important; /* Ensure text is black */
+  --ion-item-padding: 0px 10px;
+  --inner-border-width: 0px; /* Remove any inner borders */
+  border: none !important; /* Remove border lines */
+  box-shadow: none !important; /* Remove any potential shadow */
 }
 
 .parking-receipt-list-item ion-label {
   font-weight: normal;
+  color: #000000 !important; /* Ensure text is black */
+}
+
+.parking-receipt-list-item ion-icon {
+  color: #000000 !important; /* Make icons black */
 }
 
 .parking-receipt-list-item ion-label:first-child {
@@ -49,3 +60,15 @@ ion-content {
 .parking-receipt-done-button {
   margin-top: 10px; 
 }
+
+.parking-receipt-card-content {
+  background-color: #ffffff !important; /* Ensure ion-card-content is white */
+  color: #000000 !important; /* Ensure text in ion-card-content is black */
+}
+
+ion-list {
+  --ion-border-width: 0px; /* Remove border */
+  background-color: #ffffff !important; /* Set background to white */
+  color: #000000 !important; /* Ensure text is black */
+}
+
