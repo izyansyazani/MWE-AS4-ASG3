@@ -101,6 +101,15 @@ export class ParkingspotsPage implements OnInit, ViewWillEnter {
   goToAmanHills() {
     this.router.navigate(['/amanhill']);
   }
+  goToYayasan() {
+    this.router.navigate(['/yayasan']);
+  }
+  goToMabohai() {
+    this.router.navigate(['/mabohai']);
+  }
+  goToTimesSquare() {
+    this.router.navigate(['/timessquare']);
+  }
   goToAirportMall() {
     this.router.navigate(['/airportmall']);
   }
