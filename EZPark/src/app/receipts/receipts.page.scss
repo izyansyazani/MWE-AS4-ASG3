@@ -4,11 +4,21 @@ ion-page {
 
 ion-content {
   --ion-background-color: #FBF3EF !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ensures it takes the full height of the viewport */
+}
+
+.receipt-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Centers the ion-card vertically */
 }
 
 .parking-receipt-card {
   width: 300px;
-  margin: auto; 
   border-radius: 10px; 
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
 }
