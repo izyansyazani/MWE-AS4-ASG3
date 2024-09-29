@@ -120,13 +120,14 @@ export class ReservationPage implements OnInit {
         console.error('Error booking spot:', err);
       });
   }
-  imageUrl: string;
-  label: string;
+  imageUrl: string = '';
+  label: string = '';
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
-      this.imageUrl = params['imageUrl'];
-      this.label = params['label'];
+      console.log('Received queryParams:', params); // Debugging line
+      this.imageUrl = params['imageUrl'] || '';
+      this.label = params['label'] || '';
     });
   }
   goToBack() {
