@@ -71,6 +71,7 @@ ion-checkbox {
     --checkbox-background: #ddd4d4;
     --checkmark-color: #000000;
     margin-right: 125px;
+    margin-top: 10px; /* Add margin to lower the checkbox */
 }
 
 ion-checkbox::part(container) {
