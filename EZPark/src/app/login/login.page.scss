@@ -37,11 +37,17 @@ ion-item {
     --background: #E0E0E0;
     --border-width: 0;
     --inner-padding-start: 0;
+    --inner-padding-end: 0;
+    --padding-start: 0;
+    --padding-end: 0;
+    height: 45px; /* Adjust height as needed */
+    line-height: 40px; /* Ensure text is vertically centered */
 }
 
 ion-input {
     --padding-start: 0;
     --padding-end: 0;
+    height: 100%; /* Ensure input takes full height of ion-item */
 }
 
 ion-button {
