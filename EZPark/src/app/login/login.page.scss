@@ -33,6 +33,17 @@ ion-content {
     margin-bottom: 15px;
 }
 
+ion-item {
+    --background: #E0E0E0;
+    --border-width: 0;
+    --inner-padding-start: 0;
+}
+
+ion-input {
+    --padding-start: 0;
+    --padding-end: 0;
+}
+
 ion-button {
     --background: #8888E7;
     --color: white;
