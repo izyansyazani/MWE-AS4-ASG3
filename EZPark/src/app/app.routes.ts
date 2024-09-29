@@ -146,7 +146,7 @@ export const routes: Routes = [
     path: 'timessquare',
     loadComponent: () =>
       import('./parkingspots/timessquare/timessquare.page').then(
-        (m) => m.TimessquarePage
+        (m) => m.TimesSquarePage
       ),
   },
   {
