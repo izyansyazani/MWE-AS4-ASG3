@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PayPalService } from '../paypal.service';
 import { NavController } from '@ionic/angular';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import {
   IonContent,
@@ -75,8 +74,7 @@ export class PaypalPage implements OnInit {
     private route: ActivatedRoute,
     private payment: PayPalService,
     private navCtrl: NavController,
-    private router: Router,
-    private firestore: AngularFirestore
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -117,17 +115,6 @@ export class PaypalPage implements OnInit {
               console.log('Payment Details: ', details);
               console.log('Reservation Details: ', this.bookingDetails);
 
-              this.firestore.collection('reservations').add({
-                name: this.bookingDetails.name,
-                phoneNumber: this.bookingDetails.phoneNumber,
-                parkingLevel: this.bookingDetails.parkingLevel,
-                parkingSpot: this.bookingDetails.parkingSpot,
-                reservationDate: this.bookingDetails.reservationDate,
-                reservationTime: this.bookingDetails.reservationTime,
-                duration: this.bookingDetails.duration,
-                totalAmount: this.bookingDetails.totalAmount,
-                paymentDetails: details,
-              });
               alert('Payment is successful');
               this.navCtrl.navigateRoot('/home');
             }

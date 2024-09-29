@@ -65,10 +65,8 @@ export class Mall2Page implements OnInit {
     this.router.navigate(['/parkingspots']);
   }
   goToBook(parkingSpaceNumber: string) {
-    if (!this.parkingService.isSpotTaken(parkingSpaceNumber)) {
-      this.router.navigate(['/reservation'], {
-        queryParams: { parkingSpaceNumber },
-      });
-    }
+    this.router.navigate(['/reservation'], {
+      queryParams: { parkingSpaceNumber },
+    });
   }
 }

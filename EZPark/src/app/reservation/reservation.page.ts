@@ -76,8 +76,6 @@ export class ReservationPage implements OnInit {
     totalAmount: 0,
   };
 
-  spot: string = '';
-
   constructor(
     private router: Router,
     private alertController: AlertController,
@@ -103,21 +101,32 @@ export class ReservationPage implements OnInit {
   }
 
   confirmBooking() {
-    this.parkingService.bookSpot(this.bookingDetails.parkingSpaceNumber);
     this.updateTotalAmount();
-    this.router.navigate(['/paypal'], {
-      queryParams: {
-        bookingDetails: JSON.stringify(this.bookingDetails),
-      },
-    });
+    const bookingDetails = {
+      name: this.bookingDetails.carLicenseNumber,
+      status: 'reserved', // Reserve the spot
+    };
+
+    // Save booking to Firestore
+    this.parkingService
+      .bookParkingSpot(this.bookingDetails.parkingSpaceNumber, bookingDetails)
+      .then(() => {
+        console.log('Reservation saved to Firestore');
+        this.router.navigate(['/paypal'], {
+          queryParams: { bookingDetails: JSON.stringify(this.bookingDetails) },
+        });
+      })
+      .catch((err) => {
+        console.error('Error booking spot:', err);
+      });
   }
+  imageUrl: string;
+  label: string;
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
-      if (params['spot']) {
-        this.spot = params['spot'];
-        this.bookingDetails.parkingSpaceNumber = this.spot;
-      }
+      this.imageUrl = params['imageUrl'];
+      this.label = params['label'];
     });
   }
   goToBack() {

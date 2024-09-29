@@ -61,7 +61,13 @@ export class AirportmallPage implements OnInit {
   goToParking() {
     this.router.navigate(['/parkingspots']);
   }
-  goToBook() {
-    this.router.navigate(['/reservation']);
+  goToBook(parkingSpaceNumber: string) {
+    this.router.navigate(['/reservation'], {
+      queryParams: {
+        parkingSpaceNumber,
+        imageUrl: '../assets/airportmall.jpg',
+        label: 'Airport Mall',
+      },
+    });
   }
 }
