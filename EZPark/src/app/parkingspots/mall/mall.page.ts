@@ -57,27 +57,13 @@ import {
   ],
 })
 export class MallPage implements OnInit {
-  parkingSpots$: Observable<any[]>;
-  takenSpots: Set<string> = new Set();
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private navCtrl: NavController,
-    public parkingService: ParkingService
-  ) {
-    this.parkingSpots$ = this.parkingService.getParkingSpots();
-  }
+    private navCtrl: NavController
+  ) {}
 
-  ngOnInit() {
-    this.parkingService.getParkingSpots().subscribe((spots) => {
-      this.takenSpots = new Set(
-        spots
-          .filter((spot) => spot.status === 'reserved')
-          .map((spot) => spot.id)
-      );
-    });
-  }
+  ngOnInit() {}
 
   goToMall2() {
     this.router.navigate(['/mall2']);

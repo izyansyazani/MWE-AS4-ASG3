@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router'; // Import the Router module
+import { ParkingService } from '../services/parking.service';
 
 import {
   IonContent,
@@ -64,14 +65,18 @@ export class HistoryPage implements OnInit {
 
   searchTerm: string = ''; // Add search term property
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private parkingService: ParkingService) {}
 
   ngOnInit() {
-    // Initialization logic here
+    this.loadParkingHistory();
+  }
+
+  async loadParkingHistory() {
+    this.parkingHistory = await this.parkingService.getUserParkingBookings();
   }
 
   viewReceipt(parking: Parking) {
-    // Logic to view receipt
+    console.log(`Viewing receipt for: ${parking.location}`);
   }
 
   goToHome() {
@@ -83,10 +88,13 @@ export class HistoryPage implements OnInit {
     if (!this.searchTerm.trim()) {
       return this.parkingHistory;
     }
-    return this.parkingHistory.filter(parking =>
-      parking.location.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      parking.date.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      parking.duration.toLowerCase().includes(this.searchTerm.toLowerCase())
+    return this.parkingHistory.filter(
+      (parking) =>
+        parking.location
+          .toLowerCase()
+          .includes(this.searchTerm.toLowerCase()) ||
+        parking.date.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        parking.duration.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
 }

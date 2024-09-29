@@ -30,6 +30,7 @@ import {
   IonInput,
 } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
+import { ParkingService } from '../services/parking.service';
 
 @Component({
   selector: 'app-paypal',
@@ -75,7 +76,8 @@ export class PaypalPage implements OnInit {
     private route: ActivatedRoute,
     private payment: PayPalService,
     private navCtrl: NavController,
-    private router: Router
+    private router: Router,
+    private parkingService: ParkingService
   ) {}
 
   ngOnInit() {
@@ -87,7 +89,7 @@ export class PaypalPage implements OnInit {
     });
     this.route.queryParams.subscribe((params) => {
       if (params['totalAmount']) {
-        this.totalAmount = parseFloat(params['totalAmount']);
+        this.totalAmount = parseFloat(params['totalAmount']) || 0;
       }
     });
 
