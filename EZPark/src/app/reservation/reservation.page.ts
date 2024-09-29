@@ -88,6 +88,9 @@ export class ReservationPage implements OnInit {
       if (params['parkingSpaceNumber']) {
         this.bookingDetails.parkingSpaceNumber = params['parkingSpaceNumber'];
       }
+      if (params['parkingLevel']) {
+        this.bookingDetails.parkingLevel = params['parkingLevel'];
+      }
     });
   }
 

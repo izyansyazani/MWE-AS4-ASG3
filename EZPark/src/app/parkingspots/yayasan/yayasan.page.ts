@@ -63,7 +63,14 @@ export class YayasanPage implements OnInit {
     this.router.navigate(['/parkingspots']);
   }
 
-  goToBook() {
-    this.router.navigate(['/reservation']);
+  goToBook(parkingSpaceNumber: string, parkingLevel: string) {
+    this.router.navigate(['/reservation'], {
+      queryParams: {
+        parkingSpaceNumber,
+        parkingLevel,
+        imageUrl: '../assets/yayasan.jpg',
+        label: 'Yayasan Complex',
+      },
+    });
   }
 }

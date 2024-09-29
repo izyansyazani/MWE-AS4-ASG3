@@ -64,9 +64,14 @@ export class Mall2Page implements OnInit {
   goToParking() {
     this.router.navigate(['/parkingspots']);
   }
-  goToBook(parkingSpaceNumber: string) {
+  goToBook(parkingSpaceNumber: string, parkingLevel: string) {
     this.router.navigate(['/reservation'], {
-      queryParams: { parkingSpaceNumber },
+      queryParams: {
+        parkingSpaceNumber,
+        parkingLevel,
+        imageUrl: '../assets/Themall.jpg',
+        label: 'The Mall, Gadong',
+      },
     });
   }
 }
