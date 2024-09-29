@@ -72,7 +72,7 @@ export class HistoryPage implements OnInit {
   }
 
   async loadParkingHistory() {
-    this.parkingHistory = await this.parkingService.getUserParkingBookings();
+    //
   }
 
   viewReceipt(parking: Parking) {

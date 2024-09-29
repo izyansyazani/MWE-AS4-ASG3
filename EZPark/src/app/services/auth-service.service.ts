@@ -178,4 +178,20 @@ export class AuthServiceService {
       return unsubscribe;
     });
   }
+
+  async savePaymentDetails(userId: string, paymentDetails: any): Promise<void> {
+    const paymentsRef = collection(this.firestore, 'payments');
+    await addDoc(paymentsRef, {
+      userId: userId,
+      ...paymentDetails,
+      createdAt: new Date(),
+    });
+  }
+
+  async getPaymentHistory(userId: string): Promise<any[]> {
+    const paymentsRef = collection(this.firestore, 'payments');
+    const q = query(paymentsRef, where('userId', '==', userId));
+    const snapshot = await getDocs(q);
+    return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  }
 }
