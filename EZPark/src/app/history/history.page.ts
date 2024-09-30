@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router'; // Import the Router module
-import { ParkingService } from '../services/parking.service';
 
 import {
   IonContent,
@@ -65,15 +64,13 @@ export class HistoryPage implements OnInit {
 
   searchTerm: string = ''; // Add search term property
 
-  constructor(private router: Router, private parkingService: ParkingService) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.loadParkingHistory();
   }
 
-  async loadParkingHistory() {
-    //
-  }
+  async loadParkingHistory() {}
 
   viewReceipt(parking: Parking) {
     console.log(`Viewing receipt for: ${parking.location}`);
