@@ -116,10 +116,9 @@ export class PaypalPage implements OnInit {
         onApprove: async (data: any, actions: any) => {
           return actions.order.capture().then(async (details: any) => {
             if (details.status === 'COMPLETED') {
-              console.log('Payment Details: ', details);
-              console.log('Reservation Details: ', this.bookingDetails);
               try {
                 await addDoc(collection(this.firestore, 'bookings'), {
+                  location: this.label,
                   bookingDetails: this.bookingDetails,
                   paymentDetails: details,
                   timestamp: new Date(),
@@ -131,7 +130,6 @@ export class PaypalPage implements OnInit {
                   'Payment successful, but there was an error saving the details'
                 );
               }
-              alert('Payment is successful');
               this.navCtrl.navigateRoot('/home');
             }
           });
@@ -142,73 +140,38 @@ export class PaypalPage implements OnInit {
       })
       .render(this.paymentRef.nativeElement);
   }
+  async simulatePayment() {
+    const mockDetails = {
+      status: 'COMPLETED',
+      id: 'MOCK_PAYMENT_ID',
+      payer: {
+        email_address: 'mockpayer@example.com',
+      },
+      purchase_units: [
+        {
+          amount: {
+            value: this.bookingDetails.totalAmount.toString(),
+            currency_code: 'SGD',
+          },
+        },
+      ],
+    };
+
+    try {
+      await addDoc(collection(this.firestore, 'bookings'), {
+        location: this.label,
+        bookingDetails: this.bookingDetails,
+        paymentDetails: mockDetails,
+        timestamp: new Date(),
+      });
+      alert('Simulated payment is successful and details are saved');
+    } catch (error) {
+      console.error('Error saving simulated details: ', error);
+      alert(
+        'Simulated payment successful, but there was an error saving the details'
+      );
+    }
+
+    this.navCtrl.navigateRoot('/home');
+  }
 }
-//   ngOnInit() {
-//     this.route.queryParams.subscribe((params) => {
-//       if (params['bookingDetails']) {
-//         this.bookingDetails = JSON.parse(params['bookingDetails']);
-//       }
-//       this.label = params['label'] || '';
-//     });
-//     this.route.queryParams.subscribe((params) => {
-//       if (params['totalAmount']) {
-//         this.totalAmount = parseFloat(params['totalAmount']) || 0;
-//       }
-//     });
-
-//     this.initializePayPalButtons();
-//   }
-
-//   private initializePayPalButtons() {
-//     window['paypal']
-//       .Buttons({
-//         style: {
-//           layout: 'horizontal',
-//           color: 'blue',
-//           shape: 'rect',
-//           label: 'paypal',
-//         },
-//         createOrder: (data: any, actions: any) => {
-//           return actions.order.create({
-//             purchase_units: [
-//               {
-//                 amount: {
-//                   value: this.bookingDetails.totalAmount.toString(),
-//                   currency_code: 'SGD',
-//                 },
-//               },
-//             ],
-//           });
-//         },
-//         onApprove: async (data: any, actions: any) => {
-//           const details = await actions.order.capture();
-//           if (details.status === 'COMPLETED') {
-//             console.log('Payment Details: ', details);
-//             console.log('Reservation Details: ', this.bookingDetails);
-
-//             const user = await this.authService.getProfile(); // Ensure you have access to AuthService
-//             if (user) {
-//               const paymentDetails = {
-//                 orderId: details.id,
-//                 amount: this.bookingDetails.totalAmount,
-//                 currency: 'SGD',
-//                 status: details.status,
-//                 reservationDetails: this.bookingDetails,
-//               };
-//               await this.authService.savePaymentDetails(
-//                 user.uid,
-//                 paymentDetails
-//               );
-//             }
-//             alert('Payment is successful. Your booking has been confirmed.');
-
-//             // Navigate to booking history after payment
-//             this.router.navigate(['/booking-history']);
-//           }
-//         },
-//         onError: (error: any) => {
-//           console.log(error);
-//         },
-//       })
-//       .render(this.paymentRef.nativeElement);
-//   }
