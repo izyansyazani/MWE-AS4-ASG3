@@ -74,7 +74,7 @@ export const routes: Routes = [
       ),
   },
   { path: 'receipts', component: ReceiptsPage },
-  { path: 'history', component: HistoryPage },
+  // { path: 'history', component: HistoryPage },
   {
     path: 'mall2',
     loadComponent: () =>
