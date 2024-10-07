@@ -10,4 +10,5 @@
     <p><strong>Total amount to be paid:</strong> {{ bookingDetails.totalAmount | currency:'BND':'symbol':'1.2-2' }}</p>
   </ion-card-content>
   <div #paymentRef></div>
+  <button (click)="simulatePayment()">Press to complete payment</button>
 </ion-content>
