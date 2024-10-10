@@ -45,11 +45,6 @@ export const routes: Routes = [
       import('./userprofile/userprofile.page').then((m) => m.UserprofilePage),
   },
   {
-    path: 'aboutus',
-    loadComponent: () =>
-      import('./aboutus/aboutus.page').then((m) => m.AboutusPage),
-  },
-  {
     path: 'receipts',
     loadComponent: () =>
       import('./receipts/receipts.page').then((m) => m.ReceiptsPage),
