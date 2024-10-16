@@ -14,7 +14,6 @@
           placeholder="Email"
           formControlName="email"
           class="textarea"
-          pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
           required
         ></ion-input>
       </ion-item>
@@ -44,7 +43,6 @@
           placeholder="Password"
           formControlName="password"
           class="textarea"
-          pattern="(?=.\d)(?=.[a-z])(?=.*[A-Z]).{8,}"
           required
         ></ion-input>
       </ion-item>
@@ -63,8 +61,7 @@
           class="errorInput"
           color="danger"
           >Password must contain at least one uppercase letter, one lowercase
-          letter, and one digit.</ion-text
-        >
+          letter, and one digit.</ion-text>
       </div>
 
       <!-- Remember Me Checkbox -->
@@ -74,7 +71,6 @@
         formControlName="rememberMe"
         >Remember me?</ion-checkbox
       >
-
       <!-- Login Button -->
       <ion-button (click)="login()">LOGIN</ion-button>
     </form>
