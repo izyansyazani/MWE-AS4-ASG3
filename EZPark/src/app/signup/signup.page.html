@@ -27,7 +27,7 @@
         <input id="contact" formControlName="contact" type="tel" class="input textarea">
       </div>
       <div *ngIf="errorControl['contact'].touched && errorControl['contact'].invalid">
-        <ion-text color="danger">Phone number must be at least 10 digits.</ion-text>
+        <ion-text color="danger">Phone number must be at least 7 digits.</ion-text>
       </div>
 
       <div class="form-item">
@@ -40,7 +40,7 @@
         </ion-text>
       </div>
 
-      <ion-button expand="block" type="submit" [disabled]="!ionicForm.valid">CREATE ACCOUNT</ion-button>
+      <ion-button expand="block" type="submit" [disabled]="!ionicForm.valid" [routerLink]="['/login']" >CREATE ACCOUNT</ion-button>
     </form>
 
     <ion-text class="textColor">
