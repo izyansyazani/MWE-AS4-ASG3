@@ -92,11 +92,11 @@ export class AuthServiceService {
     return await signOut(this.auth);
   }
 
-  // Google Sign-In
-  async googleSignIn(): Promise<UserCredential> {
-    const provider = new GoogleAuthProvider();
-    return await signInWithPopup(this.auth, provider);
-  }
+  // // Google Sign-In
+  // async googleSignIn(): Promise<UserCredential> {
+  //   const provider = new GoogleAuthProvider();
+  //   return await signInWithPopup(this.auth, provider);
+  // }
 
   // Observable for auth state
   getAuthState(): Observable<User | null> {
