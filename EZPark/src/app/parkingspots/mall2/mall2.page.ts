@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ParkingService } from '../../services/parking.service';
 import {
   IonContent,
   IonHeader,
@@ -54,7 +53,7 @@ import {
   ],
 })
 export class Mall2Page implements OnInit {
-  constructor(private router: Router, public parkingService: ParkingService) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 
