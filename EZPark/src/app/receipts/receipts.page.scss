@@ -1,34 +1,83 @@
+ion-page {
+  background-color: #FBF3EF !important;
+}
+
+ion-content {
+  --ion-background-color: #FBF3EF !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ensures it takes the full height of the viewport */
+  color: #000000 !important; /* Set text color to black */
+}
+
+.receipt-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Centers the ion-card vertically */
+}
+
 .parking-receipt-card {
-    width: 300px;
-    margin: auto; 
-    border-radius: 10px; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-  }
-  
-  .parking-receipt-card-header {
-    font-weight: bold;
-    text-align: center;
-    padding: 10px;
-  }
-  
-  .parking-receipt-list-item {
-    --ion-item-padding: 0px 10px; 
-    border-bottom: 1px solid #eee; 
-  }
-  
-  .parking-receipt-list-item ion-label {
-    font-weight: normal;
-  }
-  
-  .parking-receipt-list-item ion-label:first-child {
-    flex: 1; 
-  }
-  
-  .parking-receipt-list-item ion-label:last-child {
-    text-align: right; 
-  }
-  
-  .parking-receipt-done-button {
-    margin-top: 10px; 
-  }
-  
+  width: 300px;
+  border-radius: 10px; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  background-color: #ffffff !important; /* Make ion-card background white */
+  color: #000000 !important; /* Make ion-card text black */
+}
+
+.parking-receipt-card-header {
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  color: #000000 !important; /* Ensure header text is black */
+}
+
+.parking-receipt-list-item {
+  --background: #ffffff !important; /* Set ion-item background to white */
+  --color: #000000 !important; /* Ensure text is black */
+  --ion-item-padding: 0px; /* Remove padding */
+  --inner-border-width: 0px; /* Remove any inner borders */
+  border: none !important; /* Remove border lines */
+  box-shadow: none !important; /* Remove any potential shadow */
+  display: flex; /* Enable flexbox */
+  align-items: center; /* Center items vertically */
+}
+
+.parking-receipt-list-item ion-label {
+  font-weight: normal;
+  color: #000000 !important; /* Ensure text is black */
+  text-align: left; /* Align text to the left */
+  flex: 1; /* Allow label to take up remaining space */
+}
+
+.parking-receipt-list-item ion-label:first-child {
+  font-weight: bold; /* Make label names bold */
+}
+
+.parking-receipt-list-item ion-icon {
+  margin-right: 10px; /* Optional: add some space between the icon and the label */
+}
+
+.parking-receipt-done-button {
+  margin-top: 10px; 
+}
+
+ion-list {
+  --ion-border-width: 0px; /* Remove border */
+  background-color: #ffffff !important; /* Set background to white */
+  color: #000000 !important; /* Ensure text is black */
+}
+
+ion-card-title {
+  color: black;
+  font-weight: bold;
+}
+
+ion-button {
+  background-color: #8888E7 !important; /* Set button background color */
+  color: #ffffff !important; /* Set button text color to white */
+  --ion-color-primary: #8888E7; /* Change primary color to #8888E7 */
+  --ion-color-primary-rgb: 136, 136, 231; /* Set RGB value for primary color */
+  --background-hover: #7676d3 !important; /* Optional: Darken the button color on hover */
+}

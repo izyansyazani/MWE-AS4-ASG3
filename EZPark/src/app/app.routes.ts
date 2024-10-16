@@ -45,11 +45,6 @@ export const routes: Routes = [
       import('./userprofile/userprofile.page').then((m) => m.UserprofilePage),
   },
   {
-    path: 'aboutus',
-    loadComponent: () =>
-      import('./aboutus/aboutus.page').then((m) => m.AboutusPage),
-  },
-  {
     path: 'receipts',
     loadComponent: () =>
       import('./receipts/receipts.page').then((m) => m.ReceiptsPage),
@@ -74,7 +69,7 @@ export const routes: Routes = [
       ),
   },
   { path: 'receipts', component: ReceiptsPage },
-  { path: 'history', component: HistoryPage },
+  // { path: 'history', component: HistoryPage },
   {
     path: 'mall2',
     loadComponent: () =>
@@ -146,7 +141,7 @@ export const routes: Routes = [
     path: 'timessquare',
     loadComponent: () =>
       import('./parkingspots/timessquare/timessquare.page').then(
-        (m) => m.TimessquarePage
+        (m) => m.TimesSquarePage
       ),
   },
   {

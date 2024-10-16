@@ -5,7 +5,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
 import { Location } from '@angular/common';
-import { ParkingService } from '../services/parking.service';
 
 import {
   IonContent,
@@ -76,19 +75,19 @@ export class ReservationPage implements OnInit {
     totalAmount: 0,
   };
 
-  spot: string = '';
-
   constructor(
     private router: Router,
     private alertController: AlertController,
     private navCtrl: NavController,
     private route: ActivatedRoute,
-    private location: Location,
-    private parkingService: ParkingService
+    private location: Location
   ) {
     this.route.queryParams.subscribe((params) => {
       if (params['parkingSpaceNumber']) {
         this.bookingDetails.parkingSpaceNumber = params['parkingSpaceNumber'];
+      }
+      if (params['parkingLevel']) {
+        this.bookingDetails.parkingLevel = params['parkingLevel'];
       }
     });
   }
@@ -103,24 +102,31 @@ export class ReservationPage implements OnInit {
   }
 
   confirmBooking() {
-    this.parkingService.bookSpot(this.bookingDetails.parkingSpaceNumber);
     this.updateTotalAmount();
     this.router.navigate(['/paypal'], {
       queryParams: {
         bookingDetails: JSON.stringify(this.bookingDetails),
+        label: this.label,
       },
     });
   }
+  imageUrl: string = '';
+  label: string = '';
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
-      if (params['spot']) {
-        this.spot = params['spot'];
-        this.bookingDetails.parkingSpaceNumber = this.spot;
-      }
+      console.log('Received queryParams:', params);
+      this.imageUrl = params['imageUrl'] || '';
+      this.label = params['label'] || '';
     });
   }
   goToBack() {
     this.location.back();
+  }
+
+  areInputsFilled() {
+    return Object.values(this.bookingDetails).every((value) => {
+      return value !== '' && value !== null && value !== undefined;
+    });
   }
 }

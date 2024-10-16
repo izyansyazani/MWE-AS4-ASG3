@@ -1,9 +1,35 @@
-/* Global Styles */
 ion-content {
-  --ion-background-color: #FBF3EF;
-  display: flex;
+  --background: linear-gradient(180deg, #8888d7, #d9d9d9, #fbf3ef);
+  background: linear-gradient(180deg, #8888d7, #d9d9d9, #fbf3ef);
+  background-size: 100% 300%; /* Larger size for smooth transition */
+  animation: gradientMove 10s linear infinite; /* Adjust speed as needed */
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  height: 100%;
   flex-direction: column;
-  align-items: center; /* Center items horizontally */
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 20px; /* Add some padding if needed */
+  margin-top: 20px; /* Lower the entire header */
+}
+
+h1 {
+  color: #000;
+  font-size: 24px;
+  margin: 0 auto; /* Center the heading */
+  flex: 1; /* Allow the heading to take up remaining space */
+  text-align: center; /* Ensure the text is centered */
+}
+
+.back-button {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px; /* Add margin-right to create space between button and heading */
 }
 
 .searchbar-container {
@@ -98,18 +124,4 @@ ion-card-content ion-button {
   width: 140px; /* Adjust button width */
   outline: none; /* Remove default focus outline */
   box-shadow: none; /* Remove any box shadow */
-}
-
-h1 {
-  color: #000;
-  font-size: 24px;
-  display: block;
-  text-align: center;
-  margin-top: -20px;
-}
-
-.back-button {
-  width: 24px;
-  height: 24px;
-  margin-top: 20px;
 }

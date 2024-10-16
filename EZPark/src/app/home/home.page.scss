@@ -1,20 +1,54 @@
 .accordion-header {
-  --background: #8888E7;
+  --background: #8888e7;
   --color: white; /* Optional: Set text color */
+  border: none; /* Remove any border */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for 3D effect */
+  border-radius: 0; /* Remove border radius */
 }
 
 .accordion-group {
   margin-top: 20px; /* Adjust the value as needed */
-  border-radius: 10px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden; /* Ensure rounded corners are applied */
+  border: none; /* Remove any border */
+  background-color: transparent; /* Ensure no background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for 3D effect */
 }
 
 .accordion-content {
-  --background: #D9D9D9 !important; /* Ensures the background is applied */
-  background-color: #D9D9D9 !important; /* Fallback background color */
+  --background: #d9d9d9 !important; /* Ensures the background is applied */
+  background-color: #d9d9d9 !important; /* Fallback background color */
   color: black !important; /* Ensures the text color is black */
   padding: 10px; /* Optional: Add padding */
+  border: none; /* Remove any border */
+  border-radius: 0; /* Remove border radius */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for 3D effect */
 }
 
+ion-item.accordion-header {
+  --background: #8888e7;
+  --border-color: transparent; /* Remove border color */
+  --ion-item-background: #8888e7; /* Set background color */
+  border: none; /* Remove any border */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for 3D effect */
+  border-radius: 0; /* Remove border radius */
+}
+
+ion-item {
+  --border-color: transparent; /* Remove border color */
+  --ion-item-background: #8888e7; /* Set background color to match accordion header */
+  border: none; /* Remove any border */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for 3D effect */
+  border-radius: 0; /* Remove border radius */
+}
+
+/* Add space between each accordion */
+ion-accordion {
+  margin-bottom: 10px; /* Adjust the value as needed */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for 3D effect */
+}
 
 /* Define the gradient animation */
 @keyframes gradientMove {
@@ -28,8 +62,8 @@
 
 /* Apply the gradient background with animation */
 ion-content {
-  --background: linear-gradient(180deg, #8888D7, #D9D9D9, #FBF3EF);
-  background: linear-gradient(180deg, #8888D7, #D9D9D9, #FBF3EF);
+  --background: linear-gradient(180deg, #8888d7, #d9d9d9, #fbf3ef);
+  background: linear-gradient(180deg, #8888d7, #d9d9d9, #fbf3ef);
   background-size: 100% 300%; /* Larger size for smooth transition */
   animation: gradientMove 10s linear infinite; /* Adjust speed as needed */
 }
@@ -47,7 +81,7 @@ ion-content {
 }
 
 .white-menu {
-  background-color: #D9D9D9; /* Updated background color */
+  background-color: #d9d9d9; /* Updated background color */
 }
 
 #fullwhite {
@@ -55,18 +89,18 @@ ion-content {
 }
 
 #toolbarcolor {
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   width: 100%;
   height: 100%;
 }
 
 #centerbtn {
   width: 300px;
-  --background: #D9D9D9;
+  --background: #d9d9d9;
   display: block;
   margin: auto;
   color: #000;
-  margin-top: 20px; /* Lower the button */
+  margin-top: 10px; /* Reduce space above the button */
 }
 
 .txtpad {
@@ -77,13 +111,13 @@ ion-content {
 .welcome-text {
   text-align: center;
   color: #000;
-  margin-top: 20px; /* Add some space above the text */
+  margin-top: 10px; /* Reduce space above the text */
 }
 
 .sub-welcome-text {
   text-align: center;
   color: #000;
-  margin-top: 10px; /* Add some space above the button */
+  margin-top: 5px; /* Reduce space above the button */
 }
 
 .colspace {
@@ -91,7 +125,7 @@ ion-content {
 }
 
 .cardsize2 {
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   border-radius: 40px;
   width: 50%;
 }
@@ -119,17 +153,17 @@ ion-content {
 }
 
 .spacebtn {
-  --background: #31D97E;
+  --background: #31d97e;
   display: block;
   margin: 0 100px;
 }
 
 ion-menu-button {
-  font-size: 55px;
+  font-size: 50px;
 }
 
 .list-item {
-  border-bottom: 1px solid #E0E0E0;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 @media only screen and (max-width: 600px) {
@@ -140,7 +174,7 @@ ion-menu-button {
     padding: 0 10px;
   }
   .cardsize2 {
-    background-color: #D9D9D9;
+    background-color: #d9d9d9;
     border-radius: 40px;
     width: 100%; /* Set to 100% */
     margin-left: 0; /* Reset margin adjustments */
@@ -152,7 +186,7 @@ ion-menu-button {
   }  
   .spacebtn {
     margin: 0 10px; /* Retain original margin settings */
-    --background: #31D97E;
+    --background: #31d97e;
     width: 150px;
     height: 30px;
     border-radius: 10px;
@@ -162,7 +196,7 @@ ion-menu-button {
   }
   
   .ratebtn {
-    --background: #8888D7;
+    --background: #8888d7;
     width: 150px;           /* Set desired width */
     height: 30px;           /* Set desired height */
     border-radius: 10px;    /* Optional: Add border radius */
@@ -197,16 +231,18 @@ ion-menu-button {
   width: 100px; /* Adjust the width as needed */
   height: auto; /* Maintain aspect ratio */
   display: block;
-  margin: 20px auto 0; /* Center horizontally and add margin at the top */
+  margin: 0 auto; /* Center horizontally and remove top margin */
+  margin-top: -20px; /* Move the logo upwards */
 }
 
 .center-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh; /* Full viewport height */
+  justify-content: flex-start; /* Align items to the top */
   text-align: center;
+  margin-top: 0px; /* Adjust the margin as needed */
+  padding-top: 0px; /* Remove padding to move content upwards */
 }
 
 @media only screen and (max-width: 600px) {
@@ -214,4 +250,64 @@ ion-menu-button {
     width: 50px; /* Smaller size for mobile screens */
     margin: 10px auto 0; /* Adjust margin for mobile screens */
   }
+}
+
+/* Add styles for the favorite button */
+.favorite-btn {
+  --background: #8888e7;
+  color: #000;
+  margin-top: 10px;
+  display: block;
+  width: 200px; /* Adjusted width */
+  height: 40px; /* Adjusted height */
+  border-radius: 10px;
+  font-size: 14px; /* Adjusted font size */
+  text-align: center;
+}
+
+/* Add styles for the "Your Favorite" heading */
+.favorite-heading {
+  text-align: center;
+  color: #000; /* Set the text color to black */
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Add styles for the ion-card */
+ion-card {
+  --background: #8888e7; /* Set the background color to #8888e7 */
+  color: #fff; /* Set the text color to white */
+  border-radius: 10px; /* Add border radius */
+  text-align: center; /* Center the title */
+  width: 90%; /* Set the width to 80% */
+  margin: 0 auto 20px; /* Center the card and add bottom margin */
+}
+
+/* Add styles for the ion-card-title */
+ion-card-title {
+  color: #000; /* Set the text color to black */;
+  font-weight: bold;
+}
+
+/* Add styles for the ion-buttons inside the card */
+ion-card ion-button {
+  color: #000; /* Set the text color to black */
+  text-align: center; /* Center the title */
+}
+
+.reserve-btn {
+  --background: #d9d9d9;
+  color: #000; /* Optional: Set text color to black */
+}
+
+.remove-favorite-btn {
+  color: #fff; /* Set text color to white */
+  --background: #A50719; /* Set background color to #A50719 */
+}
+
+.no-favorite-text {
+  color: #000; /* Set text color to black */
+  text-align: center; /* Center the text */
+  margin-top: 20px; /* Optional: Add margin to position it vertically */
 }

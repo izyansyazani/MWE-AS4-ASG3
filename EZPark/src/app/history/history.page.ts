@@ -67,11 +67,13 @@ export class HistoryPage implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
-    // Initialization logic here
+    this.loadParkingHistory();
   }
 
+  async loadParkingHistory() {}
+
   viewReceipt(parking: Parking) {
-    // Logic to view receipt
+    console.log(`Viewing receipt for: ${parking.location}`);
   }
 
   goToHome() {
@@ -83,10 +85,13 @@ export class HistoryPage implements OnInit {
     if (!this.searchTerm.trim()) {
       return this.parkingHistory;
     }
-    return this.parkingHistory.filter(parking =>
-      parking.location.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      parking.date.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      parking.duration.toLowerCase().includes(this.searchTerm.toLowerCase())
+    return this.parkingHistory.filter(
+      (parking) =>
+        parking.location
+          .toLowerCase()
+          .includes(this.searchTerm.toLowerCase()) ||
+        parking.date.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        parking.duration.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
 }

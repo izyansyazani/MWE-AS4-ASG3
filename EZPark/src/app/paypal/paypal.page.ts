@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PayPalService } from '../paypal.service';
 import { NavController } from '@ionic/angular';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import {
   IonContent,
@@ -31,6 +30,7 @@ import {
   IonInput,
 } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
+import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-paypal',
@@ -68,6 +68,7 @@ import { ActivatedRoute } from '@angular/router';
 export class PaypalPage implements OnInit {
   totalAmount: number = 0;
   bookingDetails: any;
+  label: string = '';
 
   @ViewChild('paymentRef', { static: true }) paymentRef!: ElementRef;
 
@@ -76,7 +77,7 @@ export class PaypalPage implements OnInit {
     private payment: PayPalService,
     private navCtrl: NavController,
     private router: Router,
-    private firestore: AngularFirestore
+    private firestore: Firestore
   ) {}
 
   ngOnInit() {
@@ -84,10 +85,11 @@ export class PaypalPage implements OnInit {
       if (params['bookingDetails']) {
         this.bookingDetails = JSON.parse(params['bookingDetails']);
       }
+      this.label = params['label'] || '';
     });
     this.route.queryParams.subscribe((params) => {
       if (params['totalAmount']) {
-        this.totalAmount = parseFloat(params['totalAmount']);
+        this.totalAmount = parseFloat(params['totalAmount']) || 0;
       }
     });
 
@@ -111,24 +113,23 @@ export class PaypalPage implements OnInit {
             ],
           });
         },
-        onApprove: (data: any, actions: any) => {
-          return actions.order.capture().then((details: any) => {
+        onApprove: async (data: any, actions: any) => {
+          return actions.order.capture().then(async (details: any) => {
             if (details.status === 'COMPLETED') {
-              console.log('Payment Details: ', details);
-              console.log('Reservation Details: ', this.bookingDetails);
-
-              this.firestore.collection('reservations').add({
-                name: this.bookingDetails.name,
-                phoneNumber: this.bookingDetails.phoneNumber,
-                parkingLevel: this.bookingDetails.parkingLevel,
-                parkingSpot: this.bookingDetails.parkingSpot,
-                reservationDate: this.bookingDetails.reservationDate,
-                reservationTime: this.bookingDetails.reservationTime,
-                duration: this.bookingDetails.duration,
-                totalAmount: this.bookingDetails.totalAmount,
-                paymentDetails: details,
-              });
-              alert('Payment is successful');
+              try {
+                await addDoc(collection(this.firestore, 'bookings'), {
+                  location: this.label,
+                  bookingDetails: this.bookingDetails,
+                  paymentDetails: details,
+                  timestamp: new Date(),
+                });
+                alert('Payment is successful and details are saved');
+              } catch (error) {
+                console.error('Error saving details: ', error);
+                alert(
+                  'Payment successful, but there was an error saving the details'
+                );
+              }
               this.navCtrl.navigateRoot('/home');
             }
           });
@@ -138,5 +139,39 @@ export class PaypalPage implements OnInit {
         },
       })
       .render(this.paymentRef.nativeElement);
+  }
+  async simulatePayment() {
+    const mockDetails = {
+      status: 'COMPLETED',
+      id: 'MOCK_PAYMENT_ID',
+      payer: {
+        email_address: 'mockpayer@example.com',
+      },
+      purchase_units: [
+        {
+          amount: {
+            value: this.bookingDetails.totalAmount.toString(),
+            currency_code: 'SGD',
+          },
+        },
+      ],
+    };
+
+    try {
+      await addDoc(collection(this.firestore, 'bookings'), {
+        location: this.label,
+        bookingDetails: this.bookingDetails,
+        paymentDetails: mockDetails,
+        timestamp: new Date(),
+      });
+      alert('Simulated payment is successful and details are saved');
+    } catch (error) {
+      console.error('Error saving simulated details: ', error);
+      alert(
+        'Simulated payment successful, but there was an error saving the details'
+      );
+    }
+
+    this.navCtrl.navigateRoot('/home');
   }
 }

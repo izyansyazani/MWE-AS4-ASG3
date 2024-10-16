@@ -1,5 +1,6 @@
 <ion-content>
   <ion-card-content>
+    <p><strong>Location:</strong> {{ label }}</p>
     <p><strong>Parking Spot Level:</strong> {{ bookingDetails.parkingLevel }}</p>
     <p><strong>Parking Space Number:</strong> {{ bookingDetails.parkingSpaceNumber }}</p>
     <p><strong>Reservation Date:</strong> {{ bookingDetails.reservationDate }}</p>
@@ -9,4 +10,5 @@
     <p><strong>Total amount to be paid:</strong> {{ bookingDetails.totalAmount | currency:'BND':'symbol':'1.2-2' }}</p>
   </ion-card-content>
   <div #paymentRef></div>
+  <button (click)="simulatePayment()">Press to complete payment</button>
 </ion-content>

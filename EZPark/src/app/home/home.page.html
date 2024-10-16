@@ -3,23 +3,40 @@
   <ion-menu contentId="main-content">
     <ion-header>
       <ion-toolbar>
-        <ion-title id="toolbarcolor" class="center colorblack">EZPark</ion-title>
+        <ion-title id="toolbarcolor" class="center colorblack"
+          >EZPark</ion-title
+        >
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <ion-list class="ion-padding colorblack white-menu list-item" [routerLink]="['/userprofile']">
+      <ion-list
+        class="ion-padding colorblack white-menu list-item"
+        [routerLink]="['/userprofile']"
+      >
         User Profile
       </ion-list>
-      <ion-list class="ion-padding colorblack white-menu list-item" [routerLink]="['/parkingspots']">
+      <ion-list
+        class="ion-padding colorblack white-menu list-item"
+        [routerLink]="['/parkingspots']"
+      >
         Parking Spots
       </ion-list>
-      <ion-list class="ion-padding colorblack white-menu list-item" [routerLink]="['/history']">
+      <ion-list
+        class="ion-padding colorblack white-menu list-item"
+        [routerLink]="['/history']"
+      >
         Parking History
       </ion-list>
-      <ion-list class="ion-padding colorblack white-menu list-item" [routerLink]="['/aboutus']">
+      <!-- <ion-list
+        class="ion-padding colorblack white-menu list-item"
+        [routerLink]="['/aboutus']"
+      >
         About Us
-      </ion-list>
-      <ion-list class="ion-padding colorblack white-menu list-item" [routerLink]="['/feedback']">
+      </ion-list> -->
+      <ion-list
+        class="ion-padding colorblack white-menu list-item"
+        [routerLink]="['/feedback']"
+      >
         Feedback
       </ion-list>
       <ion-list id="fullwhite" class="white-menu"></ion-list>
@@ -32,55 +49,223 @@
       <ion-menu-button class="colorblack"></ion-menu-button>
     </ion-buttons>
     <ion-content class="ion-padding">
+      <!-- Move the logo and welcome text here -->
+      <div class="center-content">
+        <img src="assets/HouseholdGarage.png" alt="Logo" class="logo-img" />
+        <h2 class="welcome-text">Welcome!</h2>
+        <h3 class="sub-welcome-text">Start by finding a parking spot</h3>
+        <ion-button
+          id="centerbtn"
+          shape="round"
+          [routerLink]="['/parkingspots']"
+          >Find Parking</ion-button
+        >
+      </div>
+
       <ion-grid>
         <ion-row>
           <ion-col size-xs="12" size-md="8" offset-md="2">
-            <!-- Add the logo image here -->
-            <img src="../assets/HouseholdGarage.png" alt="Logo" class="logo-img" />
-            <h2 class="welcome-text">Welcome!</h2>
-            <h3 class="sub-welcome-text">Start by finding a parking spot</h3>
-            <ion-button id="centerbtn" shape="round" [routerLink]="['/parkingspots']">Find Parking</ion-button>
-            
             <!-- Accordion Section added below the parking button -->
             <ion-accordion-group class="accordion-group">
               <ion-accordion value="first">
                 <ion-item slot="header" class="accordion-header">
                   <ion-label>The Mall</ion-label>
                 </ion-item>
-                <div class="ion-padding accordion-content" slot="content">First Content</div>
+                <div class="ion-padding accordion-content" slot="content">
+                  <img
+                    src="assets/mall.jpg"
+                    alt="Mall Image"
+                    style="width: 100%; height: auto"
+                  />
+                  <ion-button
+                    class="favorite-btn"
+                    shape="round"
+                    [disabled]="isFavorite('The Mall, Gadong')"
+                    (click)="toggleFavorite('The Mall, Gadong')"
+                    >Save to favorite</ion-button
+                  >
+                  <p><strong>Opening Hours</strong></p>
+                  <p>Mon - 10 AM - 10 PM</p>
+                  <p>Tue - 10 AM - 10 PM</p>
+                  <p>Wed - 10 AM - 10 PM</p>
+                  <p>Thu - 10 AM - 10 PM</p>
+                  <p>Fri - 10 AM - 12 PM, 2 - 10 PM</p>
+                  <p>Sat - 10 AM - 10 PM</p>
+                  <p>Sun - 10 AM - 10 PM</p>
+                </div>
               </ion-accordion>
               <ion-accordion value="second">
                 <ion-item slot="header" class="accordion-header">
                   <ion-label>Airport Mall</ion-label>
                 </ion-item>
-                <div class="ion-padding accordion-content" slot="content">Second Content</div>
+                <div class="ion-padding accordion-content" slot="content">
+                  <img
+                    src="assets/airportmall.jpg"
+                    alt="Airport Mall Image"
+                    style="width: 100%; height: auto"
+                  />
+                  <ion-button
+                    class="favorite-btn"
+                    shape="round"
+                    [disabled]="isFavorite('Airport Mall')"
+                    (click)="toggleFavorite('Airport Mall')"
+                    >Save to favorite</ion-button
+                  >
+                  <p><strong>Opening Hours</strong></p>
+                  <p>Mon - 10 AM - 9.30 PM</p>
+                  <p>Tue - 10 AM - 9.30 PM</p>
+                  <p>Wed - 10 AM - 9.30 PM</p>
+                  <p>Thu - 10 AM - 9.30 PM</p>
+                  <p>Fri - 10 AM - 12 PM, 2 - 9.30 PM</p>
+                  <p>Sat - 10 AM - 9.30 PM</p>
+                  <p>Sun - 10 AM - 9.30 PM</p>
+                </div>
               </ion-accordion>
               <ion-accordion value="third">
                 <ion-item slot="header" class="accordion-header">
                   <ion-label>Times Square</ion-label>
                 </ion-item>
-                <div class="ion-padding accordion-content" slot="content">Third Content</div>
+                <div class="ion-padding accordion-content" slot="content">
+                  <img
+                    src="assets/Timessquare.jpg"
+                    alt="Times Square Image"
+                    style="width: 100%; height: auto"
+                  />
+                  <ion-button
+                    class="favorite-btn"
+                    shape="round"
+                    [disabled]="isFavorite('Times Square')"
+                    (click)="toggleFavorite('Times Square')"
+                    >Save to favorite</ion-button
+                  >
+                  <p><strong>Opening Hours</strong></p>
+                  <p>Mon - 10 AM - 9.30 PM</p>
+                  <p>Tue - 10 AM - 9.30 PM</p>
+                  <p>Wed - 10 AM - 9.30 PM</p>
+                  <p>Thu - 10 AM - 9.30 PM</p>
+                  <p>Fri - 10 AM - 12 PM, 2 - 9.30 PM</p>
+                  <p>Sat - 10 AM - 9.30 PM</p>
+                  <p>Sun - 10 AM - 9.30 PM</p>
+                </div>
               </ion-accordion>
-              <ion-accordion value="fourth">
+              <!-- <ion-accordion value="fourth">
                 <ion-item slot="header" class="accordion-header">
                   <ion-label>Yayasan</ion-label>
+                  
                 </ion-item>
-                <div class="ion-padding accordion-content" slot="content">Fourth Content</div>
-              </ion-accordion>
-              <ion-accordion value="fifth">
+      
+                <div class="ion-padding accordion-content" slot="content">
+                  <img
+                    src="assets/yayasan.jpg"
+                    alt="Yayasan Image"
+                    style="width: 100%; height: auto"
+                  />
+                  <ion-button
+                    class="favorite-btn"
+                    shape="round"
+                    [disabled]="isFavorite('Yayasan Complex')"
+                    (click)="toggleFavorite('Yayasan Complex')"
+                    >Save to favorite</ion-button
+                  >
+                  <p><strong>Opening Hours</strong></p>
+                  <p>Mon - 9.30 AM - 9.30 PM</p>
+                  <p>Tue - 9.30 AM - 9.30 PM</p>
+                  <p>Wed - 9.30 AM - 9.30 PM</p>
+                  <p>Thu - 9.30 AM - 9.30 PM</p>
+                  <p>Fri - 9.30 AM - 12 PM, 2 - 9.30 PM</p>
+                  <p>Sat - 9.30 AM - 9.30 PM</p>
+                  <p>Sun - 9.30 AM - 9.30 PM</p>
+                </div>
+              </ion-accordion> -->
+              <!-- <ion-accordion value="fifth">
                 <ion-item slot="header" class="accordion-header">
                   <ion-label>Mabohai</ion-label>
                 </ion-item>
-                <div class="ion-padding accordion-content" slot="content">Fifth Content</div>
-              </ion-accordion>
-              <ion-accordion value="sixth">
+                <div class="ion-padding accordion-content" slot="content">
+                  <img
+                    src="assets/mabohai.jpg"
+                    alt="Mabohai Image"
+                    style="width: 100%; height: auto"
+                  />
+                  <ion-button
+                    class="favorite-btn"
+                    shape="round"
+                    [disabled]="isFavorite('Mabohai Shopping Complex')"
+                    (click)="toggleFavorite('Mabohai Shopping Complex')"
+                    >Save to favorite</ion-button
+                  >
+                  <p><strong>Opening Hours</strong></p>
+                  <p>Mon - 10 AM - 10 PM</p>
+                  <p>Tue - 10 AM - 10 PM</p>
+                  <p>Wed - 10 AM - 10 PM</p>
+                  <p>Thu - 10 AM - 10 PM</p>
+                  <p>Fri - 10 AM - 12 PM, 2 - 10 PM</p>
+                  <p>Sat - 10 AM - 10 PM</p>
+                  <p>Sun - 9 AM - 10 PM</p>
+                </div>
+              </ion-accordion> -->
+              <!-- <ion-accordion value="sixth">
                 <ion-item slot="header" class="accordion-header">
                   <ion-label>Aman Hills</ion-label>
                 </ion-item>
-                <div class="ion-padding accordion-content" slot="content">Sixth Content</div>
-              </ion-accordion>
+                <div class="ion-padding accordion-content" slot="content">
+                  <img
+                    src="assets/amanhills.jpg"
+                    alt="Aman Hills Image"
+                    style="width: 100%; height: auto"
+                  />
+                  <ion-button
+                    class="favorite-btn"
+                    shape="round"
+                    [disabled]="isFavorite('Aman Hills Brunei')"
+                    (click)="toggleFavorite('Aman Hills Brunei')"
+                    >Save to favorite</ion-button
+                  >
+                  <p><strong>Opening Hours</strong></p>
+                  <p>Mon - 9 AM - 9 PM</p>
+                  <p>Tue - 9 AM - 9 PM</p>
+                  <p>Wed - 9 AM - 9 PM</p>
+                  <p>Thu - 9 AM - 9 PM</p>
+                  <p>Fri - 9 AM - 12 PM, 2 - 9 PM</p>
+                  <p>Sat - 9 AM - 9 PM</p>
+                  <p>Sun - 9 AM - 9 PM</p>
+                </div>
+              </ion-accordion> -->
             </ion-accordion-group>
+            <!-- Your Favourite Section -->
+            <h1 class="favorite-heading"><strong>Your Favourite</strong></h1>
+            <div *ngIf="favoriteSpots.length > 0; else noFavorites">
+              <ion-card *ngFor="let spot of favoriteSpots">
+                <img
+                  [src]="spot.imageUrl"
+                  [alt]="spot.title + ' Image'"
+                  style="width: 100%; height: auto"
+                />
+                <ion-card-header>
+                  <ion-card-title>{{ spot.title }}</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  <ion-button
+                    class="remove-favorite-btn"
+                    shape="round"
+                    (click)="removeFavorite(spot.location)"
+                    >Remove</ion-button
+                  >
+                  <ion-button
+                    class="reserve-btn"
+                    shape="round"
+                    [routerLink]="getReserveLink(spot.location)"
+                    >Reserve</ion-button
+                  >
+                </ion-card-content>
+              </ion-card>
+            </div>
+            <ng-template #noFavorites>
+              <p class="no-favorite-text">No favorite spot selected.</p>
+            </ng-template>
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-content>
+  </div>
+</ion-content>
