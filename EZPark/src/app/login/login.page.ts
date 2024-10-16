@@ -63,9 +63,11 @@ export class LoginPage implements OnInit {
   ) {}
 
   ngOnInit() {
+    const rememberedEmail = localStorage.getItem('rememberedEmail');
+
     this.ionicForm = this.formBuilder.group({
       email: [
-        '',
+        rememberedEmail || '',
         [
           Validators.required,
           Validators.pattern(
@@ -80,7 +82,7 @@ export class LoginPage implements OnInit {
           Validators.pattern('(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'),
         ],
       ],
-      rememberMe: [false],
+      rememberMe: [!!rememberedEmail], // Check if email was remembered
     });
   }
 
@@ -90,11 +92,19 @@ export class LoginPage implements OnInit {
 
     if (this.ionicForm.valid) {
       try {
-        const { email, password } = this.ionicForm.value;
+        const { email, password, rememberMe } = this.ionicForm.value;
         const user = await this.authService.loginUser(email, password);
+
         if (user) {
           await loading.dismiss();
           this.router.navigate(['/home']);
+
+          // Handle "Remember me" functionality
+          if (rememberMe) {
+            localStorage.setItem('rememberedEmail', email);
+          } else {
+            localStorage.removeItem('rememberedEmail');
+          }
         }
       } catch (err: any) {
         await loading.dismiss();
