@@ -117,14 +117,6 @@ export class PaypalPage implements OnInit {
           return actions.order.capture().then(async (details: any) => {
             if (details.status === 'COMPLETED') {
               try {
-                const startTime = new Date(
-                  this.bookingDetails.reservationDate +
-                    'T' +
-                    this.bookingDetails.reservationTime
-                );
-                const durationInHours = this.bookingDetails.duration;
-                const endTime = new Date(startTime);
-                endTime.setHours(endTime.getHours() + durationInHours);
                 await addDoc(collection(this.firestore, 'bookings'), {
                   location: this.label,
                   bookingDetails: this.bookingDetails,
@@ -133,8 +125,6 @@ export class PaypalPage implements OnInit {
                   timestamp: new Date(),
                   parkingSpaceNumber: this.bookingDetails.parkingSpaceNumber,
                   duration: this.bookingDetails.duration,
-                  startTime: startTime,
-                  endTime: endTime,
                 });
                 alert('Payment is successful and details are saved');
               } catch (error) {
@@ -171,14 +161,6 @@ export class PaypalPage implements OnInit {
     };
 
     try {
-      const startTime = new Date(
-        this.bookingDetails.reservationDate +
-          'T' +
-          this.bookingDetails.reservationTime
-      );
-      const durationInHours = this.bookingDetails.duration;
-      const endTime = new Date(startTime);
-      endTime.setHours(endTime.getHours() + durationInHours);
       await addDoc(collection(this.firestore, 'bookings'), {
         location: this.label,
         bookingDetails: this.bookingDetails,
@@ -187,8 +169,6 @@ export class PaypalPage implements OnInit {
         timestamp: new Date(),
         parkingSpaceNumber: this.bookingDetails.parkingSpaceNumber,
         duration: this.bookingDetails.duration,
-        startTime: this.bookingDetails.startTime,
-        endTime: endTime,
       });
       alert('Simulated payment is successful and details are saved');
     } catch (error) {
