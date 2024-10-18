@@ -2,8 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Import CommonModule
 import { Router, ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { ParkingService } from '../../services/parking.service';
-import { Observable } from 'rxjs';
+import {
+  Firestore,
+  collection,
+  getDocs,
+  query,
+  where,
+} from '@angular/fire/firestore';
 import {
   IonContent,
   IonHeader,
@@ -57,13 +62,34 @@ import {
   ],
 })
 export class MallPage implements OnInit {
+  bookedSpots: string[] = [];
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private firestore: Firestore
   ) {}
 
-  ngOnInit() {}
+  async ngOnInit() {
+    await this.checkBookedSpots();
+  }
+
+  async checkBookedSpots() {
+    // Query Firestore to get the booked spots
+    const bookingCollection = collection(this.firestore, 'bookings');
+    const bookedQuery = query(
+      bookingCollection,
+      where('status', '==', 'booked')
+    );
+
+    const querySnapshot = await getDocs(bookedQuery);
+    this.bookedSpots = querySnapshot.docs.map(
+      (doc) => doc.data()['parkingSpaceNumber']
+    ); // Get all booked spots
+
+    console.log('Booked spots:', this.bookedSpots);
+  }
 
   goToMall2() {
     this.router.navigate(['/mall2']);
@@ -72,6 +98,10 @@ export class MallPage implements OnInit {
     this.router.navigate(['/parkingspots']);
   }
   goToBook(parkingSpaceNumber: string, parkingLevel: string) {
+    if (this.bookedSpots.includes(parkingSpaceNumber)) {
+      alert('This spot is already booked.');
+      return;
+    }
     this.router.navigate(['/reservation'], {
       queryParams: {
         parkingSpaceNumber,
@@ -80,6 +110,9 @@ export class MallPage implements OnInit {
         label: 'The Mall, Gadong',
       },
     });
+  }
+  isBooked(spot: string): boolean {
+    return this.bookedSpots.includes(spot);
   }
 }
 
