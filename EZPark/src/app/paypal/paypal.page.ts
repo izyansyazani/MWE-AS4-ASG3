@@ -123,6 +123,9 @@ export class PaypalPage implements OnInit {
                   paymentDetails: details,
                   status: 'booked',
                   timestamp: new Date(),
+                  parkingSpaceNumber: this.bookingDetails.parkingSpaceNumber,
+                  duration: this.bookingDetails.duration,
+                  startTime: this.bookingDetails.reservationTime,
                 });
                 alert('Payment is successful and details are saved');
               } catch (error) {
@@ -163,7 +166,9 @@ export class PaypalPage implements OnInit {
         location: this.label,
         bookingDetails: this.bookingDetails,
         paymentDetails: mockDetails,
+        status: 'booked',
         timestamp: new Date(),
+        parkingSpaceNumber: this.bookingDetails.parkingSpaceNumber,
         duration: this.bookingDetails.duration,
         startTime: this.bookingDetails.reservationTime,
       });

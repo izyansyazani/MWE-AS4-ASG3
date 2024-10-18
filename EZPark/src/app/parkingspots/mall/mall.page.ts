@@ -76,19 +76,37 @@ export class MallPage implements OnInit {
   }
 
   async checkBookedSpots() {
-    // Query Firestore to get the booked spots
-    const bookingCollection = collection(this.firestore, 'bookings');
-    const bookedQuery = query(
-      bookingCollection,
-      where('status', '==', 'booked')
-    );
+    try {
+      const bookingCollection = collection(this.firestore, 'bookings');
+      const bookedQuery = query(
+        bookingCollection,
+        where('status', '==', 'booked')
+      );
+      const querySnapshot = await getDocs(bookedQuery);
 
-    const querySnapshot = await getDocs(bookedQuery);
-    this.bookedSpots = querySnapshot.docs.map(
-      (doc) => doc.data()['parkingSpaceNumber']
-    ); // Get all booked spots
+      console.log('Query Snapshot:', querySnapshot); // Log the entire snapshot
 
-    console.log('Booked spots:', this.bookedSpots);
+      // Log the number of documents found
+      console.log('Number of booked spots found:', querySnapshot.docs.length);
+
+      this.bookedSpots = querySnapshot.docs.map((doc, index) => {
+        const docData = doc.data();
+        console.log(`Doc Data [${index}]:`, docData); // Log each document's data
+
+        // Check if 'parkingSpaceNumber' exists and log if it's undefined
+        if (docData['parkingSpaceNumber'] === undefined) {
+          console.warn(
+            `Warning: parkingSpaceNumber is undefined for document ID: ${doc.id}`
+          );
+        }
+
+        return docData['parkingSpaceNumber'];
+      });
+
+      console.log('Mapped Booked Spots:', this.bookedSpots);
+    } catch (error) {
+      console.error('Error fetching booked spots:', error);
+    }
   }
 
   goToMall2() {
