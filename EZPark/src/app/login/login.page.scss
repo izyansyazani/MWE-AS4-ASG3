@@ -44,8 +44,10 @@ ion-item {
     line-height: 40px; /* Ensure text is vertically centered */
 }
 ion-input {
-    --padding-start: 0;
-    --padding-end: 0;
+    --padding-start: 12px;
+    --padding-end: 12px;
+    border: 2px solid #353535;
+    border-radius: 4px;
     height: 100%; /* Ensure input takes full height of ion-item */
 }
 ion-button {
@@ -68,6 +70,7 @@ ion-checkbox {
     --checkmark-color: #000000;
     margin-right: 125px;
     margin-top: 10px; /* Add margin to lower the checkbox */
+    
 }
 
 ion-checkbox::part(container) {
