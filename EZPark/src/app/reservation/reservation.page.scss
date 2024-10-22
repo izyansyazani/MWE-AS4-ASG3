@@ -115,3 +115,10 @@ ion-card img {
   --color: #fff; /* Text color for confirm button */
   --background: #8888e7; /* Background color for confirm button */
 }
+
+ion-input {
+  --padding-start: 12px;
+  --padding-end: 12px;
+  border: 2px solid #353535;
+  border-radius: 4px;
+}
