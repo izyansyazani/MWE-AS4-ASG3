@@ -8,7 +8,14 @@
     <form [formGroup]="ionicForm" (ngSubmit)="signUP()">
       <div class="form-item">
         <label for="fullname" class="textColor">Full Name:</label>
-        <input id="fullname" formControlName="fullname" type="text" class="input textarea">
+        <input
+          id="fullname"
+          formControlName="fullname"
+          type="text"
+          class="input textarea"
+          [ngClass]="{'filled': ionicForm.get('fullname')?.value.length > 0}"
+          required
+        />
       </div>
       <div *ngIf="errorControl['fullname'].touched && errorControl['fullname'].invalid">
         <ion-text color="danger">Full Name is required.</ion-text>
@@ -16,7 +23,14 @@
 
       <div class="form-item">
         <label for="email" class="textColor">Email Address:</label>
-        <input id="email" formControlName="email" type="email" class="input textarea">
+        <input
+          id="email"
+          formControlName="email"
+          type="email"
+          class="input textarea"
+          [ngClass]="{'filled': ionicForm.get('email')?.value.length > 0}"
+          required
+        />
       </div>
       <div *ngIf="errorControl['email'].touched && errorControl['email'].invalid">
         <ion-text color="danger">Invalid email format.</ion-text>
@@ -24,7 +38,14 @@
 
       <div class="form-item">
         <label for="contact" class="textColor">Phone Number:</label>
-        <input id="contact" formControlName="contact" type="tel" class="input textarea">
+        <input
+          id="contact"
+          formControlName="contact"
+          type="tel"
+          class="input textarea"
+          [ngClass]="{'filled': ionicForm.get('contact')?.value.length > 0}"
+          required
+        />
       </div>
       <div *ngIf="errorControl['contact'].touched && errorControl['contact'].invalid">
         <ion-text color="danger">Phone number must be at least 7 digits.</ion-text>
@@ -32,7 +53,14 @@
 
       <div class="form-item">
         <label for="password" class="textColor">Password:</label>
-        <input id="password" formControlName="password" type="password" class="input textarea">
+        <input
+          id="password"
+          formControlName="password"
+          type="password"
+          class="input textarea"
+          [ngClass]="{'filled': ionicForm.get('password')?.value.length > 0}"
+          required
+        />
       </div>
       <div *ngIf="errorControl['password'].touched && errorControl['password'].invalid">
         <ion-text color="danger">
@@ -40,7 +68,7 @@
         </ion-text>
       </div>
 
-      <ion-button expand="block" type="submit" [disabled]="!ionicForm.valid" [routerLink]="['/login']" >CREATE ACCOUNT</ion-button>
+      <ion-button expand="block" type="submit" [disabled]="!ionicForm.valid">CREATE ACCOUNT</ion-button>
     </form>
 
     <ion-text class="textColor">

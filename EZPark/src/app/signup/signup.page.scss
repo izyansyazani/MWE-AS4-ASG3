@@ -1,9 +1,10 @@
 ion-content {
-    --ion-background-color: #FBF3EF;
+    background: linear-gradient(135deg, #FBF3EF, #E0E0E0, #FFCCCB); /* Gradient background */
+    --ion-background-color: transparent; /* Ensure background is transparent to see gradient */
 }
 
 .textColor {
-    color: black;
+    color: black; /* Default text color */
 }
 
 #centered-content {
@@ -15,55 +16,77 @@ ion-content {
 }
 
 ion-button {
-    --background: #8888E7;
-    --color: white;
-    margin-top: 25px;
-    width: 250px;
+    --background: #8888E7; /* Button background color */
+    --color: white; /* Button text color */
+    margin-top: 25px; /* Margin for button */
+    width: 250px; /* Button width */
 }
 
 #welcome {
-    font-weight: bold;
-    font-size: 20px;
+    font-weight: bold; /* Bold style for welcome text */
+    font-size: 20px; /* Font size for welcome text */
 }
 
 #ezpark {
-    font-weight: bold;
-    font-size: 30px;
-    padding-top: 6px;
-    padding-bottom: 20px;
+    font-weight: bold; /* Bold style for EZPark text */
+    font-size: 30px; /* Font size for EZPark text */
+    padding-top: 6px; /* Padding for top of EZPark text */
+    padding-bottom: 20px; /* Padding for bottom of EZPark text */
 }
 
 .form-item {
-    margin-bottom: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin-bottom: 15px; /* Margin for form items */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Arrange items in column */
+    align-items: center; /* Center items */
 }
 
 label {
-    color: black;
-    font-size: 16px;
-    margin-bottom: 5px;
-    text-align: left;
-    width: 250px;
+    color: black; /* Label text color */
+    font-size: 16px; /* Label font size */
+    margin-bottom: 5px; /* Margin below label */
+    text-align: left; /* Align text to the left */
+    width: 250px; /* Width of labels */
 }
 
+/* Default input styling */
 input {
-    color: black;
-    background-color: #E0E0E0;
-    width: 250px;
-    height: 40px;
-    padding: 0 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
+    color: black; /* Input text color */
+    background-color: #E0E0E0; /* Default background color */
+    width: 250px; /* Input width */
+    height: 40px; /* Input height */
+    padding: 0 10px; /* Padding inside input */
+    border: 1px solid #ccc; /* Input border */
+    border-radius: 4px; /* Rounded corners for input */
+    font-size: 16px; /* Input font size */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
 }
 
+/* Change background color when input is filled */
+input.filled {
+    background-color: #d4edda; /* Light green background when filled */
+    border-color: #c3e6cb; /* Change border color */
+}
+
+/* Autofill styling to remove autofill color */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #E0E0E0 inset !important; /* Reset autofill background */
+    box-shadow: 0 0 0 30px #E0E0E0 inset !important; /* Reset autofill background */
+    -webkit-text-fill-color: black !important; /* Ensure text is black */
+}
+
+/* For Firefox autofill */
+input:-moz-autofill {
+    background-color: #E0E0E0 !important; /* Ensure the background matches */
+    color: black !important; /* Ensure the text color is black */
+}
+
+/* Additional styles for error messages */
 .text {
-    font-size: 12px;
+    font-size: 12px; /* Font size for additional text */
 }
 
 #logintxt {
-    color: #4285F4;
-    text-decoration: underline;
+    color: #4285F4; /* Color for login text */
+    text-decoration: underline; /* Underline style for login text */
 }

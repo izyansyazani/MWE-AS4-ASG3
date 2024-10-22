@@ -17,48 +17,54 @@
       <ion-col>
         <ion-grid class="group">
           <ion-row>
-            <ion-col class="box" (click)="goToBook('A6','Upper Basement')">A6</ion-col>
-            <ion-col class="box" (click)="goToBook('A1','Upper Basement')">A1</ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
+  
+            <ion-col class="box" (click)="goToBook('A1','Upper Basement')" *ngIf="!isBooked('A1')">A1</ion-col>
+            <ion-col class="box" *ngIf="isBooked('A1')"><img src="../assets/sports-car.png"></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="box" (click)="goToBook('A7','Upper Basement')">A7</ion-col>
-            <ion-col class="box" (click)="goToBook('A2','Upper Basement')">A2</ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
+  
+            <ion-col class="box" (click)="goToBook('A2','Upper Basement')" *ngIf="!isBooked('A2')">A2</ion-col>
+            <ion-col class="box" *ngIf="isBooked('A2')"><img src="../assets/sports-car.png"></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="box" (click)="goToBook('A8','Upper Basement')">A8</ion-col>
-            <ion-col class="box" (click)="goToBook('A3','Upper Basement')">A3</ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
+
+            <ion-col class="box" (click)="goToBook('A3','Upper Basement')" *ngIf="!isBooked('A3')">A3</ion-col>
+            <ion-col class="box" *ngIf="isBooked('A3')"><img src="../assets/sports-car.png"></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="box" (click)="goToBook('A9','Upper Basement')">A9</ion-col>
-            <ion-col class="box" (click)="goToBook('A4','Upper Basement')">A4</ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="box" (click)="goToBook('A10','Upper Basement')">A10</ion-col>
-            <ion-col class="box" (click)="goToBook('A5','Upper Basement')">A5</ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
           </ion-row>
         </ion-grid>
       </ion-col>
       <ion-col>
         <ion-grid class="group">
           <ion-row>
-            <ion-col class="box" (click)="goToBook('B1','Upper Basement')">B1</ion-col>
-            <ion-col class="box" (click)="goToBook('B6','Upper Basement')">B6</ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="box" (click)="goToBook('B2','Upper Basement')">B2</ion-col>
-            <ion-col class="box" (click)="goToBook('B7','Upper Basement')">B7</ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="box" (click)="goToBook('B3','Upper Basement')">B3</ion-col>
-            <ion-col class="box" (click)="goToBook('B8','Upper Basement')">B8</ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="box" (click)="goToBook('B4','Upper Basement')">B4</ion-col>
-            <ion-col class="box" (click)="goToBook('B9','Upper Basement')">B9</ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="box" (click)="goToBook('B5','Upper Basement')">B5</ion-col>
-            <ion-col class="box" (click)="goToBook('B10','Upper Basement')">B10</ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
           </ion-row>
         </ion-grid>
       </ion-col>
@@ -67,48 +73,48 @@
       <ion-col>
         <ion-grid class="group">
           <ion-row>
-            <ion-col class="box" (click)="goToBook('C6','Upper Basement')">C6</ion-col>
-            <ion-col class="box" (click)="goToBook('C1','Upper Basement')">C1</ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="box" (click)="goToBook('C7','Upper Basement')">C7</ion-col>
-            <ion-col class="box" (click)="goToBook('C2','Upper Basement')">C2</ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="box" (click)="goToBook('C8','Upper Basement')">C8</ion-col>
-            <ion-col class="box" (click)="goToBook('C3','Upper Basement')">C3</ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="box" (click)="goToBook('C9','Upper Basement')">C9</ion-col>
-            <ion-col class="box" (click)="goToBook('C4','Upper Basement')">C4</ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="box" (click)="goToBook('C10','Upper Basement')">C10</ion-col>
-            <ion-col class="box" (click)="goToBook('C5','Upper Basement')">C5</ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
           </ion-row>
         </ion-grid>
       </ion-col>
       <ion-col>
         <ion-grid class="group">
           <ion-row>
-            <ion-col class="box" (click)="goToBook('D1','Upper Basement')">D1</ion-col>
-            <ion-col class="box" (click)="goToBook('D6','Upper Basement')">D6</ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="box" (click)="goToBook('D2','Upper Basement')">D2</ion-col>
-            <ion-col class="box" (click)="goToBook('D7','Upper Basement')">D7</ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="box" (click)="goToBook('D3','Upper Basement')">D3</ion-col>
-            <ion-col class="box" (click)="goToBook('D8','Upper Basement')">D8</ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="box" (click)="goToBook('D4','Upper Basement')">D4</ion-col>
-            <ion-col class="box" (click)="goToBook('D9','Upper Basement')">D9</ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="box" (click)="goToBook('D5','Upper Basement')">D5</ion-col>
-            <ion-col class="box" (click)="goToBook('D10','Upper Basement')">D10</ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
+            <ion-col class="box"><img src="../assets/sports-car.png"></ion-col>
           </ion-row>
         </ion-grid>
       </ion-col>
