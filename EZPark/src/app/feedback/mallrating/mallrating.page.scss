@@ -48,6 +48,8 @@ h1 {
 }
 
 .comment-input-container ion-input {
+  --padding-start: 12px;
+  --padding-end: 12px;
   flex: 1;
   margin-right: 10px;
   border: 1px solid #ccc; /* Add border for visibility */
