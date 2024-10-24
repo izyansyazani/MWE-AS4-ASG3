@@ -82,3 +82,8 @@ ion-page {
     --background-hover: #7676d3 !important; /* Darker hover color */
     --font-size: 10px; /* Set the font size for the button text */
   }
+
+  #dashed-line {
+    border-top: 1px dashed #000000;
+    margin: 10px 0;
+  }
