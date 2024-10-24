@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Import CommonModule
 import { Router, ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { ParkingAlertService } from '../../services/parking-alert.service';
 import {
   Firestore,
   collection,
@@ -68,7 +69,8 @@ export class MallPage implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private navCtrl: NavController,
-    private firestore: Firestore
+    private firestore: Firestore,
+    private parkingAlertService: ParkingAlertService
   ) {}
 
   async ngOnInit() {

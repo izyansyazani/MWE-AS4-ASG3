@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
+import { ParkingAlertService } from './services/parking-alert.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,11 @@ import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
   imports: [IonApp, IonRouterOutlet],
 })
 export class AppComponent implements OnInit {
-  constructor() {}
+  constructor(private parkingAlertService: ParkingAlertService) {
+    this.initializeApp();
+  }
+
+  initializeApp() {}
 
   ngOnInit() {}
 }
