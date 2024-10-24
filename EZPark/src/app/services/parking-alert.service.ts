@@ -6,50 +6,72 @@ import { getDatabase, ref, onValue } from 'firebase/database';
   providedIn: 'root',
 })
 export class ParkingAlertService {
-  parkingStatus: { [key: string]: string } = {};
-  bookingStatus: { [key: string]: string } = {};
-
   constructor(private alertController: AlertController) {
-    this.listenToParkingStatus();
+    this.listenToParkingSpots();
   }
 
-  listenToParkingStatus() {
+  listenToParkingSpots() {
     const db = getDatabase();
-    const parkingStatusRef = ref(db, 'parking_status');
+    const parkingSpotsRef = ref(db, 'parking-spots');
 
-    onValue(parkingStatusRef, (snapshot) => {
-      const statusData = snapshot.val();
-      if (statusData) {
-        for (const spot in statusData) {
-          this.parkingStatus[spot] = statusData[spot];
-          this.checkStatus(spot); // Check status for each parking spot
+    console.log('Listening to parking spots at path: parking-spots');
+
+    onValue(
+      parkingSpotsRef,
+      (snapshot) => {
+        const spotsData = snapshot.val();
+        console.log('Snapshot data received:', spotsData);
+
+        if (spotsData) {
+          this.checkSpotStatuses(spotsData);
+        } else {
+          console.warn('No data found at parking-spots.');
         }
+      },
+      (error) => {
+        console.error('Error fetching parking spots:', error);
       }
-    });
+    );
   }
 
-  async checkStatus(spot: string) {
-    const bookingStatus = this.bookingStatus[spot];
-    const parkingStatus = this.parkingStatus[spot];
+  checkSpotStatuses(spotsData: any) {
+    console.log('Checking statuses for parking spots:', spotsData);
 
-    if (bookingStatus === 'Booked' && parkingStatus === 'Occupied') {
-      const alert = await this.alertController.create({
-        header: 'Alert',
-        message: `Spot ${spot} is currently occupied. Is that you?`,
-        buttons: [
-          {
-            text: 'Yes',
-            role: 'cancel',
-          },
-          {
-            text: 'No',
-            handler: () => {
-              console.log(`Activate buzzer for spot ${spot}`);
-            },
-          },
-        ],
-      });
-      await alert.present();
+    for (const spot in spotsData) {
+      const bookingStatus = spotsData[spot].booking_status;
+      const parkingStatus = spotsData[spot].parking_status;
+
+      console.log(
+        `Spot: ${spot}, Booking Status: ${bookingStatus}, Parking Status: ${parkingStatus}`
+      );
+
+      if (bookingStatus === 'booked' && parkingStatus === 'Occupied') {
+        this.showOccupiedAlert(spot);
+      } else {
+        console.log(`Spot ${spot} is either available or not booked.`);
+      }
     }
+  }
+
+  async showOccupiedAlert(spot: string) {
+    const alert = await this.alertController.create({
+      header: 'Alert',
+      message: `Spot ${spot} is currently occupied. Is that you?`,
+      buttons: [
+        {
+          text: 'Yes',
+          role: 'cancel',
+        },
+        {
+          text: 'No',
+          handler: () => {
+            console.log(`User indicated that spot ${spot} is not theirs.`);
+          },
+        },
+      ],
+    });
+
+    console.log(`Presenting alert for spot: ${spot}`);
+    await alert.present();
   }
 }

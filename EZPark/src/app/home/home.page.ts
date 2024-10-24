@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { RouterModule, Router } from '@angular/router';
+import { ParkingAlertService } from '../services/parking-alert.service';
 import {
   Firestore,
   collection,
@@ -101,10 +102,12 @@ export class HomePage implements OnInit, OnDestroy {
     private firestore: Firestore,
     private favoriteService: FavoriteService,
     private authService: AuthServiceService,
-    private router: Router
+    private router: Router,
+    private parkingAlertService: ParkingAlertService
   ) {}
 
   ngOnInit() {
+    this.parkingAlertService.listenToParkingSpots();
     this.recentParking$ = this.getRecentParking();
     this.favouriteParking$ = this.getFavouriteParking();
 
