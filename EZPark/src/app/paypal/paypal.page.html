@@ -1,5 +1,4 @@
 <ion-content>
-<<<<<<< HEAD
   <div class="paypal-container">
     <ion-card class="paypal-receipt-card">
       <ion-card-header class="paypal-receipt-card-header">
@@ -42,32 +41,4 @@
       </ion-card-content>
     </ion-card>
   </div>
-=======
-  <ion-card-content>
-    <p><strong>Location:</strong> {{ label }}</p>
-    <p>
-      <strong>Parking Spot Level:</strong> {{ bookingDetails.parkingLevel }}
-    </p>
-    <p>
-      <strong>Parking Space Number:</strong> {{
-      bookingDetails.parkingSpaceNumber }}
-    </p>
-    <p>
-      <strong>Reservation Date:</strong> {{ bookingDetails.reservationDate }}
-    </p>
-    <p>
-      <strong>Reservation Time:</strong> {{ bookingDetails.reservationTime }}
-    </p>
-    <p><strong>Duration (hours):</strong> {{ bookingDetails.duration }}</p>
-    <p>
-      <strong>Car License Number:</strong> {{ bookingDetails.carLicenseNumber }}
-    </p>
-    <p>
-      <strong>Total amount to be paid:</strong> {{ bookingDetails.totalAmount |
-      currency:'BND':'symbol':'1.2-2' }}
-    </p>
-  </ion-card-content>
-  <div #paymentRef></div>
-  <button (click)="simulatePayment()">Press to complete payment</button>
->>>>>>> 1a123f08963bfb678b354e3b2d29ca9cd79fb8fb
 </ion-content>
