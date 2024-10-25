@@ -38,14 +38,14 @@ export class ParkingAlertService {
     console.log('Checking statuses for parking spots:', spotsData);
 
     for (const spot in spotsData) {
-      const bookingStatus = spotsData[spot].booking_status;
-      const parkingStatus = spotsData[spot].parking_status;
+      const bookingStatus = spotsData[spot]?.booking_status || 'unknown';
+      const parkingStatus = spotsData[spot]?.parking_status || 'unknown';
 
       console.log(
         `Spot: ${spot}, Booking Status: ${bookingStatus}, Parking Status: ${parkingStatus}`
       );
 
-      if (bookingStatus === 'booked' && parkingStatus === 'Occupied') {
+      if (bookingStatus === 'booked' && parkingStatus === 'occupied') {
         this.showOccupiedAlert(spot);
       } else {
         console.log(`Spot ${spot} is either available or not booked.`);
@@ -65,7 +65,7 @@ export class ParkingAlertService {
         {
           text: 'No',
           handler: () => {
-            console.log(`User indicated that spot ${spot} is not theirs.`);
+            console.log(`Activate buzzer for spot ${spot}.`);
           },
         },
       ],
