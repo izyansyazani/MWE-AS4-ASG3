@@ -45,7 +45,7 @@ export class ParkingAlertService {
         `Spot: ${spot}, Booking Status: ${bookingStatus}, Parking Status: ${parkingStatus}`
       );
 
-      if (bookingStatus === 'booked' && parkingStatus === 'occupied') {
+      if (bookingStatus === 'booked' && parkingStatus === 'Occupied') {
         this.showOccupiedAlert(spot);
       } else {
         console.log(`Spot ${spot} is either available or not booked.`);
