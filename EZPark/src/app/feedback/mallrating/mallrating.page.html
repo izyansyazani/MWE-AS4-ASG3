@@ -41,13 +41,28 @@
           <h2>{{ comment.username }}</h2>
         </div>
         <p>{{ comment.text }}</p>
+        <!-- Button container for actions -->
+        <div class="button-container">
+          <!-- Delete button for the comment owner -->
+          <ion-button
+            *ngIf="comment.username === currentUser.username"
+            (click)="deleteComment(comment.id)"
+            class="delete-button"
+            fill="outline"
+          >
+            Delete
+          </ion-button>
+          <!-- Pin button for admin -->
+          <ion-button
+            *ngIf="isAdminComment(comment)"
+            (click)="pinComment(comment)"
+            class="pin-button"
+            fill="outline"
+          >
+            Pin
+          </ion-button>
+        </div>
       </div>
-      <ion-button
-        *ngIf="comment.username === currentUser.username"
-        (click)="deleteComment(comment.id)"
-        class="delete-button"
-        >Delete</ion-button
-      >
     </div>
   </div>
 </ion-content>

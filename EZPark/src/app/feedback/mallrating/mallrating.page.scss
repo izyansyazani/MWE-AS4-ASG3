@@ -141,10 +141,11 @@ h1 {
   word-break: break-word; /* Ensure long words break properly */
 }
 
-.delete-button {
+.delete-button,
+.pin-button {
   --background: #ff4d4d; /* Red background color */
   color: #000; /* Black text color */
-  align-self: flex-end; /* Align delete button to the end */
+  align-self: flex-end; /* Align button to the end */
 }
 
 /* Use nth-child to alternate colors */
@@ -155,3 +156,36 @@ h1 {
 .colored-box:nth-child(even) {
   background-color: #e0e0e0;
 }
+
+.button-container {
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  gap: -0.9px; /* Decrease the spacing between buttons */
+  margin-top: 5px; /* Add a little margin above the button container */
+}
+
+.delete-button,
+.pin-button {
+  --background: #ff4d4d; /* Red background color */
+  color: #000; /* Black text color */
+  align-self: flex-end; /* Align button to the end */
+  border-radius: 10px; /* Add border radius for rounded corners */
+  margin-left: 0; /* Remove any left margin */
+}
+
+.pin-button {
+  --background: #31D97E; /* Change to a different color for distinction */
+  margin-left: 5px; /* Adjust this value to bring the pin button closer to the delete button */
+}
+
+
+/* Alternate colors for the colored boxes */
+.colored-box:nth-child(odd) {
+  background-color: #8888e7;
+}
+
+.colored-box:nth-child(even) {
+  background-color: #e0e0e0;
+}
+
+

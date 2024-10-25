@@ -92,12 +92,6 @@ export class AuthServiceService {
     return await signOut(this.auth);
   }
 
-  // // Google Sign-In
-  // async googleSignIn(): Promise<UserCredential> {
-  //   const provider = new GoogleAuthProvider();
-  //   return await signInWithPopup(this.auth, provider);
-  // }
-
   // Observable for auth state
   getAuthState(): Observable<User | null> {
     return new Observable((observer) => {
@@ -132,6 +126,12 @@ export class AuthServiceService {
   async deleteComment(commentId: string): Promise<void> {
     const commentDoc = doc(this.firestore, 'comments', commentId);
     await deleteDoc(commentDoc);
+  }
+
+  // Update comment's pinned status
+  async updateComment(commentId: string, isPinned: boolean): Promise<void> {
+    const commentDoc = doc(this.firestore, 'comments', commentId);
+    await updateDoc(commentDoc, { isPinned });
   }
 
   // Add a parking spot to user's favorites
@@ -179,6 +179,7 @@ export class AuthServiceService {
     });
   }
 
+  // Save payment details
   async savePaymentDetails(userId: string, paymentDetails: any): Promise<void> {
     const paymentsRef = collection(this.firestore, 'payments');
     await addDoc(paymentsRef, {
@@ -188,6 +189,7 @@ export class AuthServiceService {
     });
   }
 
+  // Get payment history
   async getPaymentHistory(userId: string): Promise<any[]> {
     const paymentsRef = collection(this.firestore, 'payments');
     const q = query(paymentsRef, where('userId', '==', userId));
