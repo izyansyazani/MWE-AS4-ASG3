@@ -1,11 +1,13 @@
 <ion-content>
-  <img
-    (click)="goToFeedback()"
-    id="back"
-    src="../assets/backbutton.png"
-    class="back-button"
-  />
-  <h1>The Mall, Gadong</h1>
+  <div class="header-container">
+    <img
+      (click)="goToFeedback()"
+      id="back"
+      src="../assets/backbutton.png"
+      class="back-button"
+    />
+    <h1>The Mall, Gadong</h1>
+  </div>
 
   <!-- Add the Mall image here -->
   <img src="../assets/mall.jpg" alt="Mall" class="mall-image" />
@@ -41,7 +43,7 @@
         <p>{{ comment.text }}</p>
       </div>
       <ion-button
-        *ngIf="comment.username && comment.username === currentUser.username"
+        *ngIf="comment.username === currentUser.username"
         (click)="deleteComment(comment.id)"
         class="delete-button"
         >Delete</ion-button
