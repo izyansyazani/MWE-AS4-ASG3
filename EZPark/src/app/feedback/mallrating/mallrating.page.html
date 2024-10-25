@@ -38,9 +38,10 @@
       />
       <div class="comment-content">
         <div class="comment-header">
-          <h2>{{ comment.username }}</h2>
-          <!-- Add pinned note -->
-          <span *ngIf="comment.isPinned" class="pinned-note">Pinned</span>
+          <h2>
+            {{ comment.username }}
+            <span *ngIf="comment.isPinned" class="pinned-note">(Pinned)</span>
+          </h2>
         </div>
         <p>{{ comment.text }}</p>
         <!-- Button container for actions -->
