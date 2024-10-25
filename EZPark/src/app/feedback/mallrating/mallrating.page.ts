@@ -119,14 +119,15 @@ export class MallratingPage implements OnInit {
     }
   }
 
-  // Pin a comment (admin only)
-  async pinComment(comment: Comment) {
+  // Pin or unpin a comment (admin only)
+  async togglePinComment(comment: Comment) {
     if (this.isAdminComment(comment)) {
+      const newPinnedStatus = !comment.isPinned; // Toggle the pinned status
       try {
-        await this.authService.updateComment(comment.id, true); // Use 'true' or 'false' directly
+        await this.authService.updateComment(comment.id, newPinnedStatus);
         this.loadComments(); // Reload comments to update pinned status
       } catch (error) {
-        console.error('Error pinning comment:', error);
+        console.error('Error toggling pinned status:', error);
       }
     }
   }

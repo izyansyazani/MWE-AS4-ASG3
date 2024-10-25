@@ -39,6 +39,8 @@
       <div class="comment-content">
         <div class="comment-header">
           <h2>{{ comment.username }}</h2>
+          <!-- Add pinned note -->
+          <span *ngIf="comment.isPinned" class="pinned-note">Pinned</span>
         </div>
         <p>{{ comment.text }}</p>
         <!-- Button container for actions -->
@@ -52,14 +54,14 @@
           >
             Delete
           </ion-button>
-          <!-- Pin button for admin -->
+          <!-- Pin/Unpin button for admin -->
           <ion-button
             *ngIf="isAdminComment(comment)"
-            (click)="pinComment(comment)"
+            (click)="togglePinComment(comment)"
             class="pin-button"
             fill="outline"
           >
-            Pin
+            {{ comment.isPinned ? 'Unpin' : 'Pin' }}
           </ion-button>
         </div>
       </div>
