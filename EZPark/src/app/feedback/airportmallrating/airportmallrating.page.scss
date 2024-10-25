@@ -8,23 +8,34 @@ ion-content {
   padding: 0 10px;
 }
 
-h1 {
-  color: #000;
-  font-size: 24px;
-  text-align: center;
-  margin-top: -20px;
+.header-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 20px; /* Adjust this padding if needed */
+  margin-top: 20px; /* Add this to move the entire header down */
 }
 
 .back-button {
   width: 24px;
   height: 24px;
-  margin-top: 20px;
+  margin-right: 10px; /* Space between button and heading */
+}
+
+h1 {
+  font-size: 25px;
+  font-weight: bold;
+  color: black;
+  flex: 1; /* Allow the heading to take up remaining space */
+  text-align: center; /* Ensure the text is centered */
+  margin-left: -20px; /* Move the heading a little bit to the left */
+  margin-bottom: 5px; /* Reduce the space below the heading */
 }
 
 .airportmall-image {
   width: 80%; /* Adjusted to match the width of the comment boxes */
   height: auto;
-  margin-top: 10px;
+  margin-top: 5px; /* Reduce the space above the image */
   border-radius: 10px;
   display: block;
   margin-left: auto;
@@ -94,7 +105,6 @@ h1 {
   max-width: 100%;
 }
 
-
 .profile-picture {
   width: 50px;
   height: 50px;
@@ -129,6 +139,7 @@ h1 {
   font-size: 14px;
   word-break: break-word; /* Ensure long words break properly */
 }
+
 .delete-button {
   --background: #ff4d4d; /* Red background color */
   color: #000; /* Black text color */

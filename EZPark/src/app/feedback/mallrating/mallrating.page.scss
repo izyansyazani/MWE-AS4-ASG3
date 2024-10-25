@@ -8,23 +8,35 @@ ion-content {
   padding: 0 10px;
 }
 
-h1 {
-  color: #000;
-  font-size: 24px;
-  text-align: center;
-  margin-top: -20px;
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the content horizontally */
+  width: 100%;
+  padding: 20px; /* Adjust this padding if needed */
+  margin-top: 20px; /* Add this to move the entire header down */
+  position: relative; /* Ensure the back button and heading are positioned correctly */
 }
 
 .back-button {
   width: 24px;
   height: 24px;
-  margin-top: 20px;
+  position: absolute; /* Position the back button absolutely */
+  left: 20px; /* Adjust this value to position the back button */
+}
+
+h1 {
+  font-size: 25px;
+  font-weight: bold;
+  color: black;
+  text-align: center; /* Ensure the text is centered */
+  margin: 0; /* Remove any default margins */
 }
 
 .mall-image {
   width: 80%; /* Adjusted to match the width of the comment boxes */
   height: auto;
-  margin-top: 10px;
+  margin-top: 5px; /* Reduce the space above the image */
   border-radius: 10px;
   display: block;
   margin-left: auto;
@@ -129,10 +141,11 @@ h1 {
   word-break: break-word; /* Ensure long words break properly */
 }
 
-.delete-button {
+.delete-button,
+.pin-button {
   --background: #ff4d4d; /* Red background color */
   color: #000; /* Black text color */
-  align-self: flex-end; /* Align delete button to the end */
+  align-self: flex-end; /* Align button to the end */
 }
 
 /* Use nth-child to alternate colors */
@@ -143,3 +156,36 @@ h1 {
 .colored-box:nth-child(even) {
   background-color: #e0e0e0;
 }
+
+.button-container {
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  gap: -0.9px; /* Decrease the spacing between buttons */
+  margin-top: 5px; /* Add a little margin above the button container */
+}
+
+.delete-button,
+.pin-button {
+  --background: #ff4d4d; /* Red background color */
+  color: #000; /* Black text color */
+  align-self: flex-end; /* Align button to the end */
+  border-radius: 10px; /* Add border radius for rounded corners */
+  margin-left: 0; /* Remove any left margin */
+}
+
+.pin-button {
+  --background: #31D97E; /* Change to a different color for distinction */
+  margin-left: 5px; /* Adjust this value to bring the pin button closer to the delete button */
+}
+
+
+/* Alternate colors for the colored boxes */
+.colored-box:nth-child(odd) {
+  background-color: #8888e7;
+}
+
+.colored-box:nth-child(even) {
+  background-color: #e0e0e0;
+}
+
+
