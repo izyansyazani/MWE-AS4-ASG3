@@ -3,9 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
-import { AuthServiceService } from '../../services/auth-service.service'; // Adjust based on actual file location
+import { AuthServiceService } from '../../services/auth-service.service';
 import { UserService } from '../../services/user.service';
-// Import UserService
 
 import {
   IonContent,
@@ -21,6 +20,7 @@ interface Comment {
   username: string;
   profilePicture: string;
   text: string;
+  isPinned?: boolean; // New property to mark a comment as pinned
 }
 
 @Component({
@@ -41,7 +41,6 @@ interface Comment {
 })
 export class AirportmallratingPage implements OnInit {
   comments: Comment[] = [];
-
   newCommentText: string = '';
   currentUser = {
     username: '',
@@ -49,12 +48,13 @@ export class AirportmallratingPage implements OnInit {
     userId: '',
   };
   pageId = 'airportmallrating'; // Unique identifier for this page
+  adminEmail = 'ezparkadmin@gmail.com'; // Admin email for checking pinned permission
 
   constructor(
     private router: Router,
     private changeDetectorRef: ChangeDetectorRef,
-    private authService: AuthServiceService, // Inject AuthService
-    private userService: UserService // Inject UserService
+    private authService: AuthServiceService,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
@@ -77,10 +77,12 @@ export class AirportmallratingPage implements OnInit {
     }
   }
 
-  // Fetch comments from Firestore
+  // Fetch comments from Firestore, with pinned comments on top
   async loadComments() {
     try {
-      this.comments = await this.authService.getComments(this.pageId);
+      const allComments = await this.authService.getComments(this.pageId);
+      // Sort comments to display pinned comments first
+      this.comments = allComments.sort((a, b) => (b.isPinned ? 1 : -1));
     } catch (error) {
       console.error('Error fetching comments:', error);
     }
@@ -91,12 +93,12 @@ export class AirportmallratingPage implements OnInit {
     if (this.newCommentText.trim()) {
       const newComment: Comment = {
         id: '', // Firestore will generate the ID
-        username: this.currentUser.username, // Use logged-in user's name
-        profilePicture: this.currentUser.profilePicture, // Use logged-in user's profile picture
+        username: this.currentUser.username,
+        profilePicture: this.currentUser.profilePicture,
         text: this.newCommentText,
+        isPinned: false,
       };
 
-      // Save the comment to Firestore
       try {
         await this.authService.saveComment({
           username: this.currentUser.username,
@@ -113,9 +115,20 @@ export class AirportmallratingPage implements OnInit {
       }
 
       this.newCommentText = ''; // Clear the input field after posting
-
-      // Force re-render to recalculate layout
       this.changeDetectorRef.detectChanges();
+    }
+  }
+
+  // Pin or unpin a comment (admin only)
+  async togglePinComment(comment: Comment) {
+    if (this.isAdminComment(comment)) {
+      const newPinnedStatus = !comment.isPinned; // Toggle the pinned status
+      try {
+        await this.authService.updateComment(comment.id, newPinnedStatus);
+        this.loadComments(); // Reload comments to update pinned status
+      } catch (error) {
+        console.error('Error toggling pinned status:', error);
+      }
     }
   }
 
@@ -129,6 +142,14 @@ export class AirportmallratingPage implements OnInit {
     } catch (error) {
       console.error('Error deleting comment:', error);
     }
+  }
+
+  // Check if the current user is admin for pinning
+  isAdminComment(comment: Comment) {
+    return (
+      comment.username === 'EZPark Admin' &&
+      this.currentUser.username === 'EZPark Admin'
+    );
   }
 
   goToFeedback() {
