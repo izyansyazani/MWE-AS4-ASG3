@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import {
   IonContent,
   IonHeader,
@@ -26,11 +26,12 @@ import {
 } from '@ionic/angular/standalone';
 
 @Component({
-  selector: 'app-times-square', // Changed the selector
+  selector: 'app-times-square',
   templateUrl: './timessquare.page.html',
   styleUrls: ['./timessquare.page.scss'],
   standalone: true,
   imports: [
+    CommonModule,
     IonContent,
     IonHeader,
     IonTitle,
@@ -54,10 +55,30 @@ import {
   ],
 })
 export class TimesSquarePage implements OnInit {
-  // Changed to TimesSquarePage
-  constructor(private router: Router) {}
+  fromFavorites: boolean = false;
 
-  ngOnInit() {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private navCtrl: NavController
+  ) {}
+
+  ngOnInit() {
+    // Subscribe to query params to check navigation source
+    this.route.queryParams.subscribe((params) => {
+      this.fromFavorites = params['fromFavorites'] === 'true';
+      console.log('Navigated from favorites:', this.fromFavorites);
+    });
+  }
+
+  // Handle back button action
+  goBack() {
+    if (this.fromFavorites) {
+      this.navCtrl.navigateBack('/homepage'); // Navigate to homepage if from favorites
+    } else {
+      this.navCtrl.back(); // Default back action
+    }
+  }
 
   goToParking() {
     this.router.navigate(['/parkingspots']);

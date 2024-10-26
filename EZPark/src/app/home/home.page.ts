@@ -4,6 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { RouterModule, Router } from '@angular/router';
 import { ParkingAlertService } from '../services/parking-alert.service';
+import { NavController } from '@ionic/angular';
 import {
   Firestore,
   collection,
@@ -103,8 +104,16 @@ export class HomePage implements OnInit, OnDestroy {
     private favoriteService: FavoriteService,
     private authService: AuthServiceService,
     private router: Router,
-    private parkingAlertService: ParkingAlertService
+    private parkingAlertService: ParkingAlertService,
+    private navCtrl: NavController
   ) {}
+
+  // Method when "Reserve" is clicked in "Your Favorites"
+  navigateToLocation(location: string) {
+    this.navCtrl.navigateForward(`/${location}`, {
+      queryParams: { fromFavorites: true },
+    });
+  }
 
   ngOnInit() {
     this.parkingAlertService.showOccupiedAlert('A1');

@@ -255,8 +255,10 @@
                     class="reserve-btn"
                     shape="round"
                     [routerLink]="getReserveLink(spot.location)"
-                    >Reserve</ion-button
+                    [queryParams]="{ fromFavorite: true }"
                   >
+                    Reserve
+                  </ion-button>
                 </ion-card-content>
               </ion-card>
             </div>

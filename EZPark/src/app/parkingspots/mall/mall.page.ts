@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Import CommonModule
+import { CommonModule } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import {
@@ -38,7 +38,7 @@ import {
   styleUrls: ['./mall.page.scss'],
   standalone: true,
   imports: [
-    CommonModule, // Add CommonModule here
+    CommonModule,
     IonContent,
     IonHeader,
     IonTitle,
@@ -63,6 +63,7 @@ import {
 })
 export class MallPage implements OnInit {
   bookedSpots: string[] = [];
+  fromFavorites: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -73,6 +74,11 @@ export class MallPage implements OnInit {
 
   async ngOnInit() {
     await this.checkBookedSpots();
+    // Subscribe to query params to check navigation source
+    this.route.queryParams.subscribe((params) => {
+      this.fromFavorites = params['fromFavorites'] === 'true';
+      console.log('Navigated from favorites:', this.fromFavorites);
+    });
   }
 
   async checkBookedSpots() {
@@ -84,26 +90,12 @@ export class MallPage implements OnInit {
       );
       const querySnapshot = await getDocs(bookedQuery);
 
-      console.log('Query Snapshot:', querySnapshot); // Log the entire snapshot
-      console.log('Number of booked spots found:', querySnapshot.docs.length);
-
       this.bookedSpots = querySnapshot.docs
-        .map((doc, index) => {
-          const docData = doc.data();
-          console.log(`Doc Data [${index}]:`, docData); // Log each document's data
-
-          // Check if 'parkingSpaceNumber' exists
-          const parkingSpaceNumber = docData['parkingSpaceNumber'];
-          if (parkingSpaceNumber === undefined) {
-            console.warn(
-              `Warning: parkingSpaceNumber is undefined for document ID: ${doc.id}`
-            );
-            return null; // Return null for missing values
-          }
-
-          return parkingSpaceNumber; // Return the valid parking space number
+        .map((doc) => {
+          const parkingSpaceNumber = doc.data()['parkingSpaceNumber'];
+          return parkingSpaceNumber ? parkingSpaceNumber : null;
         })
-        .filter((space) => space !== null); // Filter out null values
+        .filter((space) => space !== null);
 
       console.log('Mapped Booked Spots:', this.bookedSpots);
     } catch (error) {
@@ -111,12 +103,23 @@ export class MallPage implements OnInit {
     }
   }
 
+  // Handle back button action on back button click
+  goBack() {
+    if (this.fromFavorites) {
+      this.navCtrl.navigateBack('/homepage'); // Navigate to homepage if from favorites
+    } else {
+      this.navCtrl.back(); // Default back action
+    }
+  }
+
   goToMall2() {
     this.router.navigate(['/mall2']);
   }
+
   goToParking() {
     this.router.navigate(['/parkingspots']);
   }
+
   goToBook(parkingSpaceNumber: string, parkingLevel: string) {
     if (this.bookedSpots.includes(parkingSpaceNumber)) {
       alert('This spot is already booked.');
@@ -131,6 +134,7 @@ export class MallPage implements OnInit {
       },
     });
   }
+
   isBooked(spot: string): boolean {
     return this.bookedSpots.includes(spot);
   }
