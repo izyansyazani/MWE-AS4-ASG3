@@ -42,16 +42,34 @@
       />
       <div class="comment-content">
         <div class="comment-header">
-          <h2>{{ comment.username }}</h2>
+          <h2>
+            {{ comment.username }}
+            <span *ngIf="comment.isPinned" class="pinned-note">(Pinned)</span>
+          </h2>
         </div>
         <p>{{ comment.text }}</p>
+        <!-- Button container for actions -->
+        <div class="button-container">
+          <!-- Delete button for the comment owner -->
+          <ion-button
+            *ngIf="comment.username === currentUser.username"
+            (click)="deleteComment(comment.id)"
+            class="delete-button"
+            fill="outline"
+          >
+            Delete
+          </ion-button>
+          <!-- Pin/Unpin button for admin -->
+          <ion-button
+            *ngIf="isAdminComment(comment)"
+            (click)="togglePinComment(comment)"
+            class="pin-button"
+            fill="outline"
+          >
+            {{ comment.isPinned ? 'Unpin' : 'Pin' }}
+          </ion-button>
+        </div>
       </div>
-      <ion-button
-        *ngIf="comment.username === currentUser.username"
-        (click)="deleteComment(comment.id)"
-        class="delete-button"
-        >Delete</ion-button
-      >
     </div>
   </div>
 </ion-content>
