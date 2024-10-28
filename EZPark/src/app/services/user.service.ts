@@ -1,4 +1,3 @@
-// src/app/services/user.service.ts
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -18,10 +17,9 @@ export class UserService {
     localStorage.setItem(this.userDataKey, JSON.stringify(data));
   }
 
-  // Handle profile image similarly
   getProfileImage() {
     const data = this.getUserData();
-    return data.profilePicture;
+    return data.profilePicture || 'default-profile-picture.png'; // Fallback image
   }
 
   setProfileImage(image: string | ArrayBuffer | null) {

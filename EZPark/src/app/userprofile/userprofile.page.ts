@@ -95,6 +95,7 @@ export class UserprofilePage implements OnInit {
         };
       } else {
         this.currentUser = this.userService.getUserData();
+        this.currentUser.profilePicture = this.userService.getProfileImage();
       }
     } catch (error) {
       console.error('Error fetching user profile:', error);
