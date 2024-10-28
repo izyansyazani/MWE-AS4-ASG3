@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { getDatabase, ref, onValue } from 'firebase/database';
+import { getDatabase, ref, onValue, update } from 'firebase/database';
 
 @Injectable({
   providedIn: 'root',
@@ -60,7 +60,9 @@ export class ParkingAlertService {
       buttons: [
         {
           text: 'Yes',
-          role: 'cancel',
+          handler: () => {
+            this.updateBookingStatus(spot, 'Cannot book');
+          },
         },
         {
           text: 'No',
@@ -73,5 +75,18 @@ export class ParkingAlertService {
 
     console.log(`Presenting alert for spot: ${spot}`);
     await alert.present();
+  }
+
+  updateBookingStatus(spot: string, status: string) {
+    const db = getDatabase();
+    const spotRef = ref(db, `parking-spots/${spot}`);
+
+    update(spotRef, { booking_status: status })
+      .then(() => {
+        console.log(`Booking status for spot ${spot} updated to "${status}"`);
+      })
+      .catch((error) => {
+        console.error(`Error updating booking status for spot ${spot}:`, error);
+      });
   }
 }
