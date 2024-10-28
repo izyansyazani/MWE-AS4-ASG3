@@ -30,7 +30,13 @@ import {
   IonInput,
 } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
-import { Firestore, collection, addDoc } from '@angular/fire/firestore';
+import {
+  Firestore,
+  collection,
+  addDoc,
+  doc,
+  updateDoc,
+} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-paypal',

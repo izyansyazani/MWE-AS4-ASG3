@@ -116,7 +116,6 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.parkingAlertService.showOccupiedAlert('A1');
     this.recentParking$ = this.getRecentParking();
     this.favouriteParking$ = this.getFavouriteParking();
 

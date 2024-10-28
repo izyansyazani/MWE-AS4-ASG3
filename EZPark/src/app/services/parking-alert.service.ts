@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { getDatabase, ref, onValue, update } from 'firebase/database';
+import { Firestore, doc, updateDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ParkingAlertService {
-  constructor(private alertController: AlertController) {
+  constructor(
+    private alertController: AlertController,
+    private firestore: Firestore
+  ) {
     this.listenToParkingSpots();
   }
 
@@ -38,8 +42,8 @@ export class ParkingAlertService {
     console.log('Checking statuses for parking spots:', spotsData);
 
     for (const spot in spotsData) {
-      const bookingStatus = spotsData[spot]?.booking_status || 'unknown';
-      const parkingStatus = spotsData[spot]?.parking_status || 'unknown';
+      const bookingStatus = spotsData[spot]?.booking_status;
+      const parkingStatus = spotsData[spot]?.parking_status;
 
       console.log(
         `Spot: ${spot}, Booking Status: ${bookingStatus}, Parking Status: ${parkingStatus}`
@@ -60,14 +64,15 @@ export class ParkingAlertService {
       buttons: [
         {
           text: 'Yes',
-          handler: () => {
-            this.updateBookingStatus(spot, 'Cannot book');
+          handler: async () => {
+            console.log('Change status to cannot book');
           },
         },
         {
           text: 'No',
           handler: () => {
-            console.log(`Activate buzzer for spot ${spot}.`);
+            this.activateBuzzer(spot);
+            console.log('Buzzer activated for', spot);
           },
         },
       ],
@@ -77,16 +82,16 @@ export class ParkingAlertService {
     await alert.present();
   }
 
-  updateBookingStatus(spot: string, status: string) {
+  activateBuzzer(spot: string) {
     const db = getDatabase();
     const spotRef = ref(db, `parking-spots/${spot}`);
 
-    update(spotRef, { booking_status: status })
+    update(spotRef, { buzzer: true })
       .then(() => {
-        console.log(`Booking status for spot ${spot} updated to "${status}"`);
+        console.log(`Buzzer activated for spot ${spot}`);
       })
       .catch((error) => {
-        console.error(`Error updating booking status for spot ${spot}:`, error);
+        console.error(`Error activating buzzer for spot ${spot}:`, error);
       });
   }
 }
