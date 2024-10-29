@@ -32,21 +32,21 @@
 
     <!-- Display parking history -->
     <ion-card *ngFor="let parking of filteredParkingHistory">
-      <div class="card-content">
-        <div class="text-content">
-          <ion-card-header>
-            <ion-card-title>{{ parking.location }}</ion-card-title>
-            <ion-card-subtitle>{{ parking.date }}</ion-card-subtitle>
-          </ion-card-header>
-          <ion-card-content>
-            <p>{{ parking.duration }}</p>
-            <ion-button slot="start" (click)="viewReceipt(parking)">
-              View Receipts
-            </ion-button>
-          </ion-card-content>
-        </div>
-        <ion-img src="{{ parking.imageUrl }}"></ion-img>
-      </div>
-    </ion-card>
+  <div class="card-content">
+    <div class="text-content">
+      <ion-card-header>
+        <ion-card-title>{{ parking.location }}</ion-card-title>
+        <ion-card-subtitle>{{ parking.date }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{ parking.duration }} hours</p>
+        <ion-button slot="start" (click)="viewReceipt(parking)">
+          View Receipts
+        </ion-button>
+      </ion-card-content>
+    </div>
+    <ion-img [src]="parking.imageUrl || '../assets/mall.jpg'"></ion-img>
+  </div>
+</ion-card>
   </div>
 </ion-content>

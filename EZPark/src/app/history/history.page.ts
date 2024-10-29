@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router'; // Import the Router module
-
+import { Firestore, collection, getDocs } from '@angular/fire/firestore';
 import {
   IonContent,
   IonHeader,
@@ -64,13 +64,25 @@ export class HistoryPage implements OnInit {
 
   searchTerm: string = ''; // Add search term property
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private firestore: Firestore) {}
 
   ngOnInit() {
     this.loadParkingHistory();
   }
 
-  async loadParkingHistory() {}
+  async loadParkingHistory() {
+    const bookingsCollection = collection(this.firestore, 'bookings');
+    const bookingSnapshot = await getDocs(bookingsCollection);
+    this.parkingHistory = bookingSnapshot.docs.map((doc) => ({
+      id: doc.id, // Store the document ID if needed
+      location: doc.data()['location'],
+      date: new Date(
+        doc.data()['timestamp'].seconds * 1000
+      ).toLocaleDateString(), // Format timestamp to date
+      duration: doc.data()['duration'],
+      imageUrl: doc.data()['imageUrl'] || '',
+    }));
+  }
 
   viewReceipt(parking: Parking) {
     console.log(`Viewing receipt for: ${parking.location}`);
