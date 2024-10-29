@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
-import { Firestore, collection, getDoc, doc } from '@angular/fire/firestore';
+import {
+  Firestore,
+  collection,
+  getDoc,
+  doc,
+  deleteDoc,
+} from '@angular/fire/firestore';
 import { CommonModule } from '@angular/common';
+import { AlertController } from '@ionic/angular';
 import {
   IonContent,
   IonHeader,
@@ -66,8 +73,14 @@ export class ReceiptsPage implements OnInit {
     duration: '',
     imageUrl: '',
   };
+  parkingId: string = '';
 
-  constructor(private route: ActivatedRoute, private firestore: Firestore) {}
+  constructor(
+    private route: ActivatedRoute,
+    private firestore: Firestore,
+    private router: Router,
+    private alertController: AlertController
+  ) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
@@ -85,6 +98,45 @@ export class ReceiptsPage implements OnInit {
         duration: params['duration'],
         imageUrl: params['imageUrl'] || '',
       };
+      this.parkingId = params['id']; // Set the parkingId
     });
+  }
+
+  async cancelBooking() {
+    if (this.parkingId) {
+      const alert = await this.alertController.create({
+        header: 'Confirm Cancelation',
+        message: 'Are you sure you want to cancel this booking?',
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: () => {
+              console.log('Cancel clicked');
+            },
+          },
+          {
+            text: 'Okay',
+            handler: async () => {
+              const bookingDocRef = doc(
+                this.firestore,
+                'bookings',
+                this.parkingId
+              );
+              try {
+                await deleteDoc(bookingDocRef);
+                console.log('Booking canceled successfully.');
+                this.router.navigate(['/history']);
+              } catch (error) {
+                console.error('Error canceling booking:', error);
+              }
+            },
+          },
+        ],
+      });
+
+      await alert.present();
+    }
   }
 }

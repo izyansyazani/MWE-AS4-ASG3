@@ -1,23 +1,19 @@
-<ion-content padding>
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Receipt Details</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-card *ngIf="parkingDetails">
-    <ion-card-header>
-      <ion-card-title>{{ parkingDetails.location }}</ion-card-title>
-      <ion-card-subtitle></ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-      <p>Parking Level: {{ parkingDetails.parkingLevel }}</p>
-      <p>Parking Space Number: {{ parkingDetails.parkingSpaceNumber }}</p>
-      <p>Reservation Date: {{ parkingDetails.reservationDate }}</p>
-      <p>Reservation Time: {{ parkingDetails.reservationTime }}</p>
-      <p>Car License Number: {{ parkingDetails.carLicenseNumber }}</p>
-      <p>Duration: {{ parkingDetails.duration }} hours</p>
-      <p>Total Amount: {{ parkingDetails.totalAmount | currency:'BND':'symbol':'1.2-2' }}</p>
-    </ion-card-content>
-  </ion-card>
+<ion-content>
+  <div class="receipt-container">
+    <ion-card *ngIf="parkingDetails" class="receipt-card">
+      <ion-card-header class="receipt-card-header">
+        <ion-card-title>{{ parkingDetails.location }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Parking Level:</strong> {{ parkingDetails.parkingLevel }}</p>
+        <p><strong>Parking Space Number:</strong> {{ parkingDetails.parkingSpaceNumber }}</p>
+        <p><strong>Reservation Date:</strong> {{ parkingDetails.reservationDate }}</p>
+        <p><strong>Reservation Time:</strong> {{ parkingDetails.reservationTime }}</p>
+        <p><strong>Car License Number:</strong> {{ parkingDetails.carLicenseNumber }}</p>
+        <p><strong>Duration:</strong> {{ parkingDetails.duration }} hours</p>
+        <p><strong>Total Amount Paid:</strong> {{ parkingDetails.totalAmount | currency:'BND':'symbol':'1.2-2' }}</p>
+      </ion-card-content>
+      <ion-button (click)="cancelBooking()">Cancel Booking</ion-button>
+    </ion-card>
+  </div>
 </ion-content>

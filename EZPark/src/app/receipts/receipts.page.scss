@@ -18,7 +18,7 @@ ion-content {
   height: 100%; /* Centers the ion-card vertically */
 }
 
-.parking-receipt-card {
+.receipt-card {
   width: 300px;
   border-radius: 10px; 
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
@@ -26,7 +26,7 @@ ion-content {
   color: #000000 !important; /* Make ion-card text black */
 }
 
-.parking-receipt-card-header {
+.receipt-card-header {
   font-weight: bold;
   text-align: center;
   padding: 10px;
@@ -75,9 +75,13 @@ ion-card-title {
 }
 
 ion-button {
-  background-color: #8888E7 !important; /* Set button background color */
-  color: #ffffff !important; /* Set button text color to white */
-  --ion-color-primary: #8888E7; /* Change primary color to #8888E7 */
-  --ion-color-primary-rgb: 136, 136, 231; /* Set RGB value for primary color */
-  --background-hover: #7676d3 !important; /* Optional: Darken the button color on hover */
+  display:flex;
+  justify-content:center;
+  height:auto;
+  background-color: red ;
+  color: #ffffff !important; 
+  --ion-color-primary: red; 
+  --background-hover: rgb(138, 31, 31);
 }
+
+
