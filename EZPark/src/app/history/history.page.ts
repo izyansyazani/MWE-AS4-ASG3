@@ -25,7 +25,14 @@ import {
 
 // Define the Parking interface
 interface Parking {
+  id: any;
   location: string;
+  parkingLevel: string;
+  parkingSpaceNumber: string;
+  reservationDate: string;
+  reservationTime: string;
+  carLicenseNumber: string;
+  totalAmount: number;
   date: string;
   duration: string;
   imageUrl: string;
@@ -73,19 +80,41 @@ export class HistoryPage implements OnInit {
   async loadParkingHistory() {
     const bookingsCollection = collection(this.firestore, 'bookings');
     const bookingSnapshot = await getDocs(bookingsCollection);
-    this.parkingHistory = bookingSnapshot.docs.map((doc) => ({
-      id: doc.id, // Store the document ID if needed
-      location: doc.data()['location'],
-      date: new Date(
-        doc.data()['timestamp'].seconds * 1000
-      ).toLocaleDateString(), // Format timestamp to date
-      duration: doc.data()['duration'],
-      imageUrl: doc.data()['imageUrl'] || '',
-    }));
+    this.parkingHistory = bookingSnapshot.docs.map((doc) => {
+      const data = doc.data();
+      const bookingDetails = data['bookingDetails'] || {};
+      return {
+        id: doc.id, // Store the document ID if needed
+        location: data['location'],
+        parkingLevel: bookingDetails['parkingLevel'],
+        parkingSpaceNumber: bookingDetails['parkingSpaceNumber'],
+        reservationDate: bookingDetails['reservationDate'],
+        reservationTime: bookingDetails['reservationTime'],
+        carLicenseNumber: bookingDetails['carLicenseNumber'],
+        totalAmount: bookingDetails['totalAmount'],
+        date: new Date(data['timestamp'].seconds * 1000).toLocaleDateString(), // Format timestamp to date
+        duration: bookingDetails['duration'],
+        imageUrl: data['imageUrl'] || '',
+      };
+    });
   }
 
   viewReceipt(parking: Parking) {
-    console.log(`Viewing receipt for: ${parking.location}`);
+    console.log('Navigating to receipts with ID:', parking.id);
+    this.router.navigate(['/receipts'], {
+      queryParams: {
+        id: parking.id,
+        location: parking.location,
+        parkingLevel: parking.parkingLevel,
+        parkingSpaceNumber: parking.parkingSpaceNumber,
+        reservationDate: parking.reservationDate,
+        reservationTime: parking.reservationTime,
+        carLicenseNumber: parking.carLicenseNumber,
+        totalAmount: parking.totalAmount,
+        date: parking.date,
+        duration: parking.duration,
+      },
+    }); // Pass all relevant data as query parameters
   }
 
   goToHome() {

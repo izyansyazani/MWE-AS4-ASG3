@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 // import { ProfileEditPage } from './profile-edit/profile-edit.page';
 import { SignupPage } from './signup/signup.page';
-import { LoginPage } from './login/login.page'; 
+import { LoginPage } from './login/login.page';
+import { ReceiptsPage } from './receipts/receipts.page';
 
 export const routes: Routes = [
   {
@@ -39,6 +40,10 @@ export const routes: Routes = [
     path: 'history',
     loadComponent: () =>
       import('./history/history.page').then((m) => m.HistoryPage),
+  },
+  {
+    path: 'receipts', // Ensure this matches exactly
+    component: ReceiptsPage, // This should point to your ReceiptsPage component
   },
   // {
   //   path: 'rate-hours',
