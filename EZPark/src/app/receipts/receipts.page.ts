@@ -127,7 +127,9 @@ export class ReceiptsPage implements OnInit {
               try {
                 await deleteDoc(bookingDocRef);
                 console.log('Booking canceled successfully.');
-                this.router.navigate(['/history']);
+                this.router.navigate(['/history']).then(() => {
+                  window.location.reload(); // Reload the page after navigation
+                });
               } catch (error) {
                 console.error('Error canceling booking:', error);
               }
