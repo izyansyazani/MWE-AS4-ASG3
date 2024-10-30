@@ -90,12 +90,14 @@ export class UserprofilePage implements OnInit {
           email: user.email || 'No email provided',
           userId: user.uid,
           profilePicture:
-            this.userService.getProfileImage() || user.photoURL || null,
+            this.userService.getProfileImage() || user.photoURL || null, // Prioritize userService image
           phoneNumber: user.phoneNumber || 'No phone number provided',
         };
       } else {
+        // Load from UserService when the user is not available from auth service
         this.currentUser = this.userService.getUserData();
-        this.currentUser.profilePicture = this.userService.getProfileImage();
+        this.currentUser.profilePicture =
+          this.userService.getProfileImage() || null; // Retain existing profile image if any
       }
     } catch (error) {
       console.error('Error fetching user profile:', error);

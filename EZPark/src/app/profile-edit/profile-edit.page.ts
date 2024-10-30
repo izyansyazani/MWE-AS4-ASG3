@@ -33,7 +33,7 @@ export class ProfileEditPage implements OnInit {
     if (!this.user.name) {
       this.user = this.userService.getUserData();
     }
-    this.profileImage = this.userService.getProfileImage();
+    // this.profileImage = this.userService.getProfileImage();
   }
 
   onFileChange(event: any) {
@@ -49,9 +49,14 @@ export class ProfileEditPage implements OnInit {
 
   saveProfile() {
     this.userService.setUserData(this.user);
+
+    // Ensure that new users have a null profile image
+    if (!this.user.name) {
+      this.profileImage = null; // Clear profileImage for new accounts
+    }
     this.userService.setProfileImage(this.profileImage);
 
     console.log('Profile saved', this.user);
-    this.router.navigate(['/userprofile']); // Navigate back to user profile
+    this.router.navigate(['/userprofile']);
   }
 }

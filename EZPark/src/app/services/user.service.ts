@@ -19,12 +19,18 @@ export class UserService {
 
   getProfileImage() {
     const data = this.getUserData();
-    return data.profilePicture || 'default-profile-picture.png'; // Fallback image
+    // Return profile picture or a default image if not set
+    return data.profilePicture || 'assets/default-profile-picture.png'; // Ensure correct path
   }
 
   setProfileImage(image: string | ArrayBuffer | null) {
     const userData = this.getUserData();
-    userData.profilePicture = image;
+    // Convert image to string if it's an ArrayBuffer
+    userData.profilePicture = image
+      ? typeof image === 'string'
+        ? image
+        : image.toString()
+      : null;
     this.setUserData(userData);
   }
 }
