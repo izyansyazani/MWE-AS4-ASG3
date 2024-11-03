@@ -9,6 +9,7 @@ import {
   query,
   where,
 } from '@angular/fire/firestore';
+import { getDatabase, ref, get, child } from '@angular/fire/database';
 import {
   IonContent,
   IonHeader,
@@ -74,6 +75,7 @@ export class MallPage implements OnInit {
 
   async ngOnInit() {
     await this.checkBookedSpots();
+    await this.checkOccupiedSpots();
     // Subscribe to query params to check navigation source
     this.route.queryParams.subscribe((params) => {
       this.fromFavorites = params['fromFavorites'] === 'true';
@@ -88,18 +90,46 @@ export class MallPage implements OnInit {
         bookingCollection,
         where('status', '==', 'booked')
       );
-      const querySnapshot = await getDocs(bookedQuery);
+      const bookedSnapshot = await getDocs(bookedQuery);
 
-      this.bookedSpots = querySnapshot.docs
-        .map((doc) => {
-          const parkingSpaceNumber = doc.data()['parkingSpaceNumber'];
-          return parkingSpaceNumber ? parkingSpaceNumber : null;
-        })
-        .filter((space) => space !== null);
-
-      console.log('Mapped Booked Spots:', this.bookedSpots);
+      // Add booked spots from Firestore to bookedSpots array
+      bookedSnapshot.docs.forEach((doc) => {
+        const parkingSpaceNumber = doc.data()['parkingSpaceNumber'];
+        if (
+          parkingSpaceNumber &&
+          !this.bookedSpots.includes(parkingSpaceNumber)
+        ) {
+          this.bookedSpots.push(parkingSpaceNumber);
+        }
+      });
     } catch (error) {
-      console.error('Error fetching booked spots:', error);
+      console.error('Error fetching booked spots from Firestore:', error);
+    }
+  }
+
+  async checkOccupiedSpots() {
+    try {
+      const database = getDatabase(); // Initialize Realtime Database
+      const parkingSpotsRef = ref(database, 'parking-spots');
+      const snapshot = await get(child(parkingSpotsRef, '/'));
+
+      // Check each parking spot's status
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        Object.keys(data).forEach((spot) => {
+          if (data[spot].parking_status === 'Occupied') {
+            console.log(`Occupied Spot Detected: ${spot}`);
+            if (!this.bookedSpots.includes(spot)) {
+              this.bookedSpots.push(spot); // Add to bookedSpots if occupied
+            }
+          }
+        });
+      }
+    } catch (error) {
+      console.error(
+        'Error fetching occupied spots from Realtime Database:',
+        error
+      );
     }
   }
 
@@ -121,8 +151,8 @@ export class MallPage implements OnInit {
   }
 
   goToBook(parkingSpaceNumber: string, parkingLevel: string) {
-    if (this.bookedSpots.includes(parkingSpaceNumber)) {
-      alert('This spot is already booked.');
+    if (this.isBooked(parkingSpaceNumber)) {
+      alert('This spot is already booked or occupied.');
       return;
     }
     this.router.navigate(['/reservation'], {

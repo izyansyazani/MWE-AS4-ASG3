@@ -7,6 +7,7 @@ import { Firestore, doc, updateDoc } from '@angular/fire/firestore';
   providedIn: 'root',
 })
 export class ParkingAlertService {
+  private isListenerActive = false;
   constructor(
     private alertController: AlertController,
     private firestore: Firestore
@@ -15,6 +16,12 @@ export class ParkingAlertService {
   }
 
   listenToParkingSpots() {
+    if (this.isListenerActive) {
+      return; // Exit if listener is already active
+    }
+
+    this.isListenerActive = true;
+
     const db = getDatabase();
     const parkingSpotsRef = ref(db, 'parking-spots');
 
@@ -51,8 +58,6 @@ export class ParkingAlertService {
 
       if (bookingStatus === 'booked' && parkingStatus === 'Occupied') {
         this.showOccupiedAlert(spot);
-      } else {
-        console.log(`Spot ${spot} is either available or not booked.`);
       }
     }
   }
@@ -72,7 +77,6 @@ export class ParkingAlertService {
           text: 'No',
           handler: () => {
             this.activateBuzzer(spot);
-            console.log('Buzzer activated for', spot);
           },
         },
       ],
