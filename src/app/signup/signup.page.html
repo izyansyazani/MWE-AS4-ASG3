@@ -40,7 +40,7 @@
         </ion-text>
       </div>
 
-      <ion-button expand="block" type="submit" [disabled]="!ionicForm.valid" (click)="signUP()">
+      <ion-button expand="block" type="submit" [disabled]="!ionicForm.valid" [routerLink]="['/login']">
         CREATE ACCOUNT
       </ion-button>
       

@@ -226,7 +226,7 @@ export class SignupPage implements OnInit {
   
         loading.dismiss();
         // Navigate to login page after successful registration
-        this.router.navigate(['/login']);
+        // this.router.navigate(['/login']);
       } catch (err) {
         loading.dismiss();
         console.error('Error during registration:', err);
