@@ -11,8 +11,9 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from '@angular/fire/auth';
-import { Firestore, addDoc, collection } from '@angular/fire/firestore';
+import { Firestore, setDoc, collection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+// import { doc,  } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -29,9 +30,9 @@ export class AuthServiceService {
       await updateProfile(userCredential.user, { displayName: name });
 
       // Save additional user data in Firestore
-      const usersRef = collection(this.firestore, 'users');
-      await addDoc(usersRef, {
-        uid: userCredential.user.uid,
+      const usersRef = collection(this.firestore, 'users/${userCredential.user.uid}');
+      await setDoc(usersRef, {
+        // uid: userCredential.user.uid,
         name: name,
         email: email,
       });

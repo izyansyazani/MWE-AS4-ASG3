@@ -210,24 +210,28 @@ export class SignupPage implements OnInit {
   }
 
   async signUP() {
+    console.log('Sign Up button clicked');
     const loading = await this.loadingController.create();
     await loading.present();
     
     if (this.ionicForm.valid) {
       try {
         // Register user using the AuthServiceService
+        console.log('Form is valid, attempting to register user');
         const userCredential = await this.authService.registerUser(
           this.ionicForm.value.email,
           this.ionicForm.value.password,
           this.ionicForm.value.fullname
         );
+        console.log('User registered successfully:', userCredential);
 
         loading.dismiss();
-        
         // Navigate to login page after successful registration
-        this.router.navigate(['/login']);  // Change to /login
+        console.log('Navigating to login page');
+        await this.router.navigate(['/login']);  // Change to /login
       } catch (err) {
         loading.dismiss();
+        console.error('Error during registration:', err);
         if (err instanceof Error) {
           await this.presentToast(err.message);
         } else {
