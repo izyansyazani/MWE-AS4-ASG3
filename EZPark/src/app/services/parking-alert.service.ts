@@ -1,7 +1,15 @@
 import { Injectable } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { getDatabase, ref, onValue, update } from 'firebase/database';
-import { Firestore, doc, updateDoc } from '@angular/fire/firestore';
+import {
+  Firestore,
+  doc,
+  updateDoc,
+  query,
+  where,
+  getDocs,
+  collection,
+} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -57,6 +65,7 @@ export class ParkingAlertService {
       );
 
       if (bookingStatus === 'booked' && parkingStatus === 'Occupied') {
+        this.updateSpotStatus(spot, 'Cannot book');
         this.showOccupiedAlert(spot);
       }
     }
@@ -70,8 +79,7 @@ export class ParkingAlertService {
         {
           text: 'Yes',
           handler: async () => {
-            console.log('Change status to cannot book');
-            this.updateSpotStatus(spot, 'Cannot book');
+            console.log('User successfully parked');
           },
         },
         {
@@ -100,15 +108,27 @@ export class ParkingAlertService {
       });
   }
   async updateSpotStatus(parkingSpaceNumber: string, status: string) {
-    const spotDocRef = doc(this.firestore, 'bookings', parkingSpaceNumber);
+    const bookingsCollection = collection(this.firestore, 'bookings');
+    const bookingQuery = query(
+      bookingsCollection,
+      where('parkingSpaceNumber', '==', parkingSpaceNumber)
+    );
+    const querySnapshot = await getDocs(bookingQuery);
 
-    try {
-      await updateDoc(spotDocRef, { status: status });
-      console.log(`Spot ${parkingSpaceNumber} status updated to ${status}`);
-    } catch (error) {
-      console.error(
-        `Error updating status for spot ${parkingSpaceNumber}:`,
-        error
+    if (!querySnapshot.empty) {
+      const bookingDoc = querySnapshot.docs[0];
+      try {
+        await updateDoc(bookingDoc.ref, { status });
+        console.log(`Spot ${parkingSpaceNumber} status updated to ${status}`);
+      } catch (error) {
+        console.error(
+          `Error updating status for spot ${parkingSpaceNumber}:`,
+          error
+        );
+      }
+    } else {
+      console.warn(
+        `No booking found with parkingSpaceNumber: ${parkingSpaceNumber}`
       );
     }
   }
