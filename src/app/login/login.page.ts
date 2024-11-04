@@ -65,7 +65,7 @@ export class LoginPage implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern('(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'),
+          Validators.pattern('(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}'),
         ],
       ],
       rememberMe: [false], // Initialize rememberMe checkbox
@@ -73,6 +73,8 @@ export class LoginPage implements OnInit {
   }
 
   async login() {
+    console.log('Login button clicked');
+
     const loading = await this.loadingController.create();
     await loading.present();
 
@@ -80,14 +82,18 @@ export class LoginPage implements OnInit {
       try {
         const { email, password } = this.ionicForm.value;
         const user = await this.authService.loginUser(email, password);
+
+        console.log('User logged in:', user); 
+
         if (user) {
           await loading.dismiss();
           this.router.navigate(['/home']);
         }
       } catch (err: any) {
         await loading.dismiss();
+        console.error('Login error:', err);
         this.presentToast(err?.message || 'Login failed. Please try again.');
-        console.log(err);
+        // console.log(err);
       }
     } else {
       await loading.dismiss();
