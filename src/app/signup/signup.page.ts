@@ -197,9 +197,7 @@ export class SignupPage implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern(
-            '(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&].{8,}'
-          ),
+          Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&].{8,}'),
         ],
       ],
     });
@@ -226,7 +224,7 @@ export class SignupPage implements OnInit {
   
         loading.dismiss();
         // Navigate to login page after successful registration
-        // this.router.navigate(['/login']);
+        this.router.navigate(['/login']);
       } catch (err) {
         loading.dismiss();
         console.error('Error during registration:', err);
