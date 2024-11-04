@@ -71,6 +71,7 @@ export class ParkingAlertService {
           text: 'Yes',
           handler: async () => {
             console.log('Change status to cannot book');
+            this.updateSpotStatus(spot, 'Cannot book');
           },
         },
         {
@@ -97,5 +98,18 @@ export class ParkingAlertService {
       .catch((error) => {
         console.error(`Error activating buzzer for spot ${spot}:`, error);
       });
+  }
+  async updateSpotStatus(parkingSpaceNumber: string, status: string) {
+    const spotDocRef = doc(this.firestore, 'bookings', parkingSpaceNumber);
+
+    try {
+      await updateDoc(spotDocRef, { status: status });
+      console.log(`Spot ${parkingSpaceNumber} status updated to ${status}`);
+    } catch (error) {
+      console.error(
+        `Error updating status for spot ${parkingSpaceNumber}:`,
+        error
+      );
+    }
   }
 }
