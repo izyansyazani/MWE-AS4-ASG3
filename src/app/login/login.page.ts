@@ -65,7 +65,7 @@ export class LoginPage implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern('(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'),
+          Validators.pattern('(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}'),
         ],
       ],
       rememberMe: [false], // Initialize rememberMe checkbox

@@ -197,9 +197,7 @@ export class SignupPage implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern(
-            '(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&].{8,}'
-          ),
+          Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&].{8,}'),
         ],
       ],
     });
@@ -216,7 +214,6 @@ export class SignupPage implements OnInit {
     
     if (this.ionicForm.valid) {
       try {
-        // Register user using the AuthServiceService
         console.log('Form is valid, attempting to register user');
         const userCredential = await this.authService.registerUser(
           this.ionicForm.value.email,
@@ -224,11 +221,10 @@ export class SignupPage implements OnInit {
           this.ionicForm.value.fullname
         );
         console.log('User registered successfully:', userCredential);
-
+  
         loading.dismiss();
         // Navigate to login page after successful registration
-        console.log('Navigating to login page');
-        await this.router.navigate(['/login']);  // Change to /login
+        this.router.navigate(['/login']);
       } catch (err) {
         loading.dismiss();
         console.error('Error during registration:', err);
@@ -241,7 +237,7 @@ export class SignupPage implements OnInit {
     } else {
       loading.dismiss();
       await this.presentToast('Please provide all the required values!');
-    }
+    }  
   }
 
   async presentToast(message: string) {
