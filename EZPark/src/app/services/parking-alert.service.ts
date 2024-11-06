@@ -16,6 +16,7 @@ import {
 })
 export class ParkingAlertService {
   private isListenerActive = false;
+  private pendingAlertTimeouts: { [spot: string]: any } = {};
   constructor(
     private alertController: AlertController,
     private firestore: Firestore
@@ -66,7 +67,14 @@ export class ParkingAlertService {
 
       if (bookingStatus === 'booked' && parkingStatus === 'Occupied') {
         this.updateSpotStatus(spot, 'Cannot book');
-        this.showOccupiedAlert(spot);
+        if (this.pendingAlertTimeouts[spot]) {
+          clearTimeout(this.pendingAlertTimeouts[spot]); // Clear any existing timeout
+        }
+
+        this.pendingAlertTimeouts[spot] = setTimeout(() => {
+          this.showOccupiedAlert(spot);
+          delete this.pendingAlertTimeouts[spot]; // Clean up timeout reference after alert shows
+        }, 6000);
       }
     }
   }
